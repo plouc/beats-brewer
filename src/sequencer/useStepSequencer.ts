@@ -4,6 +4,7 @@ import { DrumKit } from '../drums/kit'
 
 export interface TrackData {
     sampleId: string
+    isMuted: boolean
     steps: boolean[]
 }
 
@@ -15,6 +16,7 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
     const [tracks, setTracks] = useState<TrackData[]>(() =>
         drumKit.samples.map((sample) => ({
             sampleId: sample.id,
+            isMuted: false,
             steps: Array.from({ length: steps }).fill(false) as boolean[],
         }))
     )
@@ -62,6 +64,22 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
         })
     }, [setBars, setTracks])
 
+    const toggleTrack = useCallback(
+        (sampleId: string) => {
+            setTracks((tracks) =>
+                tracks.map((track) => {
+                    if (track.sampleId !== sampleId) return track
+
+                    return {
+                        ...track,
+                        isMuted: !track.isMuted,
+                    }
+                })
+            )
+        },
+        [setTracks]
+    )
+
     // toggle a track step, which is just a boolean flag
     // indicating if it's active or not
     const toggleStep = useCallback(
@@ -108,11 +126,13 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
 
             if (tracksRef.current !== undefined) {
                 tracksRef.current.forEach((track) => {
+                    if (track.isMuted) return
+
                     const shouldPlay = track.steps[index]
                     const sample = drumKit.getSample(track.sampleId)
-                    if (shouldPlay && sample.isReady) {
-                        sample.player!.start()
-                    }
+                    if (!shouldPlay || !sample.isReady) return
+
+                    sample.player!.start()
                 })
             }
         },
@@ -149,6 +169,7 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
         setStepIndex,
         tracks,
         setTracks,
+        toggleTrack,
         toggleStep,
         isPlaying,
         play,

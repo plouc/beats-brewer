@@ -17,6 +17,7 @@ export const Sequencer = () => {
         steps,
         stepIndex,
         tracks,
+        toggleTrack,
         toggleStep,
         isPlaying,
         play,
@@ -39,13 +40,24 @@ export const Sequencer = () => {
                 <VSpacer size="small" />
                 <Container>
                     <TrackHeadings>
-                        {defaultDrumKit.samples.map((sample) => (
-                            <TrackHeading
-                                key={sample.name}
-                                name={sample.name}
-                                color={sample.color}
-                            />
-                        ))}
+                        {defaultDrumKit.samples.map((sample) => {
+                            let isTrackMuted = false
+                            const track = tracks.find((t) => t.sampleId === sample.id)
+                            if (track !== undefined) {
+                                isTrackMuted = track.isMuted
+                            }
+
+                            return (
+                                <TrackHeading
+                                    key={sample.id}
+                                    sampleId={sample.id}
+                                    name={sample.name}
+                                    color={sample.color}
+                                    isMuted={isTrackMuted}
+                                    toggleTrack={toggleTrack}
+                                />
+                            )
+                        })}
                     </TrackHeadings>
                     <div>
                         <SequencerTimeline steps={steps} current={stepIndex} />
