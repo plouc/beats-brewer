@@ -1,23 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import * as Tone from 'tone'
-import { DrumKit } from '../drums/kit'
+import { SequencerPattern, SequencerPatternTrack } from '../project/definitions'
 
-export interface TrackData {
-    sampleId: string
-    isMuted: boolean
-    steps: boolean[]
+export interface TrackWithPlayer extends SequencerPatternTrack {
+    player: Tone.Player
 }
 
-export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
+export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => {
     const [bars, setBars] = useState<number>(1)
     const [stepIndex, setStepIndex] = useState<number>(-1)
     const steps = bars * 4 * 4
 
-    const [tracks, setTracks] = useState<TrackData[]>(() =>
-        drumKit.samples.map((sample) => ({
-            sampleId: sample.id,
-            isMuted: false,
-            steps: Array.from({ length: steps }).fill(false) as boolean[],
+    const [tracks, setTracks] = useState<TrackWithPlayer[]>(() =>
+        pattern.tracks.map((track) => ({
+            ...track,
+            player: new Tone.Player(track.audioFile).toDestination(),
         }))
     )
 
@@ -32,7 +29,7 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
                 return tracks.map((track) => {
                     const newSteps = track.steps.slice(0, newStepCount)
                     for (let i = 0; i < newStepCount - steps; i++) {
-                        newSteps.push(false)
+                        newSteps.push(0)
                     }
 
                     return {
@@ -65,10 +62,10 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
     }, [setBars, setTracks])
 
     const toggleTrack = useCallback(
-        (sampleId: string) => {
+        (trackId: string) => {
             setTracks((tracks) =>
                 tracks.map((track) => {
-                    if (track.sampleId !== sampleId) return track
+                    if (track.id !== trackId) return track
 
                     return {
                         ...track,
@@ -83,15 +80,15 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
     // toggle a track step, which is just a boolean flag
     // indicating if it's active or not
     const toggleStep = useCallback(
-        (sampleId: string, index: number) => {
+        (trackId: string, index: number) => {
             setTracks((tracks) =>
                 tracks.map((track) => {
-                    if (track.sampleId !== sampleId) return track
+                    if (track.id !== trackId) return track
 
                     return {
                         ...track,
                         steps: track.steps.map((step, stepIndex) => {
-                            if (stepIndex === index) return !step
+                            if (stepIndex === index) return step === 0 ? 1 : 0
                             return step
                         }),
                     }
@@ -114,7 +111,7 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
     // we use a ref for tracks so that we can pass it to the
     // main tick function, otherwise the tick function would
     // be continuously re-created as we edit the steps
-    const tracksRef = useRef<TrackData[]>()
+    const tracksRef = useRef<TrackWithPlayer[]>()
     useEffect(() => {
         tracksRef.current = tracks
     }, [tracks])
@@ -122,21 +119,22 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
     // main loop tick function, called by Tone scheduler
     const tick = useCallback(
         (time: number, index: number) => {
-            setStepIndex(index)
+            Tone.Draw.schedule(() => {
+                setStepIndex(index)
+            }, time)
 
             if (tracksRef.current !== undefined) {
                 tracksRef.current.forEach((track) => {
                     if (track.isMuted) return
 
-                    const shouldPlay = track.steps[index]
-                    const sample = drumKit.getSample(track.sampleId)
-                    if (!shouldPlay || !sample.isReady) return
+                    const shouldPlay = track.steps[index] === 1
+                    if (!shouldPlay) return
 
-                    sample.player!.start()
+                    track.player.start(time, 0)
                 })
             }
         },
-        [setStepIndex, drumKit, tracksRef]
+        [setStepIndex, tracksRef]
     )
 
     // create a new sequence each time the tick function is updated
@@ -154,11 +152,6 @@ export const useStepSequencer = ({ drumKit }: { drumKit: DrumKit }) => {
             sequence.dispose()
         }
     }, [tick, steps])
-
-    // init the drum kit, making sure all samples are initialized
-    useEffect(() => {
-        drumKit.init()
-    }, [drumKit])
 
     return {
         bars,

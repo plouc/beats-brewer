@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'styled-components'
 
 export const lightTheme: DefaultTheme = {
+    id: 'light',
+    name: 'Light Theme',
     typography: {
         headingFont: `'Montserrat', sans-serif`,
         monospacedFont: `'IBM Plex Mono', monospace`,

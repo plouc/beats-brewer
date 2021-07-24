@@ -1,32 +1,18 @@
 import styled from 'styled-components/macro'
-import { DrumKit } from '../drums/kit'
 import { TrackSteps } from './TrackSteps'
-import { TrackData } from './useStepSequencer'
+import { TrackWithPlayer } from './useStepSequencer'
 
 interface SequencerTracksProps {
-    drumKit: DrumKit
-    tracks: TrackData[]
+    tracks: TrackWithPlayer[]
     toggleStep: (sampleId: string, index: number) => void
 }
 
-export const SequencerTracks = ({ drumKit, tracks, toggleStep }: SequencerTracksProps) => {
+export const SequencerTracks = ({ tracks, toggleStep }: SequencerTracksProps) => {
     return (
         <Container>
-            {drumKit.samples.map((sample) => {
-                const track = tracks.find((t) => t.sampleId === sample.id)
-
-                if (!track) return null
-
-                return (
-                    <TrackSteps
-                        key={sample.name}
-                        sampleId={sample.id}
-                        color={sample.color}
-                        steps={track.steps}
-                        toggleStep={toggleStep}
-                    />
-                )
-            })}
+            {tracks.map((track) => (
+                <TrackSteps key={track.id} track={track} toggleStep={toggleStep} />
+            ))}
         </Container>
     )
 }

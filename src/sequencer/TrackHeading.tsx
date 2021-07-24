@@ -1,32 +1,25 @@
-import styled from 'styled-components/macro'
-import { FiVolume, FiVolumeX } from 'react-icons/fi'
-import { darken } from 'polished'
 import { useCallback } from 'react'
+import styled from 'styled-components/macro'
+import { darken } from 'polished'
+import { FiVolume, FiVolumeX } from 'react-icons/fi'
+import { TrackWithPlayer } from './useStepSequencer'
 
 interface TrackHeadingProps {
-    sampleId: string
-    name: string
-    color: string
-    isMuted: boolean
+    track: TrackWithPlayer
     toggleTrack: (sampleId: string) => void
 }
 
-export const TrackHeading = ({
-    sampleId,
-    name,
-    color,
-    isMuted,
-    toggleTrack,
-}: TrackHeadingProps) => {
+export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
     const handleToggle = useCallback(() => {
-        toggleTrack(sampleId)
-    }, [sampleId, toggleTrack])
+        toggleTrack(track.id)
+    }, [track.id, toggleTrack])
+
     return (
-        <TrackHeadingContainer color={color}>
-            <TrackName>{name}</TrackName>
-            <MuteIcon onClick={handleToggle}>
-                {isMuted && <FiVolumeX />}
-                {!isMuted && <FiVolume />}
+        <TrackHeadingContainer color={track.color}>
+            <TrackName>{track.name}</TrackName>
+            <MuteIcon isMuted={track.isMuted} onClick={handleToggle}>
+                {track.isMuted && <FiVolumeX />}
+                {!track.isMuted && <FiVolume />}
             </MuteIcon>
         </TrackHeadingContainer>
     )
@@ -76,7 +69,9 @@ const TrackName = styled.div`
     font-size: 10px;
 `
 
-const MuteIcon = styled.div`
+const MuteIcon = styled.div<{
+    isMuted: boolean
+}>`
     font-size: 16px;
     width: 24px;
     height: 24px;

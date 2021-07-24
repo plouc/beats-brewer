@@ -3,13 +3,17 @@ import { VSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
 import { SequencerHeader } from './SequencerHeader'
-import { defaultDrumKit } from '../drums/kit'
 import { TrackHeading } from './TrackHeading'
 import { SequencerTimeline } from './SequencerTimeline'
 import { useStepSequencer } from './useStepSequencer'
 import { SequencerTracks } from './SequencerTracks'
+import { SequencerPattern } from '../project/definitions'
 
-export const Sequencer = () => {
+interface SequencerProps {
+    pattern: SequencerPattern
+}
+
+export const Sequencer = ({ pattern }: SequencerProps) => {
     const {
         bars,
         setBars,
@@ -23,13 +27,14 @@ export const Sequencer = () => {
         play,
         stop,
     } = useStepSequencer({
-        drumKit: defaultDrumKit,
+        pattern,
     })
 
     return (
         <Desk>
             <Enclosure>
                 <SequencerHeader
+                    pattern={pattern}
                     bars={bars}
                     setBars={setBars}
                     doubleBars={doubleBars}
@@ -40,32 +45,13 @@ export const Sequencer = () => {
                 <VSpacer size="small" />
                 <Container>
                     <TrackHeadings>
-                        {defaultDrumKit.samples.map((sample) => {
-                            let isTrackMuted = false
-                            const track = tracks.find((t) => t.sampleId === sample.id)
-                            if (track !== undefined) {
-                                isTrackMuted = track.isMuted
-                            }
-
-                            return (
-                                <TrackHeading
-                                    key={sample.id}
-                                    sampleId={sample.id}
-                                    name={sample.name}
-                                    color={sample.color}
-                                    isMuted={isTrackMuted}
-                                    toggleTrack={toggleTrack}
-                                />
-                            )
-                        })}
+                        {tracks.map((track) => (
+                            <TrackHeading key={track.id} track={track} toggleTrack={toggleTrack} />
+                        ))}
                     </TrackHeadings>
                     <div>
                         <SequencerTimeline steps={steps} current={stepIndex} />
-                        <SequencerTracks
-                            drumKit={defaultDrumKit}
-                            tracks={tracks}
-                            toggleStep={toggleStep}
-                        />
+                        <SequencerTracks tracks={tracks} toggleStep={toggleStep} />
                     </div>
                 </Container>
             </Enclosure>

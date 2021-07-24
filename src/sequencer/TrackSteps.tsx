@@ -1,32 +1,32 @@
 import { useCallback } from 'react'
 import styled, { css } from 'styled-components/macro'
 import { darken, lighten, rgba } from 'polished'
+import { TrackWithPlayer } from './useStepSequencer'
 
 interface TrackStepsProps {
-    sampleId: string
-    color: string
-    steps: boolean[]
+    track: TrackWithPlayer
     toggleStep: (sampleId: string, index: number) => void
 }
 
-export const TrackSteps = ({ sampleId, color, steps, toggleStep }: TrackStepsProps) => {
+export const TrackSteps = ({ track, toggleStep }: TrackStepsProps) => {
     const handleToggle = useCallback(
         (index: number) => {
-            toggleStep(sampleId, index)
+            toggleStep(track.id, index)
         },
-        [toggleStep, sampleId]
+        [toggleStep, track.id]
     )
 
     return (
-        <Grid steps={steps.length}>
-            {steps.map((step, index) => {
+        <Grid steps={track.steps.length}>
+            {track.steps.map((step, index) => {
                 return (
                     <Step
                         key={index}
                         index={index}
-                        color={color}
-                        isActive={step}
+                        color={track.color}
+                        isActive={step === 1}
                         onToggle={handleToggle}
+                        isMuted={track.isMuted}
                     />
                 )
             })}
@@ -39,9 +39,10 @@ interface StepProps {
     color: string
     isActive: boolean
     onToggle: (index: number) => void
+    isMuted: boolean
 }
 
-const Step = ({ index, color, isActive, onToggle }: StepProps) => {
+const Step = ({ index, color, isActive, onToggle, isMuted }: StepProps) => {
     const handleToggle = useCallback(() => {
         onToggle(index)
     }, [onToggle, index])
@@ -52,6 +53,7 @@ const Step = ({ index, color, isActive, onToggle }: StepProps) => {
             isActive={isActive}
             isOdd={index % 8 >= 4}
             onClick={handleToggle}
+            isMuted={isMuted}
         />
     )
 }
@@ -70,11 +72,13 @@ const StepElement = styled.div<{
     color: string
     isActive: boolean
     isOdd: boolean
+    isMuted: boolean
 }>`
     position: relative;
     border-radius: 2px;
     height: 24px;
     cursor: pointer;
+    opacity: ${(props) => (props.isMuted ? 0.5 : 1)};
 
     &:after {
         content: '';

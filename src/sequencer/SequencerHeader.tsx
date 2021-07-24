@@ -5,8 +5,10 @@ import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { SequencerBars } from './SequencerBars'
 import { PlayerControls } from '../ui/controls/PlayerControls'
 import { HardwareButton } from '../ui/controls/HardwareButton'
+import { SequencerPattern } from '../project/definitions'
 
 interface SequencerHeaderProps {
+    pattern: SequencerPattern
     bars: number
     setBars: (bars: number) => void
     doubleBars: () => void
@@ -16,6 +18,7 @@ interface SequencerHeaderProps {
 }
 
 export const SequencerHeader = ({
+    pattern,
     bars,
     setBars,
     doubleBars,
@@ -26,7 +29,7 @@ export const SequencerHeader = ({
     return (
         <ComponentHeader>
             <ComponentName>
-                <ComponentNameHighlight>Step Sequencer</ComponentNameHighlight>
+                <ComponentNameHighlight>{pattern.name}</ComponentNameHighlight>
             </ComponentName>
             <HSpacer />
             <PlayerControls isPlaying={isPlaying} play={play} stop={stop} />

@@ -2,6 +2,8 @@ import 'styled-components'
 
 declare module 'styled-components' {
     export interface DefaultTheme {
+        id: string
+        name: string
         typography: {
             headingFont: string
             monospacedFont: string

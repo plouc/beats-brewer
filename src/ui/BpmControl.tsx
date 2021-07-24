@@ -1,25 +1,48 @@
-import { useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, useCallback } from 'react'
 import styled from 'styled-components/macro'
-import * as Tone from 'tone'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { HSpacer } from './Spacer'
+import { Select } from './controls/Select'
 import { RoundIconButton } from './controls/RoundIconButton'
 import { LCDScreen, LCDScreenHighlightedText } from './LCDScreen'
+import { useAppStore } from '../useApp'
+
+const genresBpm: [string, number][] = [
+    ['Reggae/R&B', 60],
+    ['Down-tempo', 70],
+    ['Hip-hop', 85],
+    ['Chill-out', 90],
+    ['Pop/Metal', 100],
+    ['Rock', 110],
+    ['House', 118],
+    ['Jazz & Funk/Techno', 120],
+    ['Trance', 130],
+    ['Dubstep/Trap', 140],
+    ['Jungle', 155],
+    ['Drum and Bass', 165],
+]
 
 export const BpmControl = () => {
-    const [bpm, setBpm] = useState(130)
+    const bpm = useAppStore((state) => state.bpm)
+    const setBpm = useAppStore((state) => state.setBpm)
 
     const handleMinus = useCallback(() => {
-        setBpm((previous) => Math.max(1, previous - 1))
-    }, [setBpm])
+        setBpm(Math.max(1, bpm - 1))
+    }, [bpm, setBpm])
 
     const handlePlus = useCallback(() => {
-        setBpm((previous) => Math.min(522, previous + 1))
-    }, [setBpm])
+        setBpm(Math.min(522, bpm + 1))
+    }, [bpm, setBpm])
 
-    useEffect(() => {
-        Tone.Transport.bpm.value = bpm
-    }, [bpm])
+    const handleSelect = useCallback(
+        (event: ChangeEvent<HTMLSelectElement>) => {
+            if (event.target.value === '') return
+            setBpm(Number(event.target.value))
+        },
+        [setBpm]
+    )
+
+    const currentGenre = genresBpm.find(([_, genreBpm]) => genreBpm === bpm)
 
     return (
         <Container>
@@ -28,12 +51,21 @@ export const BpmControl = () => {
             </RoundIconButton>
             <HSpacer size="small" />
             <Screen>
-                BPM <Current>{bpm.toFixed(2)}</Current>
+                BPM <Current>{bpm.toFixed(2).padStart(6, ' ')}</Current>
             </Screen>
             <HSpacer size="small" />
             <RoundIconButton onClick={handlePlus}>
                 <FiPlus />
             </RoundIconButton>
+            <HSpacer size="small" />
+            <Select onChange={handleSelect} value={currentGenre ? currentGenre[1] : ''}>
+                <option value="">-----</option>
+                {genresBpm.map(([genre, genreBpm]) => (
+                    <option key={genre} value={genreBpm}>
+                        {genre} {genreBpm}
+                    </option>
+                ))}
+            </Select>
         </Container>
     )
 }
@@ -52,4 +84,5 @@ const Screen = styled(LCDScreen)`
 
 const Current = styled(LCDScreenHighlightedText)`
     margin-left: 1ch;
+    white-space: pre;
 `

@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import { HSpacer } from './Spacer'
 import { BpmControl } from './BpmControl'
 
 export const AppHeader = () => {
@@ -9,14 +8,16 @@ export const AppHeader = () => {
                 <span>Beats</span>
                 <span>Brewer</span>
             </AppName>
-            <HSpacer />
-            <BpmControl />
+            <div>
+                <BpmControl />
+            </div>
         </Container>
     )
 }
 
 const Container = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 200px auto;
     align-items: center;
     grid-column-start: 1;
     grid-column-end: 3;

@@ -1,6 +1,8 @@
 import { DefaultTheme } from 'styled-components'
 
-export const defaultTheme: DefaultTheme = {
+export const darkTheme: DefaultTheme = {
+    id: 'dark',
+    name: 'Dark Theme',
     typography: {
         headingFont: `'Montserrat', sans-serif`,
         monospacedFont: `'IBM Plex Mono', monospace`,
