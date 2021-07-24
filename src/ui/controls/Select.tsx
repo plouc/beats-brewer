@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { darken, lighten, rgba } from 'polished'
 
 export const Select = styled.select`
     height: 32px;
@@ -6,14 +7,16 @@ export const Select = styled.select`
     color: inherit;
     padding: 4px 7px;
     border-radius: 2px;
-    background-color: #2d2d2d;
-    border: 1px solid #242425;
+    background-color: ${(props) => props.theme.colors.enclosureBackground};
+    border: 1px solid ${(props) => darken(0.08, props.theme.colors.enclosureBackground)};
     cursor: pointer;
     font-family: ${(props) => props.theme.typography.monospacedFont};
+    box-shadow: 0 1px 2px
+        ${(props) => rgba(darken(0.1, props.theme.colors.enclosureBackground), 0.35)};
 
     &:focus {
         cursor: auto;
         outline: 0;
-        background-color: #242425;
+        background-color: ${(props) => lighten(0.03, props.theme.colors.enclosureBackground)};
     }
 `

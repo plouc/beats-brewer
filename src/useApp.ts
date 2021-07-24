@@ -6,6 +6,7 @@ import { darkTheme } from './ui/theme/darkTheme'
 
 interface AppStore {
     theme: DefaultTheme
+    setTheme: (theme: DefaultTheme) => void
     bpm: number
     setBpm: (bpm: number) => void
     project?: Project
@@ -20,6 +21,7 @@ const DEFAULT_BPM = 130
 
 export const useAppStore = create<AppStore>((set, get) => ({
     theme: darkTheme,
+    setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
         Tone.Transport.bpm.value = bpm

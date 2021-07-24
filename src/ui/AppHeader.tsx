@@ -1,5 +1,7 @@
 import styled from 'styled-components/macro'
+import { HSpacer } from './Spacer'
 import { BpmControl } from './BpmControl'
+import { ThemeSelector } from './theme/ThemeSelector'
 
 export const AppHeader = () => {
     return (
@@ -8,9 +10,11 @@ export const AppHeader = () => {
                 <span>Beats</span>
                 <span>Brewer</span>
             </AppName>
-            <div>
+            <Controls>
                 <BpmControl />
-            </div>
+                <HSpacer />
+                <ThemeSelector />
+            </Controls>
         </Container>
     )
 }
@@ -36,4 +40,9 @@ const AppName = styled.div`
         color: ${(props) => props.theme.colors.accent};
         margin-left: 2px;
     }
+`
+
+const Controls = styled.div`
+    display: flex;
+    align-items: center;
 `
