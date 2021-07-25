@@ -30,6 +30,10 @@ export type Pattern = SequencerPattern
 
 export type PatternType = SequencerPattern['type']
 
+export interface Channel {
+    name: string
+}
+
 export interface Project {
     name: string
     bpm: number

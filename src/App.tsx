@@ -6,6 +6,7 @@ import { GlobalStyle } from './ui/theme/GlobalStyle'
 import { AppHeader } from './ui/AppHeader'
 import { Explorer } from './explorer/Explorer'
 import { Sequencer } from './sequencer/Sequencer'
+import { Mixer } from './mixer/Mixer'
 import { Keyboard } from './keyboard/Keyboard'
 import { Drums } from './drums/Drums'
 import { useAppStore } from './useApp'
@@ -36,6 +37,7 @@ function App() {
                             </div>
                         )
                     })}
+                    <Mixer />
                     <div>
                         <Keyboard />
                     </div>

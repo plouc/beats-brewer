@@ -13,6 +13,7 @@ declare module 'styled-components' {
             text: string
             textLight: string
             accent: string
+            wood: string
             enclosureBorder: string
             enclosureBackground: string
             enclosureSide: string

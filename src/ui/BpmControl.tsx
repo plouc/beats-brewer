@@ -62,7 +62,7 @@ export const BpmControl = () => {
                 <option value="">-----</option>
                 {genresBpm.map(([genre, genreBpm]) => (
                     <option key={genre} value={genreBpm}>
-                        {genre} {genreBpm}
+                        {genre} {genreBpm}BPM
                     </option>
                 ))}
             </Select>
@@ -80,6 +80,8 @@ const Screen = styled(LCDScreen)`
     align-items: center;
     height: 28px;
     padding: 0 12px;
+    font-size: 16px;
+    font-family: 'VT323', monospace;
 `
 
 const Current = styled(LCDScreenHighlightedText)`

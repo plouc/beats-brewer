@@ -12,6 +12,7 @@ export const darkTheme: DefaultTheme = {
         text: '#ffffff',
         textLight: '#888888',
         accent: '#7bb392',
+        wood: '#402a1a',
         enclosureBorder: '#242425',
         enclosureBackground: '#2d2d2d',
         enclosureSide: '#181717',
