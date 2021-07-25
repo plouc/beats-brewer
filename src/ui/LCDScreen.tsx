@@ -7,8 +7,8 @@ export const LCDScreen = styled.div`
     box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.lcdBorder},
         0 2px 3px rgba(0, 0, 0, 0.1) inset;
     border-radius: 3px;
-    font-family: ${(props) => props.theme.typography.monospacedFont};
-    font-size: 12px;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
 `
 
 export const LCDScreenHighlightedText = styled.span`

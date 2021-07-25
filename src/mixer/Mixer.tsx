@@ -4,8 +4,11 @@ import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { MixerChannel } from './MixerChannel'
+import { useAppStore } from '../useApp'
 
 export const Mixer = () => {
+    const channels = useAppStore((state) => state.channels)
+
     return (
         <Desk>
             <Enclosure>
@@ -15,15 +18,9 @@ export const Mixer = () => {
                     </ComponentName>
                 </ComponentHeader>
                 <Channels>
-                    <MixerChannel channel={{ name: 'M' }} />
-                    <MixerChannel channel={{ name: '01' }} />
-                    <MixerChannel channel={{ name: '02' }} />
-                    <MixerChannel channel={{ name: '03' }} />
-                    <MixerChannel channel={{ name: '04' }} />
-                    <MixerChannel channel={{ name: '05' }} />
-                    <MixerChannel channel={{ name: '06' }} />
-                    <MixerChannel channel={{ name: '07' }} />
-                    <MixerChannel channel={{ name: '08' }} />
+                    {channels.map((channel, index) => (
+                        <MixerChannel key={index} index={index} channel={channel} />
+                    ))}
                 </Channels>
             </Enclosure>
         </Desk>

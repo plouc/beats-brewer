@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 import { darken } from 'polished'
 import { BiBox } from 'react-icons/bi'
 import { FaDrum, FaWaveSquare } from 'react-icons/fa'
-import { CgPiano } from 'react-icons/cg'
+// import { CgPiano } from 'react-icons/cg'
 import { BsGrid3X2GapFill } from 'react-icons/bs'
-import { demoProjects } from '../presets/projects/demoProjects'
-import { SYNTH_TYPES } from '../synths/definitions'
+import { demoProjects } from '../library/demoProjects'
+// import { SYNTH_TYPES } from '../synths/definitions'
 import { drumKits } from '../library/drumKits'
 import { samples } from '../library/samples'
 import { useAppStore } from '../useApp'
@@ -13,13 +13,15 @@ import { ExplorerFolder } from './ExplorerFolder'
 
 export const Explorer = () => {
     const project = useAppStore((state) => state.project)
-    const createEmptyProject = useAppStore((state) => state.createEmptyProject)
+    // const createEmptyProject = useAppStore((state) => state.createEmptyProject)
     const loadProject = useAppStore((state) => state.loadProject)
     const openPattern = useAppStore((state) => state.openPattern)
 
     return (
         <Container>
+            {/*
             <Item onClick={createEmptyProject}>New Empty Project</Item>
+            */}
             {project && (
                 <>
                     <SubTitle>{project.name}</SubTitle>
@@ -66,6 +68,7 @@ export const Explorer = () => {
                     </Item>
                 ))}
             </ExplorerFolder>
+            {/*
             <SectionTitle>Instruments</SectionTitle>
             <ExplorerFolder
                 title={
@@ -80,6 +83,7 @@ export const Explorer = () => {
                     </Item>
                 ))}
             </ExplorerFolder>
+            */}
             <ExplorerFolder
                 title={
                     <SectionTitle>

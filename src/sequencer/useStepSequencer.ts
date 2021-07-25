@@ -7,16 +7,17 @@ export interface TrackWithPlayer extends SequencerPatternTrack {
 }
 
 export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => {
-    const [bars, setBars] = useState<number>(1)
+    const [bars, setBars] = useState<number>(() => {
+        if (pattern.tracks.length > 0) {
+            return pattern.tracks[0].steps.length / 16
+        }
+
+        return 1
+    })
     const [stepIndex, setStepIndex] = useState<number>(-1)
     const steps = bars * 4 * 4
 
-    const [tracks, setTracks] = useState<TrackWithPlayer[]>(() =>
-        pattern.tracks.map((track) => ({
-            ...track,
-            player: new Tone.Player(track.audioFile).toDestination(),
-        }))
-    )
+    const [tracks, setTracks] = useState<TrackWithPlayer[]>(pattern.tracks)
 
     // set a new number of bars and fill all tracks with empty steps
     // if greater than current or remove steps if lower.

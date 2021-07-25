@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { darken } from 'polished'
 import { FiVolume, FiVolumeX } from 'react-icons/fi'
 import { TrackWithPlayer } from './useStepSequencer'
+import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
 
 interface TrackHeadingProps {
     track: TrackWithPlayer
@@ -17,6 +18,7 @@ export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
     return (
         <TrackHeadingContainer color={track.color}>
             <TrackName>{track.name}</TrackName>
+            <MixerChannelSelector value={track.channel} />
             <MuteIcon isMuted={track.isMuted} onClick={handleToggle}>
                 {track.isMuted && <FiVolumeX />}
                 {!track.isMuted && <FiVolume />}
@@ -28,9 +30,10 @@ export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
 const TrackHeadingContainer = styled.div<{
     color: string
 }>`
+    display: grid;
+    grid-template-columns: auto 36px 24px;
+    grid-column-gap: 5px;
     position: relative;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
     font-family: ${(props) => props.theme.typography.monospacedFont};
     font-size: 12px;
@@ -55,8 +58,6 @@ const TrackHeadingContainer = styled.div<{
     }
 
     &:hover {
-        color: ${(props) => props.theme.colors.text};
-
         &:before {
             opacity: 1;
         }
@@ -67,6 +68,9 @@ const TrackName = styled.div`
     font-family: ${(props) => props.theme.typography.headingFont};
     text-transform: uppercase;
     font-size: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `
 
 const MuteIcon = styled.div<{
@@ -78,4 +82,9 @@ const MuteIcon = styled.div<{
     display: flex;
     justify-content: center;
     align-items: center;
+    color: ${(props) => props.theme.colors.textLight};
+
+    &:hover {
+        color: ${(props) => props.theme.colors.text};
+    }
 `

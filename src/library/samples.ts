@@ -1,6 +1,8 @@
 import { v4 as uuidV4 } from 'uuid'
 import { Sample } from '../project/definitions'
 
+// console.log(uuidV4())
+
 export const tr808BassDrum1 = require('../audio/tr808/tr808_bass_drum_001.wav').default
 export const tr808BassDrum2 = require('../audio/tr808/tr808_bass_drum_002.wav').default
 export const tr808Snare1 = require('../audio/tr808/tr808_snare_001.wav').default

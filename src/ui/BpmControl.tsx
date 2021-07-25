@@ -80,8 +80,6 @@ const Screen = styled(LCDScreen)`
     align-items: center;
     height: 28px;
     padding: 0 12px;
-    font-size: 16px;
-    font-family: 'VT323', monospace;
 `
 
 const Current = styled(LCDScreenHighlightedText)`

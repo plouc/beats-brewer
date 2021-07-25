@@ -42,12 +42,10 @@ const Container = styled.div`
 `
 
 const Screen = styled(LCDScreen)`
-    padding: 0 9px;
+    padding: 0 12px;
     display: flex;
     align-items: center;
     height: 28px;
-    font-family: 'VT323', monospace;
-    font-size: 16px;
 `
 
 const Current = styled(LCDScreenHighlightedText)`
