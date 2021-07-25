@@ -51,7 +51,11 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
                     </TrackHeadings>
                     <div>
                         <SequencerTimeline steps={steps} current={stepIndex} />
-                        <SequencerTracks tracks={tracks} toggleStep={toggleStep} />
+                        <SequencerTracks
+                            tracks={tracks}
+                            currentStep={stepIndex}
+                            toggleStep={toggleStep}
+                        />
                     </div>
                 </Container>
             </Enclosure>

@@ -61,6 +61,6 @@ const patternA: SequencerPattern = {
 
 export const demoProject: Project = {
     name: 'Demo Project',
-    bpm: 95,
+    bpm: 120,
     patterns: [patternA],
 }

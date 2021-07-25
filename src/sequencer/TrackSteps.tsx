@@ -5,10 +5,11 @@ import { TrackWithPlayer } from './useStepSequencer'
 
 interface TrackStepsProps {
     track: TrackWithPlayer
+    currentStep: number
     toggleStep: (sampleId: string, index: number) => void
 }
 
-export const TrackSteps = ({ track, toggleStep }: TrackStepsProps) => {
+export const TrackSteps = ({ track, currentStep, toggleStep }: TrackStepsProps) => {
     const handleToggle = useCallback(
         (index: number) => {
             toggleStep(track.id, index)
@@ -25,6 +26,7 @@ export const TrackSteps = ({ track, toggleStep }: TrackStepsProps) => {
                         index={index}
                         color={track.color}
                         isActive={step === 1}
+                        isPlaying={step === 1 && currentStep === index}
                         onToggle={handleToggle}
                         isMuted={track.isMuted}
                     />
@@ -38,11 +40,12 @@ interface StepProps {
     index: number
     color: string
     isActive: boolean
+    isPlaying: boolean
     onToggle: (index: number) => void
     isMuted: boolean
 }
 
-const Step = ({ index, color, isActive, onToggle, isMuted }: StepProps) => {
+const Step = ({ index, color, isActive, isPlaying, onToggle, isMuted }: StepProps) => {
     const handleToggle = useCallback(() => {
         onToggle(index)
     }, [onToggle, index])
@@ -51,6 +54,7 @@ const Step = ({ index, color, isActive, onToggle, isMuted }: StepProps) => {
         <StepElement
             color={color}
             isActive={isActive}
+            isPlaying={isPlaying}
             isOdd={index % 8 >= 4}
             onClick={handleToggle}
             isMuted={isMuted}
@@ -71,6 +75,7 @@ const Grid = styled.div<{
 const StepElement = styled.div<{
     color: string
     isActive: boolean
+    isPlaying: boolean
     isOdd: boolean
     isMuted: boolean
 }>`
@@ -96,8 +101,21 @@ const StepElement = styled.div<{
         transition: transform 400ms, opacity 400ms;
     }
 
-    ${({ theme, color, isActive, isOdd }) => {
+    ${({ theme, color, isActive, isPlaying, isOdd }) => {
         if (isActive) {
+            if (isPlaying) {
+                return css`
+                    background-color: ${lighten(0.15, color)};
+                    box-shadow: 0 2px 0 ${color}, inset 0 1px 0 ${lighten(0.15, color)},
+                        0 0 3px 2px ${rgba(color, 0.75)};
+
+                    &:after {
+                        transform: translate3d(0, -5px, 0);
+                        opacity: 1;
+                    }
+                `
+            }
+
             return css`
                 background-color: ${color};
                 box-shadow: 0 2px 0 ${darken(0.2, color)},

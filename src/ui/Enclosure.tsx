@@ -17,7 +17,7 @@ export const Container = styled.div`
     grid-template-columns: 12px auto 12px;
     border-radius: 3px;
     background-color: ${(props) => props.theme.colors.enclosureBackground};
-    box-shadow: 1px 2px 5px ${(props) => rgba(darken(0.2, props.theme.colors.background), 0.35)},
+    box-shadow: 1px 2px 5px ${(props) => rgba(darken(0.2, props.theme.colors.background), 0.15)},
         3px 6px 12px ${(props) => rgba(darken(0.2, props.theme.colors.background), 0.25)};
 `
 
@@ -39,4 +39,6 @@ const Body = styled.div`
     padding: 6px;
     border-top: 6px solid ${(props) => props.theme.colors.enclosureBorder};
     border-bottom: 6px solid ${(props) => props.theme.colors.enclosureBorder};
+    box-shadow: inset 1px 0 2px
+        ${(props) => rgba(darken(0.1, props.theme.colors.enclosureBackground), 0.2)};
 `
