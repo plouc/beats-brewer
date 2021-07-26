@@ -4,6 +4,7 @@ import { FiVolume, FiVolumeX } from 'react-icons/fi'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
 import { useAppStore } from '../useApp'
+import { darken } from 'polished'
 
 interface MixerChannelProps {
     index: number
@@ -41,16 +42,17 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
                     <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
                 </ValueScreen>
             </ValueBlock>
+            <ValueLabel>effects</ValueLabel>
             {channel.effects.map((effect) => {
                 return (
-                    <div
+                    <EffectLabel
                         key={effect.id}
                         onClick={() => {
                             openEffect(effect.id)
                         }}
                     >
                         {effect.type}
-                    </div>
+                    </EffectLabel>
                 )
             })}
         </Container>
@@ -60,7 +62,8 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 60px;
+    align-items: center;
+    width: 80px;
     padding: 0 6px;
     height: 320px;
     position: relative;
@@ -93,6 +96,7 @@ const ValueLabel = styled.div`
 
 const ValueScreen = styled(LCDScreen)`
     padding: 3px 0;
+    width: 50px;
     text-align: center;
 `
 
@@ -107,6 +111,19 @@ const MuteIcon = styled.div<{
     cursor: pointer;
     color: ${(props) => props.theme.colors.textLight};
     margin-bottom: 9px;
+
+    &:hover {
+        color: ${(props) => props.theme.colors.text};
+    }
+`
+
+const EffectLabel = styled.div`
+    background-color: ${(props) => darken(0.02, props.theme.colors.enclosureBorder)};
+    color: ${(props) => props.theme.colors.textLight};
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 2px;
+    cursor: pointer;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};

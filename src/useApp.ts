@@ -135,7 +135,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 {
                     id: 'b32a0c32-2e3f-45f0-b4fe-c89f28fe50a1',
                     type: 'reverb',
-                    wet: 1,
+                    wet: 0.4,
                     preDelay: 0,
                     decay: 0.6,
                 },
@@ -145,7 +145,15 @@ export const useAppStore = create<AppStore>((set, get) => ({
         {
             channel: new Tone.Channel(),
             sources: [],
-            effectConfigs: [],
+            effectConfigs: [
+                {
+                    id: 'be1264d2-c1ff-4f5c-b259-7e37e7bff7fb',
+                    type: 'reverb',
+                    wet: 0.5,
+                    preDelay: 0,
+                    decay: 3,
+                },
+            ],
             effects: [],
         },
         {
