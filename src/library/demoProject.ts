@@ -43,7 +43,7 @@ const patternA: SequencerPatternData = {
             channel: 0,
             isMuted: false,
             steps: [
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1,
                 1, 1, 1, 1,
             ],
         },
@@ -64,7 +64,7 @@ const patternA: SequencerPatternData = {
             isMuted: false,
             steps: [
                 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0,
-                1, 0, 1, 0,
+                1, 0, 1, 1,
             ],
         },
         {
@@ -93,6 +93,6 @@ const patternA: SequencerPatternData = {
 export const demoProject: ProjectData = {
     id: '11af1d60-23fc-4b53-b1b1-b10ce69ad292',
     name: 'Demo Project',
-    bpm: 120,
+    bpm: 130,
     patterns: [patternA],
 }
