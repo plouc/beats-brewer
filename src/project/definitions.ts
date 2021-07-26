@@ -1,4 +1,5 @@
 import * as Tone from 'tone'
+import { EffectData, Effect } from '../effects/definitions'
 
 export interface Sample {
     id: string
@@ -44,26 +45,6 @@ export type Pattern = SequencerPattern
 export type PatternType = SequencerPatternData['type']
 
 export type ChannelSource = SequencerPatternTrack
-
-export interface ReverbData {
-    id: string
-    type: 'reverb'
-    wet: number
-    preDelay: number
-    decay: number
-}
-
-export interface Reverb extends ReverbData {
-    id: string
-    type: 'reverb'
-    instance: Tone.Reverb
-}
-
-export type EffectData = ReverbData
-
-export type Effect = Reverb
-
-export type EffectType = ReverbData['type']
 
 export interface ChannelData {
     sources: ChannelSource[]

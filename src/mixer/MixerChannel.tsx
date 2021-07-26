@@ -124,6 +124,9 @@ const EffectLabel = styled.div`
     padding: 4px 6px;
     border-radius: 2px;
     cursor: pointer;
+    max-width: 68px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};

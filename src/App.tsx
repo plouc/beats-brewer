@@ -8,14 +8,13 @@ import { Sequencer } from './sequencer/Sequencer'
 import { Mixer } from './mixer/Mixer'
 // import { Keyboard } from './keyboard/Keyboard'
 // import { Drums } from './drums/Drums'
-import { ReverbEffect } from './effects/ReverbEffect'
+import { EffectsControls } from './effects/EffectsControls'
 import { useAppStore } from './useApp'
 
 function App() {
     const theme = useAppStore((state) => state.theme)
     const project = useAppStore((state) => state.project)
     const patterns = useAppStore((state) => state.openedPatterns)
-    const effects = useAppStore((state) => state.openedEffects)
     const app = useAppStore()
     console.log(app)
 
@@ -37,14 +36,7 @@ function App() {
                     {project && (
                         <Row>
                             <Mixer />
-                            {effects.map((effect) => {
-                                if (effect.type === 'reverb') {
-                                    return <ReverbEffect key={effect.id} reverb={effect} />
-                                }
-
-                                // no component matching the pattern type available
-                                return null
-                            })}
+                            <EffectsControls />
                         </Row>
                     )}
                     {/*

@@ -2,7 +2,8 @@ import create from 'zustand'
 import { DefaultTheme } from 'styled-components'
 import * as Tone from 'tone'
 import { v4 as uuidV4 } from 'uuid'
-import { ProjectData, Project, Pattern, Channel, Effect } from './project/definitions'
+import { ProjectData, Project, Pattern, Channel } from './project/definitions'
+import { Effect } from './effects/definitions'
 import { darkTheme } from './ui/theme/darkTheme'
 
 interface AppStore {
@@ -125,7 +126,14 @@ export const useAppStore = create<AppStore>((set, get) => ({
         {
             channel: new Tone.Channel(),
             sources: [],
-            effectConfigs: [],
+            effectConfigs: [
+                {
+                    id: '64e8dc74-fbb5-4dbd-9107-2cebed7d9676',
+                    type: 'distortion',
+                    wet: 0.4,
+                    distortion: 0.3,
+                },
+            ],
             effects: [],
         },
         {
@@ -206,6 +214,19 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 destination = reverb
 
                 const appliedEffect: Effect = { ...effect, instance: reverb }
+                effects.push(appliedEffect)
+            } else if (effect.type === 'distortion') {
+                console.log(
+                    `[effect] reverb on channel ${channelIndex} (distortion: ${effect.distortion},  wet: ${effect.wet})`
+                )
+
+                const distortion = new Tone.Distortion(effect.distortion)
+                distortion.wet.value = effect.wet
+
+                distortion.connect(master)
+                destination = distortion
+
+                const appliedEffect: Effect = { ...effect, instance: distortion }
                 effects.push(appliedEffect)
             }
         })

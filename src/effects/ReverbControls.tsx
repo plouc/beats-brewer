@@ -6,14 +6,15 @@ import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { CloseButton } from '../ui/controls/CloseButton'
-import { Reverb } from '../project/definitions'
+import { Reverb } from './definitions'
 import { useAppStore } from '../useApp'
+import { EffectWetControl } from './EffectWetControl'
 
-interface ReverbEffectProps {
+interface ReverbControlsProps {
     reverb: Reverb
 }
 
-export const ReverbEffect = ({ reverb }: ReverbEffectProps) => {
+export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
     const closeEffect = useAppStore((state) => state.closeEffect)
     const handleClose = useCallback(() => {
         closeEffect(reverb.id)
@@ -39,16 +40,6 @@ export const ReverbEffect = ({ reverb }: ReverbEffectProps) => {
         [setDecay, reverb.instance]
     )
 
-    const [wet, setWet] = useState(reverb.instance.wet.value)
-    const handleWetChange = useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => {
-            const newWet = Number(event.target.value)
-            reverb.instance.wet.value = newWet
-            setWet(newWet)
-        },
-        [setWet, reverb.instance]
-    )
-
     return (
         <Desk>
             <Enclosure>
@@ -68,15 +59,6 @@ export const ReverbEffect = ({ reverb }: ReverbEffectProps) => {
                         min={0.001}
                         step={0.001}
                     />
-                    <span>wet</span>
-                    <input
-                        type="number"
-                        onChange={handleWetChange}
-                        value={wet}
-                        min={0}
-                        max={1}
-                        step={0.05}
-                    />
                     <span>pre delay</span>
                     <input
                         type="number"
@@ -85,6 +67,7 @@ export const ReverbEffect = ({ reverb }: ReverbEffectProps) => {
                         min={0}
                         step={0.05}
                     />
+                    <EffectWetControl effect={reverb.instance} />
                 </Content>
             </Enclosure>
         </Desk>
