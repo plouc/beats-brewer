@@ -68,7 +68,7 @@ const Grid = styled.div<{
     display: grid;
     align-items: center;
     grid-template-columns: repeat(${(props) => props.steps}, 14px);
-    grid-column-gap: 5px;
+    grid-column-gap: 4px;
     height: 32px;
 `
 
@@ -106,8 +106,8 @@ const StepElement = styled.div<{
             if (isPlaying) {
                 return css`
                     background-color: ${lighten(0.15, color)};
-                    box-shadow: 0 2px 0 ${color}, inset 0 1px 0 ${lighten(0.15, color)},
-                        0 0 3px 2px ${rgba(color, 0.75)};
+                    box-shadow: inset 0 -1px 0 ${color}, inset 0 1px 0 ${lighten(0.15, color)},
+                        0 0 3px 2px ${rgba(color, 0.35)};
 
                     &:after {
                         transform: translate3d(0, -5px, 0);
@@ -118,8 +118,8 @@ const StepElement = styled.div<{
 
             return css`
                 background-color: ${color};
-                box-shadow: 0 2px 0 ${darken(0.2, color)},
-                    0 3px 3px ${rgba(darken(0.3, theme.colors.enclosureBackground), 0.66)},
+                box-shadow: inset 0 -1px 0 ${darken(0.2, color)},
+                    0 1px 3px ${rgba(darken(0.3, theme.colors.enclosureBackground), 0.66)},
                     inset 0 1px 0 ${lighten(0.15, color)};
 
                 &:after {

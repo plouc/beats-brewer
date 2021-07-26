@@ -27,7 +27,7 @@ const Container = styled.div<{
     margin-bottom: 7px;
     display: grid;
     grid-template-columns: repeat(${(props) => props.steps}, 14px);
-    grid-column-gap: 5px;
+    grid-column-gap: 4px;
 `
 
 const Step = styled.span<{

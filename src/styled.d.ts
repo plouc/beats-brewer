@@ -16,7 +16,6 @@ declare module 'styled-components' {
             wood: string
             enclosureBorder: string
             enclosureBackground: string
-            enclosureSide: string
             lcdBackground: string
             lcdBorder: string
             lcdText: string
