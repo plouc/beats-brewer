@@ -15,7 +15,7 @@ import { PadIndex } from '../pads/definitions'
 import { PAD_COUNT, PAD_INDEXES } from '../pads/constants'
 import { ColorInput } from '../ui/controls/ColorInput'
 import { DrumPadConfig } from './definitions'
-import defaultPreset from '../presets/drums/defaultPreset'
+import { defaultDrumPreset } from '../library/defaultDrumPreset'
 
 export const Drums = () => {
     const [mode, setMode] = useState<'play' | 'edit'>('play')
@@ -36,8 +36,8 @@ export const Drums = () => {
 
     let currentPad: DrumPadConfig | null = null
     let currentPadPlayer: Tone.Player | null = null
-    if (currentPadIndex !== null && defaultPreset.pads[currentPadIndex] !== null) {
-        currentPad = defaultPreset.pads[currentPadIndex]!
+    if (currentPadIndex !== null && defaultDrumPreset.pads[currentPadIndex] !== null) {
+        currentPad = defaultDrumPreset.pads[currentPadIndex]!
         if (padsAudio) {
             currentPadPlayer = padsAudio[currentPadIndex]
         }
@@ -46,7 +46,7 @@ export const Drums = () => {
     const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | null>(null)
 
     useEffect(() => {
-        const buffer = new Tone.Buffer(defaultPreset.audioFile, () => {
+        const buffer = new Tone.Buffer(defaultDrumPreset.audioFile, () => {
             const buff = buffer.get() as unknown as AudioBuffer
             setAudioBuffer(buff)
 
@@ -94,14 +94,14 @@ export const Drums = () => {
                 </ComponentHeader>
                 <Body>
                     <Pads
-                        config={defaultPreset}
+                        config={defaultDrumPreset}
                         isEditing={mode === 'edit'}
                         onClick={handlePadClick}
                     />
                     <HSpacer />
                     <InfoPanel>
                         <div>
-                            <AudioFile>{defaultPreset.audioFile.split('/').pop()}</AudioFile>
+                            <AudioFile>{defaultDrumPreset.audioFile.split('/').pop()}</AudioFile>
                             {audioBuffer && (
                                 <AudioFile>duration: {audioBuffer.duration.toFixed(4)}</AudioFile>
                             )}

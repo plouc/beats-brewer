@@ -1,7 +1,7 @@
-import { DrumsConfig } from '../../drums/definitions'
-const audioFile = require('../../audio/demo.wav').default
+import { DrumsConfig } from '../drums/definitions'
+const audioFile = require('../audio/demo.wav').default
 
-const defaultDrumPreset: DrumsConfig = {
+export const defaultDrumPreset: DrumsConfig = {
     audioFile: audioFile,
     pads: {
         0: {
@@ -27,5 +27,3 @@ const defaultDrumPreset: DrumsConfig = {
         },
     },
 }
-
-export default defaultDrumPreset
