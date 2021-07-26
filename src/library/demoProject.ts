@@ -48,16 +48,6 @@ const patternA: SequencerPatternData = {
             ],
         },
         {
-            ...sampleByName('TR-808 HiHat Open 1'),
-            id: '136b3332-e449-4606-9fe3-2175ed773037',
-            channel: 0,
-            isMuted: true,
-            steps: [
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0,
-            ],
-        },
-        {
             ...sampleByName('TR-808 HiHat Closed 1'),
             id: '88c22c47-645a-4749-9a19-d49b0388c0e5',
             channel: 0,

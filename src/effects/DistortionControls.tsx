@@ -6,6 +6,7 @@ import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { CloseButton } from '../ui/controls/CloseButton'
+import { NumberInput } from '../ui/controls/NumberInput'
 import { Distortion } from './definitions'
 import { useAppStore } from '../useApp'
 import { EffectWetControl } from './EffectWetControl'
@@ -42,7 +43,7 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
                 <VSpacer size="small" />
                 <Content>
                     <span>distortion</span>
-                    <input
+                    <NumberInput
                         type="number"
                         onChange={handleDistortionChange}
                         value={distortion}
@@ -62,12 +63,13 @@ const Header = styled(ComponentHeader)`
 `
 
 const Content = styled.div`
+    width: 218px;
     padding: 0 9px 12px;
     font-size: 14px;
     color: ${(props) => props.theme.colors.textLight};
     display: grid;
     align-items: center;
-    grid-template-columns: 9ch auto;
+    grid-template-columns: 10ch auto;
     grid-column-gap: 12px;
     grid-row-gap: 9px;
 `

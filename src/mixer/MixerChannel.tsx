@@ -127,6 +127,7 @@ const EffectLabel = styled.div`
     max-width: 68px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 5px;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};

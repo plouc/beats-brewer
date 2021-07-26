@@ -1,5 +1,7 @@
 import { ChangeEvent, useCallback, useState } from 'react'
 import * as Tone from 'tone'
+import { NumberInput } from '../ui/controls/NumberInput'
+import { SliderControl } from '../ui/controls/SliderControl'
 
 interface EffectWetControlProps {
     effect: Tone.Reverb | Tone.Distortion
@@ -20,7 +22,15 @@ export const EffectWetControl = ({ effect }: EffectWetControlProps) => {
     return (
         <>
             <span>wet</span>
-            <input type="number" onChange={handleChange} value={wet} min={0} max={1} step={0.05} />
+            <NumberInput
+                type="number"
+                onChange={handleChange}
+                value={wet}
+                min={0}
+                max={1}
+                step={0.05}
+            />
+            <SliderControl />
         </>
     )
 }

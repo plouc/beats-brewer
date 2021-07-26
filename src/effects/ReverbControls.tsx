@@ -6,6 +6,7 @@ import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { CloseButton } from '../ui/controls/CloseButton'
+import { NumberInput } from '../ui/controls/NumberInput'
 import { Reverb } from './definitions'
 import { useAppStore } from '../useApp'
 import { EffectWetControl } from './EffectWetControl'
@@ -52,7 +53,7 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
                 <VSpacer size="small" />
                 <Content>
                     <span>decay</span>
-                    <input
+                    <NumberInput
                         type="number"
                         onChange={handleDecayChange}
                         value={decay}
@@ -60,7 +61,7 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
                         step={0.001}
                     />
                     <span>pre delay</span>
-                    <input
+                    <NumberInput
                         type="number"
                         onChange={handlePreDelayChange}
                         value={preDelay}
