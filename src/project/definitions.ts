@@ -45,8 +45,30 @@ export type PatternType = SequencerPatternData['type']
 
 export type ChannelSource = SequencerPatternTrack
 
+export interface ReverbData {
+    id: string
+    type: 'reverb'
+    wet: number
+    preDelay: number
+    decay: number
+}
+
+export interface Reverb extends ReverbData {
+    id: string
+    type: 'reverb'
+    instance: Tone.Reverb
+}
+
+export type EffectData = ReverbData
+
+export type Effect = Reverb
+
+export type EffectType = ReverbData['type']
+
 export interface ChannelData {
     sources: ChannelSource[]
+    effectConfigs: EffectData[]
+    effects: Effect[]
 }
 
 export interface Channel extends ChannelData {

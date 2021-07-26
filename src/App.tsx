@@ -15,6 +15,7 @@ function App() {
     const theme = useAppStore((state) => state.theme)
     const project = useAppStore((state) => state.project)
     const patterns = useAppStore((state) => state.openedPatterns)
+    const effects = useAppStore((state) => state.openedEffects)
     const app = useAppStore()
     console.log(app)
 
@@ -36,7 +37,14 @@ function App() {
                     {project && (
                         <Row>
                             <Mixer />
-                            <ReverbEffect />
+                            {effects.map((effect) => {
+                                if (effect.type === 'reverb') {
+                                    return <ReverbEffect key={effect.id} reverb={effect} />
+                                }
+
+                                // no component matching the pattern type available
+                                return null
+                            })}
                         </Row>
                     )}
                     {/*
@@ -63,6 +71,7 @@ const Layout = styled.div`
 const Content = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
+    padding: 9px;
 `
 
 const Row = styled.div`

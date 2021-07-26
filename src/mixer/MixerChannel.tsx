@@ -1,6 +1,9 @@
+import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
+import { FiVolume, FiVolumeX } from 'react-icons/fi'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
+import { useAppStore } from '../useApp'
 
 interface MixerChannelProps {
     index: number
@@ -8,14 +11,27 @@ interface MixerChannelProps {
 }
 
 export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
+    const [isMuted, setIsMuted] = useState(channel.channel.mute)
+    const openEffect = useAppStore((state) => state.openEffect)
+
+    const toggleMute = useCallback(() => {
+        channel.channel.mute = !isMuted
+        setIsMuted(!isMuted)
+    }, [isMuted, setIsMuted, channel.channel])
+
     return (
         <Container>
             <ChannelName>{index + 1}</ChannelName>
+            <MuteIcon isMuted={isMuted} onClick={toggleMute}>
+                {isMuted && <FiVolumeX />}
+                {!isMuted && <FiVolume />}
+            </MuteIcon>
             <ValueBlock>
                 <ValueLabel>volume</ValueLabel>
                 <ValueScreen>
                     <LCDScreenHighlightedText>
-                        {channel.channel.volume.value}
+                        {isMuted && '---'}
+                        {!isMuted && channel.channel.volume.value}
                     </LCDScreenHighlightedText>
                 </ValueScreen>
             </ValueBlock>
@@ -25,6 +41,18 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
                     <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
                 </ValueScreen>
             </ValueBlock>
+            {channel.effects.map((effect) => {
+                return (
+                    <div
+                        key={effect.id}
+                        onClick={() => {
+                            openEffect(effect.id)
+                        }}
+                    >
+                        {effect.type}
+                    </div>
+                )
+            })}
         </Container>
     )
 }
@@ -66,4 +94,21 @@ const ValueLabel = styled.div`
 const ValueScreen = styled(LCDScreen)`
     padding: 3px 0;
     text-align: center;
+`
+
+const MuteIcon = styled.div<{
+    isMuted: boolean
+}>`
+    font-size: 16px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: ${(props) => props.theme.colors.textLight};
+    margin-bottom: 9px;
+
+    &:hover {
+        color: ${(props) => props.theme.colors.text};
+    }
 `

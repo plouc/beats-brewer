@@ -2,7 +2,7 @@ import create from 'zustand'
 import { DefaultTheme } from 'styled-components'
 import * as Tone from 'tone'
 import { v4 as uuidV4 } from 'uuid'
-import { ProjectData, Project, Pattern, Channel } from './project/definitions'
+import { ProjectData, Project, Pattern, Channel, Effect } from './project/definitions'
 import { darkTheme } from './ui/theme/darkTheme'
 
 interface AppStore {
@@ -18,6 +18,11 @@ interface AppStore {
     closePattern: (patternId: string) => void
     master: Tone.Channel
     channels: Channel[]
+    updateChannel: (channel: Channel, channelIndex: number) => void
+    allEffects: Effect[]
+    openedEffects: Effect[]
+    openEffect: (effectId: string) => void
+    closeEffect: (effectId: string) => void
 }
 
 const DEFAULT_BPM = 130
@@ -53,11 +58,8 @@ export const useAppStore = create<AppStore>((set, get) => ({
         Tone.start()
         Tone.Transport.bpm.value = projectData.bpm
 
-        // connect each channel to the master channel
-        const master = get().master
-        const channels = get().channels
-        channels.forEach((channel) => {
-            channel.channel.connect(master)
+        get().channels.forEach((channel, channelIndex) => {
+            get().updateChannel(channel, channelIndex)
         })
 
         // convert the project data to a usable loaded project
@@ -67,7 +69,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 return {
                     ...patternData,
                     tracks: patternData.tracks.map((trackData) => {
-                        const channel = channels[trackData.channel]
+                        const channel = get().channels[trackData.channel]
                         if (channel === undefined) {
                             throw new Error(
                                 `channel ${trackData.channel} does not exist for track "${patternData.name} > ${trackData.name}" (id: ${trackData.id})`
@@ -98,12 +100,12 @@ export const useAppStore = create<AppStore>((set, get) => ({
     },
     openedPatterns: [],
     openPattern: (patternId: string) => {
-        // pattern already open
-        if (get().openedPatterns.find((p) => p.id === patternId)) return
-
         // no loaded project
         const project = get().project
         if (!project) return
+
+        // pattern already open
+        if (get().openedPatterns.find((p) => p.id === patternId)) return
 
         // pattern not found
         const pattern = project.patterns.find((p) => p.id === patternId)
@@ -123,34 +125,116 @@ export const useAppStore = create<AppStore>((set, get) => ({
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [
+                {
+                    id: 'b32a0c32-2e3f-45f0-b4fe-c89f28fe50a1',
+                    type: 'reverb',
+                    wet: 1,
+                    preDelay: 0,
+                    decay: 0.6,
+                },
+            ],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
         {
             channel: new Tone.Channel(),
             sources: [],
+            effectConfigs: [],
+            effects: [],
         },
     ],
+    updateChannel: (channel: Channel, channelIndex: number) => {
+        const master = get().master
+
+        let destination: Tone.ToneAudioNode = master
+        const effects: Effect[] = []
+        channel.effectConfigs.forEach((effect) => {
+            if (effect.type === 'reverb') {
+                console.log(
+                    `[effect] reverb on channel ${channelIndex} (decay: ${effect.decay}, preDelay: ${effect.preDelay},  wet: ${effect.wet})`
+                )
+
+                const reverb = new Tone.Reverb(effect.decay)
+                reverb.preDelay = effect.preDelay
+                reverb.wet.value = effect.wet
+
+                reverb.connect(master)
+                destination = reverb
+
+                const appliedEffect: Effect = { ...effect, instance: reverb }
+                effects.push(appliedEffect)
+            }
+        })
+
+        console.log(`[connected] channel ${channelIndex}`)
+        channel.channel.connect(destination)
+
+        set({
+            channels: get().channels.map((channel, index) => {
+                if (index !== channelIndex) return channel
+
+                return { ...channel, effects }
+            }),
+            allEffects: [...get().allEffects, ...effects],
+        })
+    },
+    allEffects: [],
+    openedEffects: [],
+    openEffect: (effectId: string) => {
+        // no loaded project
+        const project = get().project
+        if (!project) return
+
+        // effect already open
+        if (get().openedEffects.find((e) => e.id === effectId)) return
+
+        // effect not found
+        const effect = get().allEffects.find((e) => e.id === effectId)
+        if (!effect) return
+
+        set({
+            openedEffects: [...get().openedEffects, effect],
+        })
+    },
+    closeEffect: (effectId: string) => {
+        set({
+            openedEffects: get().openedEffects.filter((effect) => effect.id !== effectId),
+        })
+    },
 }))
