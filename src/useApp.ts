@@ -20,6 +20,8 @@ interface AppStore {
     master: Tone.Channel
     channels: Channel[]
     updateChannel: (channel: Channel, channelIndex: number) => void
+    highlightedChannel: number
+    highlightChannel: (channelIndex: number) => void
     allEffects: Effect[]
     openedEffects: Effect[]
     openEffect: (effectId: string) => void
@@ -253,6 +255,10 @@ export const useAppStore = create<AppStore>((set, get) => ({
             }),
             allEffects: [...get().allEffects, ...effects],
         })
+    },
+    highlightedChannel: -1,
+    highlightChannel: (channelIndex: number) => {
+        set({ highlightedChannel: channelIndex })
     },
     allEffects: [],
     openedEffects: [],

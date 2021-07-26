@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
-import { FiArrowRight, FiVolume, FiVolumeX } from 'react-icons/fi'
+import { FiArrowRight, FiArrowRightCircle, FiVolume, FiVolumeX } from 'react-icons/fi'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
 import { MixerChannelEffects } from './MixerChannelEffects'
@@ -8,9 +8,10 @@ import { MixerChannelEffects } from './MixerChannelEffects'
 interface MixerChannelProps {
     index: number
     channel: Channel
+    isHighlighted: boolean
 }
 
-export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
+export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProps) => {
     const [isMuted, setIsMuted] = useState(channel.channel.mute)
 
     const toggleMute = useCallback(() => {
@@ -20,8 +21,11 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
 
     return (
         <Container>
-            <ChannelName>
-                <FiArrowRight />
+            <ChannelName isHighlighted={isHighlighted}>
+                <ChannelNameIcon isHighlighted={isHighlighted}>
+                    {!isHighlighted && <FiArrowRight />}
+                    {isHighlighted && <FiArrowRightCircle />}
+                </ChannelNameIcon>
                 <span>{index + 1}</span>
             </ChannelName>
             <MuteIcon isMuted={isMuted} onClick={toggleMute}>
@@ -55,26 +59,36 @@ const Container = styled.div`
     align-items: center;
     width: 80px;
     padding: 0 6px;
-    height: 320px;
     position: relative;
     background-color: ${(props) => props.theme.colors.enclosure.border};
     border-radius: 3px;
 `
 
-const ChannelName = styled.div`
+const ChannelName = styled.div<{
+    isHighlighted: boolean
+}>`
     display: flex;
     width: 100%;
-    padding: 9px 9px;
+    padding: 9px 6px;
     justify-content: space-between;
     align-items: center;
     font-family: ${(props) => props.theme.typography.headingFont};
-    color: ${(props) => props.theme.colors.textLight};
+    color: ${(props) =>
+        props.isHighlighted ? props.theme.colors.text : props.theme.colors.textLight};
     font-size: 11px;
     text-transform: uppercase;
+`
 
-    svg {
-        color: ${(props) => props.theme.colors.textLight};
-    }
+const ChannelNameIcon = styled.div<{
+    isHighlighted: boolean
+}>`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    font-size: ${(props) => (props.isHighlighted ? 16 : 14)}px;
+    color: ${(props) => props.theme.colors.textLight};
 `
 
 const ValueBlock = styled.div`

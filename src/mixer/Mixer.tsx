@@ -9,6 +9,7 @@ import { useAppStore } from '../useApp'
 
 export const Mixer = () => {
     const channels = useAppStore((state) => state.channels)
+    const highlightedChannel = useAppStore((state) => state.highlightedChannel)
 
     return (
         <Desk>
@@ -21,7 +22,12 @@ export const Mixer = () => {
                 <VSpacer />
                 <Channels channels={channels.length}>
                     {channels.map((channel, index) => (
-                        <MixerChannel key={index} index={index} channel={channel} />
+                        <MixerChannel
+                            key={index}
+                            index={index}
+                            channel={channel}
+                            isHighlighted={index === highlightedChannel}
+                        />
                     ))}
                 </Channels>
             </Enclosure>
