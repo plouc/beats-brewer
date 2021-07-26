@@ -133,6 +133,13 @@ export const useAppStore = create<AppStore>((set, get) => ({
                     wet: 0.5,
                     distortion: 0.4,
                 },
+                {
+                    id: 'ecc6f983-c637-4507-874e-b924ec4a05d2',
+                    type: 'reverb',
+                    wet: 0.15,
+                    preDelay: 0,
+                    decay: 1,
+                },
             ],
             effects: [],
         },
@@ -210,20 +217,20 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 reverb.preDelay = effect.preDelay
                 reverb.wet.value = effect.wet
 
-                reverb.connect(master)
+                reverb.connect(destination)
                 destination = reverb
 
                 const appliedEffect: Effect = { ...effect, instance: reverb }
                 effects.push(appliedEffect)
             } else if (effect.type === 'distortion') {
                 console.log(
-                    `[effect] reverb on channel ${channelIndex} (distortion: ${effect.distortion},  wet: ${effect.wet})`
+                    `[effect] distortion on channel ${channelIndex} (distortion: ${effect.distortion},  wet: ${effect.wet})`
                 )
 
                 const distortion = new Tone.Distortion(effect.distortion)
                 distortion.wet.value = effect.wet
 
-                distortion.connect(master)
+                distortion.connect(destination)
                 destination = distortion
 
                 const appliedEffect: Effect = { ...effect, instance: distortion }
