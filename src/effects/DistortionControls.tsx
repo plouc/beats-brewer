@@ -1,14 +1,10 @@
 import styled from 'styled-components/macro'
 import { ChangeEvent, useCallback, useState } from 'react'
-import { VSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
-import { ComponentHeader } from '../ui/ComponentHeader'
-import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
-import { CloseButton } from '../ui/controls/CloseButton'
+import { EffectHeader } from './EffectHeader'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { Distortion } from './definitions'
-import { useAppStore } from '../useApp'
 import { EffectWetControl } from './EffectWetControl'
 
 interface DistortionControlsProps {
@@ -16,11 +12,6 @@ interface DistortionControlsProps {
 }
 
 export const DistortionControls = ({ distortion: distortionEffect }: DistortionControlsProps) => {
-    const closeEffect = useAppStore((state) => state.closeEffect)
-    const handleClose = useCallback(() => {
-        closeEffect(distortionEffect.id)
-    }, [closeEffect, distortionEffect.id])
-
     const [distortion, setDistortion] = useState<number>(distortionEffect.instance.distortion)
     const handleDistortionChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,13 +25,7 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
     return (
         <Desk>
             <Enclosure>
-                <Header>
-                    <ComponentName>
-                        <ComponentNameHighlight>Distortion</ComponentNameHighlight>
-                    </ComponentName>
-                    <CloseButton onClose={handleClose} />
-                </Header>
-                <VSpacer />
+                <EffectHeader effect={distortionEffect} />
                 <Content>
                     <span>distortion</span>
                     <NumberInput
@@ -57,10 +42,6 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
         </Desk>
     )
 }
-
-const Header = styled(ComponentHeader)`
-    justify-content: space-between;
-`
 
 const Content = styled.div`
     font-size: 12px;

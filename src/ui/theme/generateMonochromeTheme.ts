@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components'
-import { darken } from 'polished'
+import { darken, lighten } from 'polished'
 
 const textColors = {
     light: {
@@ -36,8 +36,8 @@ export const generateMonochromeTheme = (
                 border: color,
             },
             lcd: {
-                background: color,
-                border: textColor.main,
+                background: darken(0.06, color),
+                border: lighten(0.03, color),
                 text: textColor.light,
                 textHighlight: textColor.main,
             },

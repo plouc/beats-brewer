@@ -1,14 +1,10 @@
 import styled from 'styled-components/macro'
 import { ChangeEvent, useCallback, useState } from 'react'
-import { VSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
-import { ComponentHeader } from '../ui/ComponentHeader'
-import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
-import { CloseButton } from '../ui/controls/CloseButton'
+import { EffectHeader } from './EffectHeader'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { Reverb } from './definitions'
-import { useAppStore } from '../useApp'
 import { EffectWetControl } from './EffectWetControl'
 
 interface ReverbControlsProps {
@@ -16,11 +12,6 @@ interface ReverbControlsProps {
 }
 
 export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
-    const closeEffect = useAppStore((state) => state.closeEffect)
-    const handleClose = useCallback(() => {
-        closeEffect(reverb.id)
-    }, [closeEffect, reverb.id])
-
     const [preDelay, setPreDelay] = useState<number>(reverb.instance.preDelay as number)
     const handlePreDelayChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
@@ -44,13 +35,7 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
     return (
         <Desk>
             <Enclosure>
-                <Header>
-                    <ComponentName>
-                        <ComponentNameHighlight>Reverb</ComponentNameHighlight>
-                    </ComponentName>
-                    <CloseButton onClose={handleClose} />
-                </Header>
-                <VSpacer />
+                <EffectHeader effect={reverb} />
                 <Content>
                     <span>decay</span>
                     <NumberInput
@@ -74,10 +59,6 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
         </Desk>
     )
 }
-
-const Header = styled(ComponentHeader)`
-    justify-content: space-between;
-`
 
 const Content = styled.div`
     font-size: 12px;

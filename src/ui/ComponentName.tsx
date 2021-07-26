@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const ComponentName = styled.div`
+    display: flex;
+    align-items: center;
     font-family: ${(props) => props.theme.typography.headingFont};
     font-weight: 700;
     text-transform: uppercase;
