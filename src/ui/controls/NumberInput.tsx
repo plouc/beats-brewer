@@ -6,7 +6,7 @@ export const NumberInput = styled.input`
     border: 1px solid ${(props) => props.theme.colors.enclosureBorder};
     background-color: ${(props) => darken(0.04, props.theme.colors.enclosureBackground)};
     color: ${(props) => props.theme.colors.textLight};
-    padding: 5px 12px;
+    padding: 5px 5px 5px 12px;
     cursor: pointer;
     font-size: 12px;
 

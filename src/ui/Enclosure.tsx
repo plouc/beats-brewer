@@ -36,7 +36,7 @@ const Side = styled.div`
 `
 
 const Body = styled.div`
-    padding: 6px;
+    padding: 9px 14px;
     border-top: 6px solid ${(props) => props.theme.colors.enclosureBorder};
     border-bottom: 6px solid ${(props) => props.theme.colors.enclosureBorder};
     box-shadow: inset 1px 0 2px

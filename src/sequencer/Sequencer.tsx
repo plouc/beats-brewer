@@ -42,7 +42,7 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
                     play={play}
                     stop={stop}
                 />
-                <VSpacer size="small" />
+                <VSpacer />
                 <Container>
                     <TrackHeadings>
                         {tracks.map((track) => (
@@ -67,7 +67,6 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 200px auto;
     grid-column-gap: 16px;
-    margin: 0 12px 12px;
 `
 
 const TrackHeadings = styled.div`

@@ -18,7 +18,7 @@ export const Mixer = () => {
                         <ComponentNameHighlight>Mixer</ComponentNameHighlight>
                     </ComponentName>
                 </ComponentHeader>
-                <VSpacer size="small" />
+                <VSpacer />
                 <Channels>
                     {channels.map((channel, index) => (
                         <MixerChannel key={index} index={index} channel={channel} />
@@ -30,7 +30,6 @@ export const Mixer = () => {
 }
 
 const Channels = styled.div`
-    padding: 0 12px 12px;
     display: grid;
     grid-template-columns: repeat(8, 80px);
     grid-column-gap: 6px;

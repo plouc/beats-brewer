@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react'
+import styled from "styled-components/macro";
 import * as Tone from 'tone'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { SliderControl } from '../ui/controls/SliderControl'
@@ -30,7 +31,14 @@ export const EffectWetControl = ({ effect }: EffectWetControlProps) => {
                 max={1}
                 step={0.05}
             />
-            <SliderControl />
+            <SliderContainer>
+                <SliderControl />
+            </SliderContainer>
         </>
     )
 }
+
+const SliderContainer = styled.div`
+    grid-column-start: 1;
+    grid-column-end: 3;
+`

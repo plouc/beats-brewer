@@ -130,8 +130,8 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 {
                     id: '64e8dc74-fbb5-4dbd-9107-2cebed7d9676',
                     type: 'distortion',
-                    wet: 0.5,
-                    distortion: 0.4,
+                    wet: 0.6,
+                    distortion: 1,
                 },
                 {
                     id: 'ecc6f983-c637-4507-874e-b924ec4a05d2',

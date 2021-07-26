@@ -1,5 +1,6 @@
 import { FiX } from 'react-icons/fi'
-import { SquareIconButton } from './SquareIconButton'
+import { RoundIconButton } from './RoundIconButton'
+import styled from 'styled-components/macro'
 
 interface CloseButtonProps {
     onClose: () => void
@@ -7,8 +8,16 @@ interface CloseButtonProps {
 
 export const CloseButton = ({ onClose }: CloseButtonProps) => {
     return (
-        <SquareIconButton onClick={onClose}>
+        <Button onClick={onClose} isPressed>
             <FiX />
-        </SquareIconButton>
+        </Button>
     )
 }
+
+const Button = styled(RoundIconButton)`
+    color: ${(props) => props.theme.colors.textLight};
+
+    &:hover {
+        color: ${(props) => props.theme.colors.text};
+    }
+`

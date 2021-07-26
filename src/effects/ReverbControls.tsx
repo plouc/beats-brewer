@@ -80,12 +80,11 @@ const Header = styled(ComponentHeader)`
 `
 
 const Content = styled.div`
-    padding: 0 9px 12px;
-    font-size: 14px;
+    font-size: 12px;
     color: ${(props) => props.theme.colors.textLight};
     display: grid;
     align-items: center;
-    grid-template-columns: 9ch auto;
+    grid-template-columns: 9ch 90px;
     grid-column-gap: 12px;
     grid-row-gap: 9px;
 `
