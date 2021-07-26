@@ -9,8 +9,8 @@ import { Mixer } from './mixer/Mixer'
 // import { Keyboard } from './keyboard/Keyboard'
 // import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
+// import { SampleComponent } from './SampleComponent'
 import { useAppStore } from './useApp'
-import { SampleComponent } from './SampleComponent'
 
 function App() {
     const theme = useAppStore((state) => state.theme)
@@ -26,6 +26,7 @@ function App() {
                 <AppHeader />
                 <Explorer />
                 <Content>
+                    {/*
                     <SampleComponent />
                     <Row>
                         <SampleComponent />
@@ -33,6 +34,7 @@ function App() {
                         <SampleComponent />
                     </Row>
                     <SampleComponent />
+                    */}
                     {patterns.map((pattern) => {
                         if (pattern.type === 'sequencer') {
                             return (

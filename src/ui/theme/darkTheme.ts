@@ -31,7 +31,7 @@ export const darkTheme: DefaultTheme = {
     colors,
     sizes: {
         mainGap: 12,
-        enclosureBorderRadius: 3,
+        enclosureBorderRadius: 2,
     },
     shadows: {
         lcdTextHighlight: `0 0 6px ${rgba(colors.lcd.textHighlight, 0.6)}`,

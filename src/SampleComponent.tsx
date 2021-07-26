@@ -1,4 +1,6 @@
+import styled from 'styled-components/macro'
 import { FiMusic } from 'react-icons/fi'
+import { lighten } from 'polished'
 import { Desk } from './ui/Desk'
 import { Enclosure } from './ui/Enclosure'
 import { ComponentHeader } from './ui/ComponentHeader'
@@ -8,7 +10,6 @@ import { HSpacer, VSpacer } from './ui/Spacer'
 import { SliderControl } from './ui/controls/SliderControl'
 import { RoundIconButton } from './ui/controls/RoundIconButton'
 import { SquareIconButton } from './ui/controls/SquareIconButton'
-import styled from 'styled-components/macro'
 
 export const SampleComponent = () => {
     return (

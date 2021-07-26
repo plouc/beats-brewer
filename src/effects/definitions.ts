@@ -3,6 +3,7 @@ import * as Tone from 'tone'
 export interface ReverbData {
     id: string
     type: 'reverb'
+    acronym: 'REV'
     wet: number
     preDelay: number
     decay: number
@@ -15,6 +16,7 @@ export interface Reverb extends ReverbData {
 export interface DistortionData {
     id: string
     type: 'distortion'
+    acronym: 'DIS'
     wet: number
     distortion: number
 }

@@ -1,10 +1,9 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
-import { FiVolume, FiVolumeX } from 'react-icons/fi'
+import { FiArrowRight, FiVolume, FiVolumeX } from 'react-icons/fi'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
-import { useAppStore } from '../useApp'
-import { darken } from 'polished'
+import { MixerChannelEffects } from './MixerChannelEffects'
 
 interface MixerChannelProps {
     index: number
@@ -13,7 +12,6 @@ interface MixerChannelProps {
 
 export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
     const [isMuted, setIsMuted] = useState(channel.channel.mute)
-    const openEffect = useAppStore((state) => state.openEffect)
 
     const toggleMute = useCallback(() => {
         channel.channel.mute = !isMuted
@@ -22,7 +20,10 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
 
     return (
         <Container>
-            <ChannelName>{index + 1}</ChannelName>
+            <ChannelName>
+                <FiArrowRight />
+                <span>{index + 1}</span>
+            </ChannelName>
             <MuteIcon isMuted={isMuted} onClick={toggleMute}>
                 {isMuted && <FiVolumeX />}
                 {!isMuted && <FiVolume />}
@@ -43,18 +44,7 @@ export const MixerChannel = ({ index, channel }: MixerChannelProps) => {
                 </ValueScreen>
             </ValueBlock>
             <ValueLabel>effects</ValueLabel>
-            {channel.effects.map((effect) => {
-                return (
-                    <EffectLabel
-                        key={effect.id}
-                        onClick={() => {
-                            openEffect(effect.id)
-                        }}
-                    >
-                        {effect.type}
-                    </EffectLabel>
-                )
-            })}
+            <MixerChannelEffects effects={channel.effects} />
         </Container>
     )
 }
@@ -73,13 +63,18 @@ const Container = styled.div`
 
 const ChannelName = styled.div`
     display: flex;
-    height: 32px;
-    justify-content: center;
+    width: 100%;
+    padding: 9px 9px;
+    justify-content: space-between;
     align-items: center;
     font-family: ${(props) => props.theme.typography.headingFont};
     color: ${(props) => props.theme.colors.textLight};
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
+
+    svg {
+        color: ${(props) => props.theme.colors.textLight};
+    }
 `
 
 const ValueBlock = styled.div`
@@ -111,23 +106,6 @@ const MuteIcon = styled.div<{
     cursor: pointer;
     color: ${(props) => props.theme.colors.textLight};
     margin-bottom: 9px;
-
-    &:hover {
-        color: ${(props) => props.theme.colors.text};
-    }
-`
-
-const EffectLabel = styled.div`
-    background-color: ${(props) => darken(0.02, props.theme.colors.enclosure.border)};
-    color: ${(props) => props.theme.colors.textLight};
-    font-size: 11px;
-    padding: 4px 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    max-width: 68px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-bottom: 5px;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};

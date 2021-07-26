@@ -30,7 +30,7 @@ export const lightTheme: DefaultTheme = {
     colors,
     sizes: {
         mainGap: 8,
-        enclosureBorderRadius: 4,
+        enclosureBorderRadius: 0,
     },
     shadows: {
         lcdTextHighlight: 'none',
