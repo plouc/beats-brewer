@@ -1,4 +1,25 @@
 import { DefaultTheme } from 'styled-components'
+import { darken, rgba } from 'polished'
+
+const colors: DefaultTheme['colors'] = {
+    background: '#242425',
+    text: '#ffffff',
+    textLight: '#888888',
+    accent: '#7bb392',
+    enclosure: {
+        background: '#2d2d2d',
+        border: '#242425',
+    },
+    lcd: {
+        background: '#4c151a',
+        border: '#311716',
+        text: '#a14638',
+        textHighlight: '#dd6755',
+    },
+    alternateMaterial: {
+        background: '#402a1a',
+    },
+}
 
 export const darkTheme: DefaultTheme = {
     id: 'dark',
@@ -7,17 +28,15 @@ export const darkTheme: DefaultTheme = {
         headingFont: `'Montserrat', sans-serif`,
         monospacedFont: `'IBM Plex Mono', monospace`,
     },
-    colors: {
-        background: '#242425',
-        text: '#ffffff',
-        textLight: '#888888',
-        accent: '#7bb392',
-        wood: '#402a1a',
-        enclosureBorder: '#242425',
-        enclosureBackground: '#2d2d2d',
-        lcdBackground: '#4c151a',
-        lcdBorder: '#311716',
-        lcdText: '#a14638',
-        lcdHighlightText: '#dd6755',
+    colors,
+    sizes: {
+        mainGap: 12,
+        enclosureBorderRadius: 3,
+    },
+    shadows: {
+        lcdTextHighlight: `0 0 6px ${rgba(colors.lcd.textHighlight, 0.6)}`,
+        enclosure: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
+            1px 2px 5px ${rgba(darken(0.2, colors.background), 0.15)},
+            3px 6px 12px ${rgba(darken(0.2, colors.background), 0.25)}`,
     },
 }

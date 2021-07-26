@@ -45,28 +45,28 @@ export const HardwareButton = styled.span<{
             return css`
                 background: linear-gradient(
                     180deg,
-                    ${darken(0.01, theme.colors.enclosureBackground)},
-                    ${theme.colors.enclosureBackground}
+                    ${darken(0.01, theme.colors.enclosure.background)},
+                    ${theme.colors.enclosure.background}
                 );
-                box-shadow: inset 0 1px 0 ${darken(0.06, theme.colors.enclosureBackground)},
-                    inset 0 2px 0 ${darken(0.08, theme.colors.enclosureBackground)},
-                    inset 0 4px 4px ${rgba(darken(0.2, theme.colors.enclosureBackground), 0.25)},
-                    0 0 0 1px ${lighten(0.02, theme.colors.enclosureBackground)};
+                box-shadow: inset 0 1px 0 ${darken(0.06, theme.colors.enclosure.background)},
+                    inset 0 2px 0 ${darken(0.08, theme.colors.enclosure.background)},
+                    inset 0 4px 4px ${rgba(darken(0.2, theme.colors.enclosure.background), 0.25)},
+                    0 0 0 1px ${lighten(0.02, theme.colors.enclosure.background)};
             `
         }
 
         return css`
-            background: ${theme.colors.enclosureBackground};
-            box-shadow: inset 0 -1px 0 ${darken(0.04, theme.colors.enclosureBackground)},
-                0 2px 4px ${rgba(darken(0.2, theme.colors.enclosureBackground), 0.25)},
-                inset 0 1px 0 ${lighten(0.08, theme.colors.enclosureBackground)},
-                0 1px 0 1px ${darken(0.02, theme.colors.enclosureBackground)};
+            background: ${theme.colors.enclosure.background};
+            box-shadow: inset 0 -1px 0 ${darken(0.04, theme.colors.enclosure.background)},
+                0 2px 4px ${rgba(darken(0.2, theme.colors.enclosure.background), 0.25)},
+                inset 0 1px 0 ${lighten(0.08, theme.colors.enclosure.background)},
+                0 1px 0 1px ${darken(0.02, theme.colors.enclosure.background)};
 
             &:hover {
-                box-shadow: inset 0 -1px 0 ${darken(0.03, theme.colors.enclosureBackground)},
-                    0 1px 2px ${rgba(darken(0.2, theme.colors.enclosureBackground), 0.25)},
-                    inset 0 1px 0 ${lighten(0.06, theme.colors.enclosureBackground)},
-                    0 0 0 1px ${darken(0.02, theme.colors.enclosureBackground)};
+                box-shadow: inset 0 -1px 0 ${darken(0.03, theme.colors.enclosure.background)},
+                    0 1px 2px ${rgba(darken(0.2, theme.colors.enclosure.background), 0.25)},
+                    inset 0 1px 0 ${lighten(0.06, theme.colors.enclosure.background)},
+                    0 0 0 1px ${darken(0.02, theme.colors.enclosure.background)};
             }
         `
     }}

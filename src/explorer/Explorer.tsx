@@ -115,14 +115,14 @@ export const Explorer = () => {
 }
 
 const Container = styled.div`
-    background-color: ${(props) => props.theme.colors.enclosureBackground};
+    background-color: ${(props) => props.theme.colors.enclosure.background};
     color: ${(props) => props.theme.colors.text};
-    border-right: 1px solid ${(props) => props.theme.colors.enclosureBorder};
+    border-right: 1px solid ${(props) => props.theme.colors.enclosure.border};
 `
 
 const SubTitle = styled.h2`
     font-family: ${(props) => props.theme.typography.headingFont};
-    background-color: ${(props) => darken(0.03, props.theme.colors.enclosureBackground)};
+    background-color: ${(props) => darken(0.03, props.theme.colors.enclosure.background)};
     font-size: 13px;
     margin: 0;
     padding: 7px 12px;
@@ -156,6 +156,6 @@ const Item = styled.div`
     }
 
     &:hover {
-        background-color: ${(props) => darken(0.03, props.theme.colors.enclosureBackground)};
+        background-color: ${(props) => darken(0.03, props.theme.colors.enclosure.background)};
     }
 `

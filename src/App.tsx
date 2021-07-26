@@ -10,7 +10,7 @@ import { Mixer } from './mixer/Mixer'
 // import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
 import { useAppStore } from './useApp'
-// import { SampleComponent } from './SampleComponent'
+import { SampleComponent } from './SampleComponent'
 
 function App() {
     const theme = useAppStore((state) => state.theme)
@@ -26,7 +26,13 @@ function App() {
                 <AppHeader />
                 <Explorer />
                 <Content>
-                    {/* <SampleComponent /> */}
+                    <SampleComponent />
+                    <Row>
+                        <SampleComponent />
+                        <SampleComponent />
+                        <SampleComponent />
+                    </Row>
+                    <SampleComponent />
                     {patterns.map((pattern) => {
                         if (pattern.type === 'sequencer') {
                             return (
@@ -69,7 +75,7 @@ const Layout = styled.div`
 const Content = styled.div`
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 6px;
+    padding: ${(props) => props.theme.sizes.mainGap / 2}px;
 `
 
 const Row = styled.div`

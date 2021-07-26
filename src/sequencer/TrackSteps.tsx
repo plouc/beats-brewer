@@ -87,7 +87,7 @@ const StepElement = styled.div<{
 
     &:after {
         content: '';
-        background-color: ${(props) => props.theme.colors.enclosureBackground};
+        background-color: ${(props) => props.theme.colors.enclosure.background};
         position: absolute;
         top: 50%;
         left: 50%;
@@ -119,7 +119,7 @@ const StepElement = styled.div<{
             return css`
                 background-color: ${color};
                 box-shadow: inset 0 -1px 0 ${darken(0.2, color)},
-                    0 1px 3px ${rgba(darken(0.3, theme.colors.enclosureBackground), 0.66)},
+                    0 1px 3px ${rgba(darken(0.3, theme.colors.enclosure.background), 0.66)},
                     inset 0 1px 0 ${lighten(0.15, color)};
 
                 &:after {
@@ -131,8 +131,8 @@ const StepElement = styled.div<{
 
         if (isOdd) {
             return css`
-                background-color: ${lighten(0.05, theme.colors.enclosureBackground)};
-                border: 1px solid ${darken(0.03, theme.colors.enclosureBackground)};
+                background-color: ${lighten(0.05, theme.colors.enclosure.background)};
+                border: 1px solid ${darken(0.03, theme.colors.enclosure.background)};
 
                 &:hover {
                     background-color: ${rgba(color, 0.8)};
@@ -141,8 +141,8 @@ const StepElement = styled.div<{
         }
 
         return css`
-            background-color: ${lighten(0.1, theme.colors.enclosureBackground)};
-            border: 1px solid ${darken(0.03, theme.colors.enclosureBackground)};
+            background-color: ${lighten(0.1, theme.colors.enclosure.background)};
+            border: 1px solid ${darken(0.03, theme.colors.enclosure.background)};
 
             &:hover {
                 background-color: ${rgba(color, 0.8)};

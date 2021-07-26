@@ -67,7 +67,7 @@ const Container = styled.div`
     padding: 0 6px;
     height: 320px;
     position: relative;
-    background-color: ${(props) => props.theme.colors.enclosureBorder};
+    background-color: ${(props) => props.theme.colors.enclosure.border};
     border-radius: 3px;
 `
 
@@ -118,7 +118,7 @@ const MuteIcon = styled.div<{
 `
 
 const EffectLabel = styled.div`
-    background-color: ${(props) => darken(0.02, props.theme.colors.enclosureBorder)};
+    background-color: ${(props) => darken(0.02, props.theme.colors.enclosure.border)};
     color: ${(props) => props.theme.colors.textLight};
     font-size: 11px;
     padding: 4px 6px;

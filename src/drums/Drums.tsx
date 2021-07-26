@@ -196,7 +196,7 @@ const ChartLine = styled.div`
     position: absolute;
     top: calc(50% - 1px);
     z-index: 5;
-    background-color: ${(props) => props.theme.colors.lcdText};
+    background-color: ${(props) => props.theme.colors.lcd.text};
     height: 2px;
 `
 
@@ -204,7 +204,7 @@ const ChartLineSection = styled.div`
     position: absolute;
     top: calc(50% - 1px);
     z-index: 10;
-    background-color: ${(props) => props.theme.colors.lcdHighlightText};
+    background-color: ${(props) => props.theme.colors.lcd.textHighlight};
     height: 2px;
 `
 
@@ -213,7 +213,7 @@ const ChartDot = styled.div`
     top: calc(50% - 3px);
     z-index: 15;
     margin-left: -3px;
-    background-color: ${(props) => props.theme.colors.lcdHighlightText};
+    background-color: ${(props) => props.theme.colors.lcd.textHighlight};
     width: 6px;
     height: 6px;
     border-radius: 3px;
