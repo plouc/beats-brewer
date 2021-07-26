@@ -19,7 +19,7 @@ export const Mixer = () => {
                     </ComponentName>
                 </ComponentHeader>
                 <VSpacer />
-                <Channels>
+                <Channels channels={channels.length}>
                     {channels.map((channel, index) => (
                         <MixerChannel key={index} index={index} channel={channel} />
                     ))}
@@ -29,8 +29,10 @@ export const Mixer = () => {
     )
 }
 
-const Channels = styled.div`
+const Channels = styled.div<{
+    channels: number
+}>`
     display: grid;
-    grid-template-columns: repeat(8, 80px);
+    grid-template-columns: repeat(${(props) => props.channels}, 80px);
     grid-column-gap: 6px;
 `

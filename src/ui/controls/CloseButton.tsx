@@ -8,7 +8,7 @@ interface CloseButtonProps {
 
 export const CloseButton = ({ onClose }: CloseButtonProps) => {
     return (
-        <Button onClick={onClose} isPressed>
+        <Button onClick={onClose}>
             <FiX />
         </Button>
     )

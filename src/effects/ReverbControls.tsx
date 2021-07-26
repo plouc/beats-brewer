@@ -50,7 +50,7 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
                     </ComponentName>
                     <CloseButton onClose={handleClose} />
                 </Header>
-                <VSpacer size="small" />
+                <VSpacer />
                 <Content>
                     <span>decay</span>
                     <NumberInput

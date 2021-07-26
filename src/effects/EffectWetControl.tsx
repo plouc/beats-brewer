@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback, useState } from 'react'
-import styled from "styled-components/macro";
+import styled from 'styled-components/macro'
 import * as Tone from 'tone'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { SliderControl } from '../ui/controls/SliderControl'

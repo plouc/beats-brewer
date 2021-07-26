@@ -40,7 +40,7 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
                     </ComponentName>
                     <CloseButton onClose={handleClose} />
                 </Header>
-                <VSpacer size="small" />
+                <VSpacer />
                 <Content>
                     <span>distortion</span>
                     <NumberInput

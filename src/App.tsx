@@ -10,6 +10,7 @@ import { Mixer } from './mixer/Mixer'
 // import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
 import { useAppStore } from './useApp'
+import { SampleComponent } from './SampleComponent'
 
 function App() {
     const theme = useAppStore((state) => state.theme)
@@ -25,6 +26,7 @@ function App() {
                 <AppHeader />
                 <Explorer />
                 <Content>
+                    <SampleComponent />
                     {patterns.map((pattern) => {
                         if (pattern.type === 'sequencer') {
                             return <Sequencer key={pattern.id} pattern={pattern} />
