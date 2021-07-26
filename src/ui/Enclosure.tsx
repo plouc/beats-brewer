@@ -56,15 +56,24 @@ const Side = styled.div`
 
 const Top = styled.div`
     background-color: ${(props) => lighten(0.03, props.theme.colors.enclosureBackground)};
+    background: linear-gradient(
+        180deg,
+        ${(props) => lighten(0.01, props.theme.colors.enclosureBackground)},
+        ${(props) => lighten(0.05, props.theme.colors.enclosureBackground)}
+    );
     box-shadow: inset 4px 0 0
             ${(props) => rgba(darken(0.2, props.theme.colors.enclosureBackground), 0.05)},
         inset -2px 0 0 ${(props) => rgba(darken(0.2, props.theme.colors.enclosureBackground), 0.1)},
-        inset 0 1px 0 ${(props) => lighten(0.08, props.theme.colors.enclosureBackground)},
+        inset 0 1px 0 ${(props) => lighten(0.06, props.theme.colors.enclosureBackground)},
         inset 0 -1px 0 ${(props) => darken(0.03, props.theme.colors.enclosureBackground)};
 `
 
 const Bottom = styled.div`
-    background-color: ${(props) => darken(0.02, props.theme.colors.enclosureBackground)};
+    background: linear-gradient(
+        180deg,
+        ${(props) => darken(0.03, props.theme.colors.enclosureBackground)},
+        ${(props) => darken(0.02, props.theme.colors.enclosureBackground)}
+    );
     box-shadow: inset 4px 0 0
             ${(props) => rgba(darken(0.2, props.theme.colors.enclosureBackground), 0.15)},
         inset -2px 0 0 ${(props) => rgba(darken(0.2, props.theme.colors.enclosureBackground), 0.1)},
