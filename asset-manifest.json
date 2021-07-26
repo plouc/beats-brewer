@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d480beeb.chunk.css",
+    "main.js": "/static/js/main.c778df56.chunk.js",
+    "main.js.map": "/static/js/main.c778df56.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.d90f546f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.d90f546f.js.map",
+    "static/js/2.293c9b55.chunk.js": "/static/js/2.293c9b55.chunk.js",
+    "static/js/2.293c9b55.chunk.js.map": "/static/js/2.293c9b55.chunk.js.map",
+    "static/js/3.6cd25db3.chunk.js": "/static/js/3.6cd25db3.chunk.js",
+    "static/js/3.6cd25db3.chunk.js.map": "/static/js/3.6cd25db3.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.d480beeb.chunk.css.map": "/static/css/main.d480beeb.chunk.css.map",
+    "static/js/2.293c9b55.chunk.js.LICENSE.txt": "/static/js/2.293c9b55.chunk.js.LICENSE.txt",
+    "static/media/tr808_bass_drum_001.wav": "/static/media/tr808_bass_drum_001.6bff9155.wav",
+    "static/media/tr808_bass_drum_002.wav": "/static/media/tr808_bass_drum_002.aa0b9aac.wav",
+    "static/media/tr808_clap_001.wav": "/static/media/tr808_clap_001.e59bafa0.wav",
+    "static/media/tr808_clap_002.wav": "/static/media/tr808_clap_002.9e9fbf74.wav",
+    "static/media/tr808_congas_high_001.wav": "/static/media/tr808_congas_high_001.e46317dd.wav",
+    "static/media/tr808_congas_high_002.wav": "/static/media/tr808_congas_high_002.f0e1cdca.wav",
+    "static/media/tr808_congas_low_001.wav": "/static/media/tr808_congas_low_001.0dfd9493.wav",
+    "static/media/tr808_congas_low_002.wav": "/static/media/tr808_congas_low_002.8a26053a.wav",
+    "static/media/tr808_hihat_closed_001.wav": "/static/media/tr808_hihat_closed_001.8f60c1ec.wav",
+    "static/media/tr808_hihat_closed_002.wav": "/static/media/tr808_hihat_closed_002.22d20eb5.wav",
+    "static/media/tr808_hihat_open_001.wav": "/static/media/tr808_hihat_open_001.1c39c77d.wav",
+    "static/media/tr808_hihat_open_002.wav": "/static/media/tr808_hihat_open_002.5dae54ca.wav",
+    "static/media/tr808_rimshot_001.wav": "/static/media/tr808_rimshot_001.60210f1f.wav",
+    "static/media/tr808_rimshot_002.wav": "/static/media/tr808_rimshot_002.f1681fd2.wav",
+    "static/media/tr808_snare_001.wav": "/static/media/tr808_snare_001.f857353c.wav",
+    "static/media/tr808_snare_002.wav": "/static/media/tr808_snare_002.56130b54.wav"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d90f546f.js",
+    "static/js/2.293c9b55.chunk.js",
+    "static/css/main.d480beeb.chunk.css",
+    "static/js/main.c778df56.chunk.js"
+  ]
+}
