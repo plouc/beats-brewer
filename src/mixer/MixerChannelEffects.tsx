@@ -16,9 +16,8 @@ export const MixerChannelEffects = ({ effects }: MixerChannelEffectsProps) => {
         <>
             {effects.map((effect, effectIndex) => {
                 return (
-                    <Fragment>
+                    <Fragment key={effect.id}>
                         <EffectLabel
-                            key={effect.id}
                             onClick={() => {
                                 openEffect(effect.id)
                             }}

@@ -1,11 +1,13 @@
 import styled from 'styled-components/macro'
 import { ChangeEvent, useCallback, useState } from 'react'
+import { FiClock, FiChevronsRight } from 'react-icons/fi'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
 import { EffectHeader } from './EffectHeader'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { Reverb } from './definitions'
 import { EffectWetControl } from './EffectWetControl'
+import { HSpacer } from '../ui/Spacer'
 
 interface ReverbControlsProps {
     reverb: Reverb
@@ -37,7 +39,11 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
             <Enclosure>
                 <EffectHeader effect={reverb} />
                 <Content>
-                    <span>decay</span>
+                    <Label>
+                        <FiChevronsRight />
+                        <HSpacer size="xsmall" />
+                        decay
+                    </Label>
                     <NumberInput
                         type="number"
                         onChange={handleDecayChange}
@@ -45,7 +51,11 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
                         min={0.001}
                         step={0.001}
                     />
-                    <span>pre delay</span>
+                    <Label>
+                        <FiClock />
+                        <HSpacer size="xsmall" />
+                        pre delay
+                    </Label>
                     <NumberInput
                         type="number"
                         onChange={handlePreDelayChange}
@@ -65,7 +75,12 @@ const Content = styled.div`
     color: ${(props) => props.theme.colors.textLight};
     display: grid;
     align-items: center;
-    grid-template-columns: 9ch 90px;
+    grid-template-columns: auto 90px;
     grid-column-gap: 12px;
     grid-row-gap: 9px;
+`
+
+const Label = styled.span`
+    display: flex;
+    align-items: center;
 `

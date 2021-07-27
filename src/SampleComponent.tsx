@@ -46,7 +46,7 @@ export const SampleComponent = () => {
                         </SquareIconButton>
                     </Row>
                     <VSpacer />
-                    <SliderControl />
+                    <SliderControl value={0.35} />
                 </div>
             </Enclosure>
         </Desk>

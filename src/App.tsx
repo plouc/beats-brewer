@@ -27,12 +27,10 @@ function App() {
                 <Explorer />
                 <Content>
                     {/*
-                    <SampleComponent />
                     <Row>
                         <SampleComponent />
                         <SampleComponent />
                     </Row>
-                    <SampleComponent />
                     */}
                     {patterns.map((pattern) => {
                         if (pattern.type === 'sequencer') {

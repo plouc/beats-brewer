@@ -5,6 +5,7 @@ import { v4 as uuidV4 } from 'uuid'
 import { ProjectData, Project, Pattern, Channel } from './project/definitions'
 import { Effect } from './effects/definitions'
 import { darkTheme } from './ui/theme/darkTheme'
+import { monoYellowTheme } from './ui/theme/monoYellowTheme'
 
 interface AppStore {
     theme: DefaultTheme
@@ -31,7 +32,7 @@ interface AppStore {
 const DEFAULT_BPM = 130
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: darkTheme,
+    theme: monoYellowTheme,
     setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
