@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/beats-brewer/static/css/main.d480beeb.chunk.css",
-    "main.js": "/beats-brewer/static/js/main.b28cb100.chunk.js",
-    "main.js.map": "/beats-brewer/static/js/main.b28cb100.chunk.js.map",
+    "main.js": "/beats-brewer/static/js/main.3b2ce602.chunk.js",
+    "main.js.map": "/beats-brewer/static/js/main.3b2ce602.chunk.js.map",
     "runtime-main.js": "/beats-brewer/static/js/runtime-main.7f787416.js",
     "runtime-main.js.map": "/beats-brewer/static/js/runtime-main.7f787416.js.map",
     "static/js/2.0e838bf9.chunk.js": "/beats-brewer/static/js/2.0e838bf9.chunk.js",
@@ -33,6 +33,6 @@
     "static/js/runtime-main.7f787416.js",
     "static/js/2.0e838bf9.chunk.js",
     "static/css/main.d480beeb.chunk.css",
-    "static/js/main.b28cb100.chunk.js"
+    "static/js/main.3b2ce602.chunk.js"
   ]
 }
