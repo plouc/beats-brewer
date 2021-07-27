@@ -56,7 +56,7 @@ export const generateMonochromeTheme = (
             backgroundDark: darken(0.08, color),
             backgroundAlt: lighten(0.04, color),
             border: color,
-            castShadow: 'none',
+            castShadow: `0 3px 0 2px ${darken(0.35, color)}`,
             innerCastShadowColor: rgba(darken(0.8, color), 0.16),
             innerCastShadowColorLight: rgba(darken(0.8, color), 0.12),
             innerCastShadowColorDark: rgba(darken(0.8, color), 0.2),
