@@ -77,7 +77,7 @@ const Content = styled.div`
     align-items: center;
     grid-template-columns: auto 90px;
     grid-column-gap: 12px;
-    grid-row-gap: 9px;
+    grid-row-gap: 6px;
 `
 
 const Label = styled.span`
