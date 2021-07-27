@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
-import { darken, lighten, rgba } from 'polished'
+import { darken, lighten } from 'polished'
 
 export const Enclosure = ({ children }: PropsWithChildren<{}>) => {
     return (

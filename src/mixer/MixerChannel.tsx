@@ -4,6 +4,7 @@ import { FiArrowRight, FiArrowRightCircle, FiVolume, FiVolumeX } from 'react-ico
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
 import { MixerChannelEffects } from './MixerChannelEffects'
+import { VSpacer } from '../ui/Spacer'
 
 interface MixerChannelProps {
     index: number
@@ -28,26 +29,29 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
                 </ChannelNameIcon>
                 <span>{index + 1}</span>
             </ChannelName>
+            <VSpacer size="small" />
             <MuteIcon isMuted={isMuted} onClick={toggleMute}>
                 {isMuted && <FiVolumeX />}
                 {!isMuted && <FiVolume />}
             </MuteIcon>
-            <ValueBlock>
-                <ValueLabel>volume</ValueLabel>
-                <ValueScreen>
-                    <LCDScreenHighlightedText>
-                        {isMuted && '---'}
-                        {!isMuted && channel.channel.volume.value}
-                    </LCDScreenHighlightedText>
-                </ValueScreen>
-            </ValueBlock>
-            <ValueBlock>
-                <ValueLabel>pan</ValueLabel>
-                <ValueScreen>
-                    <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
-                </ValueScreen>
-            </ValueBlock>
+            <VSpacer />
+            <ValueLabel>volume</ValueLabel>
+            <VSpacer size="xsmall" />
+            <ValueScreen>
+                <LCDScreenHighlightedText>
+                    {isMuted && '---'}
+                    {!isMuted && channel.channel.volume.value}
+                </LCDScreenHighlightedText>
+            </ValueScreen>
+            <VSpacer size="small" />
+            <ValueLabel>pan</ValueLabel>
+            <VSpacer size="xsmall" />
+            <ValueScreen>
+                <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
+            </ValueScreen>
+            <VSpacer />
             <ValueLabel>effects</ValueLabel>
+            <VSpacer size="small" />
             <MixerChannelEffects effects={channel.effects} />
         </Container>
     )
@@ -57,8 +61,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80px;
-    padding: 0 6px;
+    padding: 9px 6px;
     position: relative;
     background-color: ${(props) => props.theme.enclosure.backgroundAlt};
     border-radius: 3px;
@@ -69,7 +72,7 @@ const ChannelName = styled.div<{
 }>`
     display: flex;
     width: 100%;
-    padding: 9px 6px;
+    padding: 0 4px;
     justify-content: space-between;
     align-items: center;
     font-family: ${(props) => props.theme.typography.headingFont};
@@ -91,15 +94,10 @@ const ChannelNameIcon = styled.div<{
     color: ${(props) => props.theme.colors.textLight};
 `
 
-const ValueBlock = styled.div`
-    margin-bottom: 9px;
-`
-
 const ValueLabel = styled.div`
     font-size: 8px;
     text-align: center;
     text-transform: uppercase;
-    margin-bottom: 4px;
     color: ${(props) => props.theme.colors.textLight};
 `
 
@@ -119,7 +117,6 @@ const MuteIcon = styled.div<{
     align-items: center;
     cursor: pointer;
     color: ${(props) => props.theme.colors.textLight};
-    margin-bottom: 9px;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};

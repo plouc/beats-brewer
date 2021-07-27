@@ -2,9 +2,9 @@ import { DefaultTheme } from 'styled-components'
 
 const colors: DefaultTheme['colors'] = {
     background: '#b8bfbe',
-    text: '#444444',
-    textLight: '#888888',
-    accent: '#358795',
+    text: '#222222',
+    textLight: '#555555',
+    accent: '#2b808e',
     lcd: {
         background: '#adab9d',
         border: '#89887b',

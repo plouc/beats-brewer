@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Scale } from '@tonaljs/tonal'
-import { HSpacer } from '../ui/Spacer'
+import { HSpacer, VSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
 import { NOTES, Note, Octave } from '../music_theory/definitions'
@@ -56,6 +56,7 @@ export const Keyboard = () => {
                     <HSpacer />
                     <ScaleSelector scale={scale} onChange={setScale} />
                 </ComponentHeader>
+                <VSpacer />
                 <Keys>
                     {notesWithPosition.map(([note, position], index) => {
                         return (

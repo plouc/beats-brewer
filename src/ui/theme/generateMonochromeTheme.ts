@@ -4,7 +4,7 @@ import { darken, lighten, rgba } from 'polished'
 const textColors = {
     light: {
         main: '#fff',
-        light: '#ddd',
+        light: '#ccc',
     },
     dark: {
         main: '#000',
@@ -29,7 +29,7 @@ export const generateMonochromeTheme = (
         colors: {
             background: darken(0.3, color),
             text: textColor.main,
-            textLight: darken(0.25, color),
+            textLight: textColor.light,
             accent: textColor.main,
             lcd: {
                 background: darken(0.06, color),

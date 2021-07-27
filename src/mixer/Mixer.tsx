@@ -39,6 +39,6 @@ const Channels = styled.div<{
     channels: number
 }>`
     display: grid;
-    grid-template-columns: repeat(${(props) => props.channels}, 80px);
+    grid-template-columns: repeat(${(props) => props.channels}, 64px);
     grid-column-gap: 6px;
 `

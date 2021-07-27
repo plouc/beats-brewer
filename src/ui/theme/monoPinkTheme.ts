@@ -1,3 +1,3 @@
 import { generateMonochromeTheme } from './generateMonochromeTheme'
 
-export const monoPinkTheme = generateMonochromeTheme('#996b76', 'pink', 'dark')
+export const monoPinkTheme = generateMonochromeTheme('#b87e87', 'pink', 'dark')

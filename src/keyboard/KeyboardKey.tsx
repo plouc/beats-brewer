@@ -54,8 +54,14 @@ const KeyboardKeyGraphic = styled.div<{
     border: 1px solid ${(props) => props.theme.enclosure.background};
     cursor: pointer;
     border-radius: 3px;
-    background-color: ${(props) => (props.isBlack ? '#242425' : props.theme.colors.accent)};
-    color: ${(props) => (props.isBlack ? '#bbb' : '#333')};
+    background-color: ${(props) =>
+        props.isBlack
+            ? props.theme.enclosure.backgroundDark
+            : props.theme.enclosure.backgroundLight};
+    color: ${(props) =>
+        props.isBlack
+            ? props.theme.enclosure.backgroundLight
+            : props.theme.enclosure.backgroundDark};
     top: 0;
     position: absolute;
     z-index: ${(props) => (props.isBlack ? 100 : 10)};

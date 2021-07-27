@@ -36,8 +36,8 @@ export const MixerChannelEffects = ({ effects }: MixerChannelEffectsProps) => {
 }
 
 const EffectLabel = styled.div`
-    background-color: ${(props) => darken(0.02, props.theme.enclosure.border)};
-    color: ${(props) => props.theme.colors.textLight};
+    background-color: ${(props) => darken(0.02, props.theme.enclosure.background)};
+    color: ${(props) => props.theme.colors.text};
     font-size: 10px;
     padding: 4px 6px;
     border-radius: 2px;
@@ -49,7 +49,7 @@ const EffectLabel = styled.div`
     user-select: none;
 
     &:hover {
-        color: ${(props) => props.theme.colors.text};
+        color: ${(props) => props.theme.colors.accent};
     }
 `
 
