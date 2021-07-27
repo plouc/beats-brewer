@@ -12,6 +12,7 @@ declare module 'styled-components' {
             background: string
             backgroundLight: string
             backgroundDark: string
+            backgroundAlt: string
             border: string
             castShadow: string
             innerCastShadowColor: string

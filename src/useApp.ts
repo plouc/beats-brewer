@@ -33,7 +33,7 @@ interface AppStore {
 const DEFAULT_BPM = 130
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: lightTheme,
+    theme: darkTheme,
     setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {

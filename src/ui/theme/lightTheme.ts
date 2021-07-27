@@ -37,6 +37,7 @@ export const lightTheme: DefaultTheme = {
         background: '#c1c7c7',
         backgroundLight: '#d8dcdc',
         backgroundDark: '#adb3b3',
+        backgroundAlt: '#b7bdbd',
         border: '#b4bbbb',
         castShadow: `0 1px 1px rgba(0, 0, 0, 0.15),
             1px 3px 8px rgba(0, 0, 0, 0.1)`,

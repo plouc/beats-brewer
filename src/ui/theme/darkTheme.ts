@@ -38,6 +38,7 @@ export const darkTheme: DefaultTheme = {
         background: '#2d2d2d',
         backgroundLight: '#393939',
         backgroundDark: '#242424',
+        backgroundAlt: '#242424',
         border: '#242425',
         castShadow: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
             1px 2px 5px ${rgba(darken(0.2, colors.background), 0.15)},
