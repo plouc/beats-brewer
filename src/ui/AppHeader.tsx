@@ -26,8 +26,8 @@ const Container = styled.div`
     grid-column-start: 1;
     grid-column-end: 3;
     padding: 0 12px;
-    background-color: ${(props) => props.theme.colors.enclosure.background};
-    border-bottom: 1px solid ${(props) => props.theme.colors.enclosure.border};
+    background-color: ${(props) => props.theme.enclosure.background};
+    border-bottom: 1px solid ${(props) => props.theme.enclosure.border};
 `
 
 const AppName = styled.div`

@@ -5,10 +5,6 @@ const colors: DefaultTheme['colors'] = {
     text: '#444444',
     textLight: '#888888',
     accent: '#358795',
-    enclosure: {
-        background: '#c1c7c7',
-        border: '#b4bbbb',
-    },
     lcd: {
         background: '#adab9d',
         border: '#89887b',
@@ -17,6 +13,8 @@ const colors: DefaultTheme['colors'] = {
     },
     alternateMaterial: {
         background: '#aa9c8a',
+        backgroundLight: '#c2b29f',
+        backgroundDark: '#978c7d',
     },
 }
 
@@ -29,12 +27,22 @@ export const lightTheme: DefaultTheme = {
     },
     colors,
     sizes: {
-        mainGap: 8,
+        mainGap: 6,
         enclosureBorderRadius: 0,
     },
     shadows: {
         lcdTextHighlight: 'none',
-        enclosure: `0 1px 1px rgba(0, 0, 0, 0.1),
+    },
+    enclosure: {
+        background: '#c1c7c7',
+        backgroundLight: '#d8dcdc',
+        backgroundDark: '#adb3b3',
+        border: '#b4bbbb',
+        castShadow: `0 1px 1px rgba(0, 0, 0, 0.15),
             1px 3px 8px rgba(0, 0, 0, 0.1)`,
+        innerCastShadowColor: `rgba(0, 0, 0, 0.1)`,
+        innerCastShadowColorLight: `rgba(0, 0, 0, 0.05)`,
+        innerCastShadowColorDark: `rgba(0, 0, 0, 0.15)`,
+        sideThickness: 10,
     },
 }

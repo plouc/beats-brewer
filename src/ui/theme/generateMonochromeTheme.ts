@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components'
-import { darken, lighten } from 'polished'
+import { darken, lighten, rgba } from 'polished'
 
 const textColors = {
     light: {
@@ -27,14 +27,10 @@ export const generateMonochromeTheme = (
             monospacedFont: `'IBM Plex Mono', monospace`,
         },
         colors: {
-            background: darken(0.35, color),
+            background: darken(0.3, color),
             text: textColor.main,
-            textLight: textColor.light,
+            textLight: darken(0.25, color),
             accent: textColor.main,
-            enclosure: {
-                background: color,
-                border: color,
-            },
             lcd: {
                 background: darken(0.06, color),
                 border: lighten(0.03, color),
@@ -42,16 +38,28 @@ export const generateMonochromeTheme = (
                 textHighlight: textColor.main,
             },
             alternateMaterial: {
-                background: color,
+                background: '#888888',
+                backgroundLight: '#b6b6b6',
+                backgroundDark: '#6a6a6a',
             },
         },
         sizes: {
             mainGap: 2,
-            enclosureBorderRadius: 2,
+            enclosureBorderRadius: 1,
         },
         shadows: {
             lcdTextHighlight: 'none',
-            enclosure: 'none',
+        },
+        enclosure: {
+            background: color,
+            backgroundLight: lighten(0.08, color),
+            backgroundDark: darken(0.08, color),
+            border: color,
+            castShadow: 'none',
+            innerCastShadowColor: rgba(darken(0.8, color), 0.16),
+            innerCastShadowColorLight: rgba(darken(0.8, color), 0.12),
+            innerCastShadowColorDark: rgba(darken(0.8, color), 0.2),
+            sideThickness: 8,
         },
     }
 }

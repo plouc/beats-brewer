@@ -8,15 +8,22 @@ declare module 'styled-components' {
             headingFont: string
             monospacedFont: string
         }
+        enclosure: {
+            background: string
+            backgroundLight: string
+            backgroundDark: string
+            border: string
+            castShadow: string
+            innerCastShadowColor: string
+            innerCastShadowColorLight: string
+            innerCastShadowColorDark: string
+            sideThickness: number
+        }
         colors: {
             background: string
             text: string
             textLight: string
             accent: string
-            enclosure: {
-                background: string
-                border: string
-            }
             lcd: {
                 background: string
                 border: string
@@ -25,6 +32,8 @@ declare module 'styled-components' {
             }
             alternateMaterial: {
                 background: string
+                backgroundLight: string
+                backgroundDark: string
             }
         }
         sizes: {
@@ -33,7 +42,6 @@ declare module 'styled-components' {
         }
         shadows: {
             lcdTextHighlight: string
-            enclosure: string
         }
     }
 }

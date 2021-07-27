@@ -6,10 +6,6 @@ const colors: DefaultTheme['colors'] = {
     text: '#ffffff',
     textLight: '#888888',
     accent: '#7bb392',
-    enclosure: {
-        background: '#2d2d2d',
-        border: '#242425',
-    },
     lcd: {
         background: '#4c151a',
         border: '#311716',
@@ -18,6 +14,8 @@ const colors: DefaultTheme['colors'] = {
     },
     alternateMaterial: {
         background: '#402a1a',
+        backgroundLight: '#573924',
+        backgroundDark: '#362418',
     },
 }
 
@@ -30,13 +28,23 @@ export const darkTheme: DefaultTheme = {
     },
     colors,
     sizes: {
-        mainGap: 12,
+        mainGap: 8,
         enclosureBorderRadius: 2,
     },
     shadows: {
         lcdTextHighlight: `0 0 6px ${rgba(colors.lcd.textHighlight, 0.6)}`,
-        enclosure: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
+    },
+    enclosure: {
+        background: '#2d2d2d',
+        backgroundLight: '#393939',
+        backgroundDark: '#242424',
+        border: '#242425',
+        castShadow: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
             1px 2px 5px ${rgba(darken(0.2, colors.background), 0.15)},
             3px 6px 12px ${rgba(darken(0.2, colors.background), 0.25)}`,
+        innerCastShadowColor: rgba(darken(0.2, '#2d2d2d'), 0.15),
+        innerCastShadowColorLight: rgba(darken(0.2, '#2d2d2d'), 0.1),
+        innerCastShadowColorDark: rgba(darken(0.2, '#2d2d2d'), 0.2),
+        sideThickness: 12,
     },
 }

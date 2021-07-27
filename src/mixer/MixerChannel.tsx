@@ -60,7 +60,7 @@ const Container = styled.div`
     width: 80px;
     padding: 0 6px;
     position: relative;
-    background-color: ${(props) => props.theme.colors.enclosure.border};
+    background-color: ${(props) => props.theme.enclosure.border};
     border-radius: 3px;
 `
 

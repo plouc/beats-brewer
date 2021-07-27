@@ -51,7 +51,7 @@ const KeyboardKeyGraphic = styled.div<{
     width: ${(props) => (props.isBlack ? 34 : 54)}px;
     margin-left: ${(props) => (props.isBlack ? 10 : 0)}px;
     height: ${(props) => (props.isBlack ? 120 : 200)}px;
-    border: 1px solid ${(props) => props.theme.colors.enclosure.background};
+    border: 1px solid ${(props) => props.theme.enclosure.background};
     cursor: pointer;
     border-radius: 3px;
     background-color: ${(props) => (props.isBlack ? '#242425' : props.theme.colors.accent)};

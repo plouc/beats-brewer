@@ -36,7 +36,7 @@ export const MixerChannelEffects = ({ effects }: MixerChannelEffectsProps) => {
 }
 
 const EffectLabel = styled.div`
-    background-color: ${(props) => darken(0.02, props.theme.colors.enclosure.border)};
+    background-color: ${(props) => darken(0.02, props.theme.enclosure.border)};
     color: ${(props) => props.theme.colors.textLight};
     font-size: 10px;
     padding: 4px 6px;

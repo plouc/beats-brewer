@@ -31,7 +31,6 @@ function App() {
                     <Row>
                         <SampleComponent />
                         <SampleComponent />
-                        <SampleComponent />
                     </Row>
                     <SampleComponent />
                     */}

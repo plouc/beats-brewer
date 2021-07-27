@@ -51,7 +51,7 @@ const TrackHeadingContainer = styled.div<{
     align-items: center;
     font-family: ${(props) => props.theme.typography.monospacedFont};
     font-size: 12px;
-    background-color: ${(props) => props.theme.colors.enclosure.border};
+    background-color: ${(props) => props.theme.enclosure.border};
     height: 32px;
     border-radius: 2px;
     padding: 0 6px 0 16px;
