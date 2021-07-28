@@ -141,12 +141,11 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
     // create a new sequence each time the tick function is updated
     // or the number of steps changes
     useEffect(() => {
-        // create the sequence and starts it
         // @todo: add the ability to play the sequence from last time
         const sequence = new Tone.Sequence(
             tick,
             Array.from({ length: steps }).map((_, index) => index),
-            '8n'
+            '16n'
         ).start()
 
         return () => {

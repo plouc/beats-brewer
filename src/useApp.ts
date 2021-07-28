@@ -7,6 +7,7 @@ import { Effect } from './effects/definitions'
 import { darkTheme } from './ui/theme/darkTheme'
 import { lightTheme } from './ui/theme/lightTheme'
 import { monoYellowTheme } from './ui/theme/monoYellowTheme'
+import { monoRedTheme } from './ui/theme/monoRedTheme'
 
 interface AppStore {
     theme: DefaultTheme
@@ -33,7 +34,7 @@ interface AppStore {
 const DEFAULT_BPM = 130
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: monoYellowTheme,
+    theme: monoRedTheme,
     setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {

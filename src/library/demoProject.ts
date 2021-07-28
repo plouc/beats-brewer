@@ -41,7 +41,7 @@ const patternA: SequencerPatternData = {
             ...sampleByName('TR-808 Rimshot 1'),
             id: '9d6848d9-fcaa-45d8-a432-f92c86b862bb',
             channel: 0,
-            isMuted: false,
+            isMuted: true,
             steps: [
                 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1,
                 1, 1, 1, 1,
@@ -83,6 +83,6 @@ const patternA: SequencerPatternData = {
 export const demoProject: ProjectData = {
     id: '11af1d60-23fc-4b53-b1b1-b10ce69ad292',
     name: 'Demo Project',
-    bpm: 130,
+    bpm: 120,
     patterns: [patternA],
 }
