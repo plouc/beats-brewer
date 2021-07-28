@@ -5,6 +5,7 @@ import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
 import { MixerChannelEffects } from './MixerChannelEffects'
 import { VSpacer } from '../ui/Spacer'
+import { Knob } from '../ui/controls/Knob'
 
 interface MixerChannelProps {
     index: number
@@ -34,7 +35,9 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
                 {isMuted && <FiVolumeX />}
                 {!isMuted && <FiVolume />}
             </MuteIcon>
-            <VSpacer />
+            <VSpacer size="small" />
+            <Knob size={40} value={0} />
+            <VSpacer size="small" />
             <ValueLabel>volume</ValueLabel>
             <VSpacer size="xsmall" />
             <ValueScreen>

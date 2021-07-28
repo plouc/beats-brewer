@@ -1,4 +1,5 @@
 import React from 'react'
+import * as Tone from 'tone'
 import styled, { ThemeProvider } from 'styled-components/macro'
 import './ui/normalize.css'
 import { GlobalStyle } from './ui/theme/GlobalStyle'
@@ -9,7 +10,9 @@ import { Mixer } from './mixer/Mixer'
 // import { Keyboard } from './keyboard/Keyboard'
 // import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
-// import { SampleComponent } from './SampleComponent'
+import { SampleComponent } from './SampleComponent'
+import { ReverbControls } from './effects/ReverbControls'
+import { DistortionControls } from './effects/DistortionControls'
 import { useAppStore } from './useApp'
 
 function App() {
@@ -28,6 +31,27 @@ function App() {
                 <Content>
                     {/*
                     <Row>
+                        <ReverbControls
+                            reverb={{
+                                id: 'A',
+                                type: 'reverb',
+                                acronym: 'REV',
+                                wet: 0.6,
+                                decay: 1,
+                                preDelay: 0,
+                                instance: new Tone.Reverb(),
+                            }}
+                        />
+                        <DistortionControls
+                            distortion={{
+                                id: 'A',
+                                type: 'distortion',
+                                acronym: 'DIS',
+                                wet: 0.6,
+                                distortion: 1,
+                                instance: new Tone.Distortion(),
+                            }}
+                        />
                         <SampleComponent />
                         <SampleComponent />
                     </Row>

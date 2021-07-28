@@ -7,7 +7,9 @@ import { EffectHeader } from './EffectHeader'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { Reverb } from './definitions'
 import { EffectWetControl } from './EffectWetControl'
-import { HSpacer } from '../ui/Spacer'
+import { HSpacer, VSpacer } from '../ui/Spacer'
+import { Knob } from '../ui/controls/Knob'
+import { EffectControlLabel } from './EffectControlLabel'
 
 interface ReverbControlsProps {
     reverb: Reverb
@@ -38,49 +40,79 @@ export const ReverbControls = ({ reverb }: ReverbControlsProps) => {
         <Desk>
             <Enclosure>
                 <EffectHeader effect={reverb} />
-                <Content>
-                    <Label>
-                        <FiChevronsRight />
-                        <HSpacer size="xsmall" />
-                        decay
-                    </Label>
-                    <NumberInput
-                        type="number"
-                        onChange={handleDecayChange}
-                        value={decay}
-                        min={0.001}
-                        step={0.001}
-                    />
-                    <Label>
-                        <FiClock />
-                        <HSpacer size="xsmall" />
-                        pre delay
-                    </Label>
-                    <NumberInput
-                        type="number"
-                        onChange={handlePreDelayChange}
-                        value={preDelay}
-                        min={0}
-                        step={0.05}
-                    />
+                <Container>
+                    <Knobs>
+                        <Column>
+                            <NumberInput
+                                type="number"
+                                onChange={handleDecayChange}
+                                value={decay}
+                                min={0.001}
+                                step={0.001}
+                            />
+                            <VSpacer size="small" />
+                            <KnobContainer>
+                                <Knob size={70} value={decay} />
+                            </KnobContainer>
+                            <VSpacer size="small" />
+                            <EffectControlLabel>
+                                <FiChevronsRight />
+                                <HSpacer size="xsmall" />
+                                decay
+                            </EffectControlLabel>
+                        </Column>
+                        <Column>
+                            <NumberInput
+                                type="number"
+                                onChange={handlePreDelayChange}
+                                value={preDelay}
+                                min={0}
+                                step={0.05}
+                            />
+                            <VSpacer size="small" />
+                            <KnobContainer>
+                                <Knob size={50} value={preDelay} />
+                            </KnobContainer>
+                            <VSpacer size="small" />
+                            <EffectControlLabel>
+                                <FiClock />
+                                <HSpacer size="xsmall" />
+                                pre delay
+                            </EffectControlLabel>
+                        </Column>
+                    </Knobs>
+                    <VSpacer />
                     <EffectWetControl effect={reverb.instance} />
-                </Content>
+                </Container>
             </Enclosure>
         </Desk>
     )
 }
 
-const Content = styled.div`
-    font-size: 12px;
-    color: ${(props) => props.theme.colors.textLight};
-    display: grid;
+const Container = styled.div`
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    grid-template-columns: auto 90px;
-    grid-column-gap: 12px;
-    grid-row-gap: 6px;
 `
 
-const Label = styled.span`
+const Knobs = styled.div`
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-column-gap: 12px;
+`
+
+const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input {
+        max-width: 80px;
+    }
+`
+
+const KnobContainer = styled.div`
     display: flex;
     align-items: center;
+    height: 70px;
 `

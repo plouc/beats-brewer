@@ -1,9 +1,9 @@
 import { DefaultTheme } from 'styled-components'
 
 const colors: DefaultTheme['colors'] = {
-    background: '#b8bfbe',
-    text: '#222222',
-    textLight: '#555555',
+    background: '#a3aaa9',
+    text: '#111111',
+    textLight: '#444444',
     accent: '#2b808e',
     lcd: {
         background: '#adab9d',
@@ -12,9 +12,9 @@ const colors: DefaultTheme['colors'] = {
         textHighlight: '#36362f',
     },
     alternateMaterial: {
-        background: '#aa9c8a',
-        backgroundLight: '#c2b29f',
-        backgroundDark: '#978c7d',
+        background: '#b19b7f',
+        backgroundLight: '#c4ad8f',
+        backgroundDark: '#928069',
     },
 }
 
@@ -40,7 +40,7 @@ export const lightTheme: DefaultTheme = {
         backgroundAlt: '#b7bdbd',
         border: '#b4bbbb',
         castShadow: `0 1px 1px rgba(0, 0, 0, 0.15),
-            1px 3px 8px rgba(0, 0, 0, 0.1)`,
+            1px 5px 8px rgba(0, 0, 0, 0.1)`,
         innerCastShadowColor: `rgba(0, 0, 0, 0.1)`,
         innerCastShadowColorLight: `rgba(0, 0, 0, 0.05)`,
         innerCastShadowColorDark: `rgba(0, 0, 0, 0.15)`,

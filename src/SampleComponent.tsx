@@ -9,6 +9,7 @@ import { HSpacer, VSpacer } from './ui/Spacer'
 import { SliderControl } from './ui/controls/SliderControl'
 import { RoundIconButton } from './ui/controls/RoundIconButton'
 import { SquareIconButton } from './ui/controls/SquareIconButton'
+import { Knob } from './ui/controls/Knob'
 
 export const SampleComponent = () => {
     return (
@@ -47,6 +48,14 @@ export const SampleComponent = () => {
                     </Row>
                     <VSpacer />
                     <SliderControl value={0.35} />
+                    <VSpacer />
+                    <Row>
+                        <Knob size={60} value={0} />
+                        <Knob size={60} value={0.25} />
+                        <Knob size={60} value={0.5} />
+                        <Knob size={60} value={0.75} />
+                        <Knob size={60} value={1} />
+                    </Row>
                 </div>
             </Enclosure>
         </Desk>
