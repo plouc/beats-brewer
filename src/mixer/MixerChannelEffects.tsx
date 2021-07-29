@@ -1,8 +1,10 @@
 import { Fragment } from 'react'
 import styled from 'styled-components/macro'
-import { FiArrowDown } from 'react-icons/fi'
-import { Effect } from '../effects/definitions'
 import { darken } from 'polished'
+import { FiArrowDown, FiPlus } from 'react-icons/fi'
+import { HardwareButton } from '../ui/controls/HardwareButton'
+import { RoundIconButton } from '../ui/controls/RoundIconButton'
+import { Effect } from '../effects/definitions'
 import { useAppStore } from '../useApp'
 
 interface MixerChannelEffectsProps {
@@ -30,6 +32,9 @@ export const MixerChannelEffects = ({ effects }: MixerChannelEffectsProps) => {
                     </Fragment>
                 )
             })}
+            <RoundIconButton>
+                <FiPlus />
+            </RoundIconButton>
         </>
     )
 }

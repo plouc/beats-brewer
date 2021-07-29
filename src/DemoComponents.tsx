@@ -66,6 +66,11 @@ export const SampleComponent = () => {
                     <SampleComponentRow>
                         <HardwareButton>Button</HardwareButton>
                         <HSpacer size="small" />
+                        <HardwareButton hasNext isPressed={true}>
+                            ON
+                        </HardwareButton>
+                        <HardwareButton hasPrevious>OFF</HardwareButton>
+                        <HSpacer size="small" />
                         <HardwareButton isPressed>Button</HardwareButton>
                         <HSpacer size="small" />
                         <HardwareButton>

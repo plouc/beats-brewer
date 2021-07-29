@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components/macro'
-import { lighten, darken, rgba } from 'polished'
+import { lighten, darken, rgba, mix } from 'polished'
 
 export const HardwareButton = styled.span<{
     isPressed?: boolean
@@ -7,6 +7,7 @@ export const HardwareButton = styled.span<{
     hasNext?: boolean
     hasPrevious?: boolean
 }>`
+    position: relative;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -19,9 +20,9 @@ export const HardwareButton = styled.span<{
 
     border-radius: ${(props) => {
         if (props.hasPrevious && props.hasNext) return 0
-        if (props.hasPrevious) return `0 3px 3px 0`
-        if (props.hasNext) return `3px 0 0 3px`
-        return `3px`
+        if (props.hasPrevious) return `0 2px 2px 0`
+        if (props.hasNext) return `2px 0 0 2px`
+        return `2px`
     }};
 
     ${({ theme, isInactive }) => {
@@ -56,17 +57,23 @@ export const HardwareButton = styled.span<{
         }
 
         return css`
-            background: ${theme.enclosure.background};
-            box-shadow: inset 0 -1px 0 ${darken(0.04, theme.enclosure.background)},
-                0 2px 4px ${rgba(darken(0.2, theme.enclosure.background), 0.25)},
-                inset 0 1px 0 ${lighten(0.08, theme.enclosure.background)},
-                0 1px 0 1px ${darken(0.02, theme.enclosure.background)};
+            background-color: ${theme.enclosure.background};
+            background-image: linear-gradient(
+                180deg,
+                ${mix(0.6, theme.enclosure.background, theme.enclosure.backgroundLight)},
+                ${theme.enclosure.background}
+            );
+            box-shadow: 0 0 0 1px ${theme.enclosure.innerCastShadowColorDark},
+                inset 0 1px 0 ${theme.enclosure.backgroundLight},
+                inset 0 -1px 0 ${theme.enclosure.backgroundDark},
+                0 3px 3px ${theme.enclosure.innerCastShadowColorLight};
 
             &:hover {
-                box-shadow: inset 0 -1px 0 ${darken(0.03, theme.enclosure.background)},
-                    0 1px 2px ${rgba(darken(0.2, theme.enclosure.background), 0.25)},
-                    inset 0 1px 0 ${lighten(0.06, theme.enclosure.background)},
-                    0 0 0 1px ${darken(0.02, theme.enclosure.background)};
+                background-color: ${lighten(0.02, theme.enclosure.background)};
+                box-shadow: 0 0 0 1px ${theme.enclosure.innerCastShadowColor},
+                    inset 0 1px 0 ${lighten(0.06, theme.enclosure.backgroundLight)},
+                    inset 0 -1px 0 ${theme.enclosure.background},
+                    0 0 5px ${theme.enclosure.innerCastShadowColorLight};
             }
         `
     }}

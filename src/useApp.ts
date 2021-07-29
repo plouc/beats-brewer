@@ -159,6 +159,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
                         console.log(
                             `[pattern] connected ${patternData.name}/${trackData.name} to channel ${trackData.channel}`
                         )
+                        console.log(trackPlayer)
 
                         return {
                             ...trackData,
