@@ -9,6 +9,8 @@ import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { VSpacer } from '../ui/Spacer'
 import { CloseButton } from '../ui/controls/CloseButton'
+import { useAppStore } from '../useApp'
+import { EffectType } from './definitions'
 
 interface AddEffectProps {
     channel: number
@@ -16,32 +18,47 @@ interface AddEffectProps {
 
 export const AddEffect = ({ channel }: AddEffectProps) => {
     const [isOpen, setIsOpen] = useState(false)
-    const handleOpen = useCallback(() => {
+    const openModal = useCallback(() => {
         setIsOpen(true)
     }, [setIsOpen])
-    const handleClose = useCallback(() => {
+    const closeModal = useCallback(() => {
         setIsOpen(false)
     }, [setIsOpen])
 
+    const addEffectToChannel = useAppStore((state) => state.addEffectToChannel)
+    const addEffect = useCallback(
+        (effectType: EffectType) => {
+            closeModal()
+            addEffectToChannel(effectType, channel)
+        },
+        [addEffectToChannel, channel, closeModal]
+    )
+    const addDistortion = useCallback(() => {
+        addEffect('distortion')
+    }, [addEffect])
+    const addReverb = useCallback(() => {
+        addEffect('reverb')
+    }, [addEffect])
+
     return (
         <>
-            <RoundIconButton onClick={handleOpen}>
+            <RoundIconButton onClick={openModal}>
                 <FiPlus />
             </RoundIconButton>
             {isOpen && (
-                <Modal onClose={handleClose}>
+                <Modal onClose={closeModal}>
                     <Enclosure>
                         <Header>
                             <ComponentName>
                                 <ComponentNameHighlight>Add Effect</ComponentNameHighlight>
                             </ComponentName>
-                            <CloseButton onClose={handleClose} />
+                            <CloseButton onClose={closeModal} />
                         </Header>
                         <VSpacer />
                         <Content>
-                            <Button>Distortion</Button>
+                            <Button onClick={addDistortion}>Distortion</Button>
                             <VSpacer size="small" />
-                            <Button>Reverb</Button>
+                            <Button onClick={addReverb}>Reverb</Button>
                         </Content>
                         <VSpacer size="small" />
                     </Enclosure>

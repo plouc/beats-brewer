@@ -9,11 +9,11 @@ import {
     ChannelData,
     SequencerPatternTrack,
 } from './project/definitions'
-import { Effect } from './effects/definitions'
+import { Effect, EffectType } from './effects/definitions'
 // import { darkTheme } from './ui/theme/darkTheme'
 // import { lightTheme } from './ui/theme/lightTheme'
-import { monoYellowTheme } from './ui/theme/monoYellowTheme'
-// import { monoRedTheme } from './ui/theme/monoRedTheme'
+// import { monoYellowTheme } from './ui/theme/monoYellowTheme'
+import { monoRedTheme } from './ui/theme/monoRedTheme'
 
 interface AppStore {
     theme: DefaultTheme
@@ -35,6 +35,7 @@ interface AppStore {
     openedEffects: Effect[]
     openEffect: (effectId: string) => void
     closeEffect: (effectId: string) => void
+    addEffectToChannel: (effectType: EffectType, channelIndex: number) => void
 }
 
 const DEFAULT_BPM = 130
@@ -100,7 +101,7 @@ const computeChannels = (
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: monoYellowTheme,
+    theme: monoRedTheme,
     setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
@@ -288,6 +289,77 @@ export const useAppStore = create<AppStore>((set, get) => ({
     closeEffect: (effectId: string) => {
         set({
             openedEffects: get().openedEffects.filter((effect) => effect.id !== effectId),
+        })
+    },
+    addEffectToChannel: (effectType: EffectType, channelIndex: number) => {
+        const channels = get().channels
+        const channel: Channel | undefined = channels[channelIndex]
+
+        // channel does not exist
+        if (channel === undefined) return
+
+        let effect: Effect | undefined = undefined
+        let instance: Tone.Distortion | Tone.Reverb
+        switch (effectType) {
+            case 'distortion':
+                instance = new Tone.Distortion()
+                effect = {
+                    id: uuidV4(),
+                    type: effectType,
+                    acronym: 'DIS',
+                    wet: instance.wet.value,
+                    distortion: instance.distortion,
+                    instance,
+                }
+                break
+
+            case 'reverb':
+                instance = new Tone.Reverb()
+                effect = {
+                    id: uuidV4(),
+                    type: effectType,
+                    acronym: 'REV',
+                    wet: instance.wet.value,
+                    decay: Number(instance.decay),
+                    preDelay: Number(instance.preDelay),
+                    instance,
+                }
+                break
+        }
+
+        if (effect === undefined) return
+
+        // now we need to connect the effect to the channel,
+        // disconnecting the last effect from the master,
+        // and introducing it instead
+        const master = get().master
+        const lastEffect = channel.effects[channel.effects.length - 1]
+
+        if (lastEffect !== undefined) {
+            // has effect
+            lastEffect.instance.disconnect(master)
+            lastEffect.instance.connect(effect.instance)
+        } else {
+            // no effect
+            channel.channel.disconnect(master)
+            channel.channel.connect(effect.instance)
+        }
+
+        // connect the new effect to the master
+        effect.instance.connect(master)
+
+        const effects: Effect[] = [...channel.effects, effect]
+        const chain = ['master', ...effects.map((effect) => effect.type)]
+        console.log(`[effects] channel ${channelIndex} | ${chain.join(' <- ')}`)
+
+        set({
+            allEffects: [...get().allEffects, effect],
+            openedEffects: [...get().openedEffects, effect],
+            channels: channels.map((chan, index) => {
+                if (index !== channelIndex) return chan
+
+                return { ...channel, effects }
+            }),
         })
     },
 }))

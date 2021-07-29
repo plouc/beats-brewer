@@ -166,6 +166,13 @@ export const demoProject: ProjectData = {
                     preDelay: 0,
                     decay: 3,
                 },
+                {
+                    id: 'af90fc4a-0226-4fdb-b292-ae37d10a02a2',
+                    type: 'distortion',
+                    acronym: 'DIS',
+                    wet: 1,
+                    distortion: 0.4,
+                },
             ],
         },
     ],
