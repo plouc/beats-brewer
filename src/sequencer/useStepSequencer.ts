@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as Tone from 'tone'
 import { SequencerPattern, SequencerPatternTrack } from '../project/definitions'
+import { useAppStore } from '../useApp'
 
 export interface TrackWithPlayer extends SequencerPatternTrack {
     player: Tone.Player
@@ -17,7 +18,13 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
     const [stepIndex, setStepIndex] = useState<number>(-1)
     const steps = bars * 4 * 4
 
-    const [tracks, setTracks] = useState<TrackWithPlayer[]>(pattern.tracks)
+    const setPatternTracks = useAppStore((state) => state.setSequencerPatternTracks)
+    const setTracks = useCallback(
+        (tracks: SequencerPatternTrack[]) => {
+            setPatternTracks(pattern.id, tracks)
+        },
+        [pattern.id, setPatternTracks]
+    )
 
     // set a new number of bars and fill all tracks with empty steps
     // if greater than current or remove steps if lower.
@@ -26,8 +33,8 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
             const newStepCount = newBars * 4 * 4
 
             setBars(newBars)
-            setTracks((tracks) => {
-                return tracks.map((track) => {
+            setTracks(
+                pattern.tracks.map((track) => {
                     const newSteps = track.steps.slice(0, newStepCount)
                     for (let i = 0; i < newStepCount - steps; i++) {
                         newSteps.push(0)
@@ -38,17 +45,17 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
                         steps: newSteps,
                     }
                 })
-            })
+            )
         },
-        [steps, setBars, setTracks]
+        [pattern.tracks, steps, setBars, setTracks]
     )
 
     // double current bars, compared to `setBarsAndAdjustTracks`,
     // this replicates existing steps
     const doubleBars = useCallback(() => {
         setBars((previous) => previous * 2)
-        setTracks((tracks) => {
-            return tracks.map((track) => {
+        setTracks(
+            pattern.tracks.map((track) => {
                 const newSteps = track.steps.slice()
                 track.steps.forEach((step) => {
                     newSteps.push(step)
@@ -59,13 +66,13 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
                     steps: newSteps,
                 }
             })
-        })
-    }, [setBars, setTracks])
+        )
+    }, [pattern.tracks, setBars, setTracks])
 
     const toggleTrack = useCallback(
         (trackId: string) => {
-            setTracks((tracks) =>
-                tracks.map((track) => {
+            setTracks(
+                pattern.tracks.map((track) => {
                     if (track.id !== trackId) return track
 
                     return {
@@ -75,15 +82,15 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
                 })
             )
         },
-        [setTracks]
+        [pattern.tracks, setTracks]
     )
 
     // toggle a track step, which is just a boolean flag
     // indicating if it's active or not
     const toggleStep = useCallback(
         (trackId: string, index: number) => {
-            setTracks((tracks) =>
-                tracks.map((track) => {
+            setTracks(
+                pattern.tracks.map((track) => {
                     if (track.id !== trackId) return track
 
                     return {
@@ -96,7 +103,7 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
                 })
             )
         },
-        [setTracks]
+        [pattern.tracks, setTracks]
     )
 
     const [isPlaying, setIsPlaying] = useState(false)
@@ -114,8 +121,8 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
     // be continuously re-created as we edit the steps
     const tracksRef = useRef<TrackWithPlayer[]>()
     useEffect(() => {
-        tracksRef.current = tracks
-    }, [tracks])
+        tracksRef.current = pattern.tracks
+    }, [pattern.tracks])
 
     // main loop tick function, called by Tone scheduler
     const tick = useCallback(
@@ -160,7 +167,7 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         steps,
         stepIndex,
         setStepIndex,
-        tracks,
+        tracks: pattern.tracks,
         setTracks,
         toggleTrack,
         toggleStep,

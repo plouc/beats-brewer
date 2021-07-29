@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { HSpacer } from '../ui/Spacer'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
-import { useKeyboardShortcut } from '../ui/useKeyboardShortcuts'
+import { useKeyboardShortcut } from '../ui/hooks/useKeyboardShortcuts'
 import { RoundIconButton } from '../ui/controls/RoundIconButton'
 import { Octave } from './definitions'
 

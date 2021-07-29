@@ -1,73 +1,48 @@
 import React from 'react'
-import * as Tone from 'tone'
 import styled, { ThemeProvider } from 'styled-components/macro'
 import './ui/normalize.css'
 import { GlobalStyle } from './ui/theme/GlobalStyle'
 import { AppHeader } from './ui/AppHeader'
 import { Explorer } from './explorer/Explorer'
+import { Playlist } from './playlist/Playlist'
 import { Sequencer } from './sequencer/Sequencer'
 import { Mixer } from './mixer/Mixer'
 // import { Keyboard } from './keyboard/Keyboard'
 // import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
-import { SampleComponent } from './SampleComponent'
-import { ReverbControls } from './effects/ReverbControls'
-import { DistortionControls } from './effects/DistortionControls'
+import { DemoComponents } from './DemoComponents'
+import { WelcomeModal } from './ui/WelcomeModal'
 import { useAppStore } from './useApp'
 
-function App() {
+const SHOW_DEMO_COMPONENTS = false
+const SHOW_PLAYLIST = false
+const SHOW_WELCOME_MODAL = true
+
+export const App = () => {
     const theme = useAppStore((state) => state.theme)
     const project = useAppStore((state) => state.project)
-    const patterns = useAppStore((state) => state.openedPatterns)
-    const app = useAppStore()
-    console.log(app)
+    const openedPattern = useAppStore((state) => {
+        if (!state.project) return undefined
+        if (state.openedPatternId === null) return undefined
+
+        return state.project.patterns.find((pattern) => pattern.id === state.openedPatternId)
+    })
 
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyle />
+            {SHOW_WELCOME_MODAL && <WelcomeModal />}
             <Layout>
                 <AppHeader />
                 <Explorer />
                 <Content>
-                    {/*
-                    <Row>
-                        <ReverbControls
-                            reverb={{
-                                id: 'A',
-                                type: 'reverb',
-                                acronym: 'REV',
-                                wet: 0.6,
-                                decay: 1,
-                                preDelay: 0,
-                                instance: new Tone.Reverb(),
-                            }}
-                        />
-                        <DistortionControls
-                            distortion={{
-                                id: 'A',
-                                type: 'distortion',
-                                acronym: 'DIS',
-                                wet: 0.6,
-                                distortion: 1,
-                                instance: new Tone.Distortion(),
-                            }}
-                        />
-                        <SampleComponent />
-                        <SampleComponent />
-                    </Row>
-                    */}
-                    {patterns.map((pattern) => {
-                        if (pattern.type === 'sequencer') {
-                            return (
-                                <Row key={pattern.id}>
-                                    <Sequencer pattern={pattern} />
-                                </Row>
-                            )
-                        }
-
-                        // no component matching the pattern type available
-                        return null
-                    })}
+                    {SHOW_DEMO_COMPONENTS && <DemoComponents />}
+                    {SHOW_PLAYLIST && <Playlist />}
+                    {openedPattern && openedPattern.type === 'sequencer' && (
+                        <Row>
+                            <Sequencer pattern={openedPattern} />
+                        </Row>
+                    )}
                     {project && (
                         <Row>
                             <Mixer />
@@ -104,5 +79,3 @@ const Content = styled.div`
 const Row = styled.div`
     display: flex;
 `
-
-export default App

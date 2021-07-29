@@ -36,7 +36,7 @@ export const useControlScale = ({
 
             return [tickValue, tickX, isMajor]
         })
-    }, [scale, tickStep])
+    }, [scale, tickStep, majorTickStep])
 
     return {
         scale,

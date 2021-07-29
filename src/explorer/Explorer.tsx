@@ -10,6 +10,8 @@ import { drumKits } from '../library/drumKits'
 import { samples } from '../library/samples'
 import { useAppStore } from '../useApp'
 import { ExplorerFolder } from './ExplorerFolder'
+import { ExplorerItem } from './ExplorerItem'
+import { ExplorerSectionTitle } from './ExplorerSectionTitle'
 
 export const Explorer = () => {
     const project = useAppStore((state) => state.project)
@@ -28,21 +30,25 @@ export const Explorer = () => {
                     <ExplorerFolder
                         defaultIsOpen
                         title={
-                            <SectionTitle>
-                                <BsGrid3X2GapFill /> Patterns {project.patterns.length}
-                            </SectionTitle>
+                            <ExplorerSectionTitle
+                                icon={BsGrid3X2GapFill}
+                                count={project.patterns.length}
+                            >
+                                Patterns
+                            </ExplorerSectionTitle>
                         }
                     >
                         {project.patterns.map((pattern) => {
                             return (
-                                <Item
+                                <ExplorerItem
                                     key={pattern.id}
+                                    icon={BsGrid3X2GapFill}
                                     onClick={() => {
                                         openPattern(pattern.id)
                                     }}
                                 >
-                                    <BsGrid3X2GapFill /> {pattern.name}
-                                </Item>
+                                    {pattern.name}
+                                </ExplorerItem>
                             )
                         })}
                     </ExplorerFolder>
@@ -52,20 +58,21 @@ export const Explorer = () => {
             <ExplorerFolder
                 defaultIsOpen
                 title={
-                    <SectionTitle>
-                        <BiBox /> Demo Projects {demoProjects.length}
-                    </SectionTitle>
+                    <ExplorerSectionTitle icon={BiBox} count={demoProjects.length}>
+                        Demo Projects
+                    </ExplorerSectionTitle>
                 }
             >
                 {demoProjects.map((project) => (
-                    <Item
+                    <ExplorerItem
                         key={project.name}
+                        icon={BiBox}
                         onClick={() => {
                             loadProject(project)
                         }}
                     >
-                        <BiBox /> {project.name}
-                    </Item>
+                        {project.name}
+                    </ExplorerItem>
                 ))}
             </ExplorerFolder>
             {/*
@@ -86,28 +93,28 @@ export const Explorer = () => {
             */}
             <ExplorerFolder
                 title={
-                    <SectionTitle>
-                        <FaDrum /> Drum Kits {drumKits.length}
-                    </SectionTitle>
+                    <ExplorerSectionTitle icon={FaDrum} count={drumKits.length}>
+                        Drum Kits
+                    </ExplorerSectionTitle>
                 }
             >
                 {drumKits.map((drumKit) => (
-                    <Item key={drumKit.id}>
-                        <FaDrum /> {drumKit.name}
-                    </Item>
+                    <ExplorerItem key={drumKit.id} icon={FaDrum}>
+                        {drumKit.name}
+                    </ExplorerItem>
                 ))}
             </ExplorerFolder>
             <ExplorerFolder
                 title={
-                    <SectionTitle>
-                        <FaWaveSquare /> Samples {samples.length}
-                    </SectionTitle>
+                    <ExplorerSectionTitle icon={FaWaveSquare} count={samples.length}>
+                        Samples
+                    </ExplorerSectionTitle>
                 }
             >
                 {samples.map((sample) => (
-                    <Item key={sample.id}>
-                        <FaWaveSquare /> {sample.name}
-                    </Item>
+                    <ExplorerItem key={sample.id} icon={FaWaveSquare}>
+                        {sample.name}
+                    </ExplorerItem>
                 ))}
             </ExplorerFolder>
         </Container>
@@ -127,35 +134,4 @@ const SubTitle = styled.h2`
     margin: 0;
     padding: 7px 12px;
     color: ${(props) => props.theme.colors.accent};
-`
-
-const SectionTitle = styled.h3`
-    display: flex;
-    align-items: center;
-    color: ${(props) => props.theme.colors.accent};
-    font-size: 12px;
-    margin: 0;
-    padding: 7px 12px;
-
-    svg:first-child {
-        margin-right: 1ch;
-    }
-`
-
-const Item = styled.div`
-    display: flex;
-    align-items: center;
-    font-size: 11px;
-    margin: 0;
-    padding: 5px 12px;
-    cursor: pointer;
-    // border-bottom: 1px solid ${(props) => darken(0.06, props.theme.colors.background)};
-
-    svg:first-child {
-        margin-right: 1ch;
-    }
-
-    &:hover {
-        background-color: ${(props) => darken(0.03, props.theme.enclosure.background)};
-    }
 `

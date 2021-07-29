@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { darken, lighten, rgba } from 'polished'
+import { darken, lighten } from 'polished'
 import { useMeasure } from '../useMeasure'
 import { useControlScale } from './useControlScale'
 
@@ -77,6 +77,9 @@ const Track = styled.div`
     height: 4px;
     background-color: ${(props) => props.theme.enclosure.backgroundDark};
     border-radius: 2px;
+    box-shadow: inset 0 1px 0 ${(props) => darken(0.1, props.theme.enclosure.backgroundDark)},
+        0 -1px 0 ${(props) => props.theme.enclosure.backgroundDark},
+        0 1px 0 ${(props) => props.theme.enclosure.backgroundLight};
 `
 
 const TrackFill = styled.div<{
@@ -87,9 +90,9 @@ const TrackFill = styled.div<{
     left: -2px;
     width: ${(props) => props.width + 2}px;
     height: 4px;
-    background-color: ${(props) => props.theme.enclosure.backgroundLight};
-    border: 1px solid ${(props) => darken(0.04, props.theme.enclosure.backgroundDark)};
+    background-color: ${(props) => lighten(0.02, props.theme.enclosure.backgroundLight)};
     border-radius: 2px 0 0 2px;
+    box-shadow: inset 0 1px 1px ${(props) => props.theme.enclosure.background};
 `
 
 const Button = styled.div<{

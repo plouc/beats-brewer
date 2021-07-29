@@ -47,13 +47,13 @@ export type PatternType = SequencerPatternData['type']
 export type ChannelSource = SequencerPatternTrack
 
 export interface ChannelData {
-    sources: ChannelSource[]
-    effectConfigs: EffectData[]
-    effects: Effect[]
+    effects: EffectData[]
 }
 
-export interface Channel extends ChannelData {
+export interface Channel {
     channel: Tone.Channel
+    effects: Effect[]
+    sources: ChannelSource[]
 }
 
 /**
@@ -64,6 +64,7 @@ export interface ProjectData {
     name: string
     bpm: number
     patterns: PatternData[]
+    channels: ChannelData[]
 }
 
 /**
