@@ -2,8 +2,8 @@ import { DefaultTheme } from 'styled-components'
 
 const colors: DefaultTheme['colors'] = {
     background: '#a3aaa9',
-    text: '#111111',
-    textLight: '#444444',
+    text: '#000000',
+    textLight: '#333333',
     accent: '#2b808e',
     lcd: {
         background: '#adab9d',
@@ -27,7 +27,7 @@ export const lightTheme: DefaultTheme = {
     },
     colors,
     sizes: {
-        mainGap: 6,
+        mainGap: 1,
         enclosureBorderRadius: 0,
     },
     shadows: {
@@ -44,6 +44,6 @@ export const lightTheme: DefaultTheme = {
         innerCastShadowColor: `rgba(0, 0, 0, 0.1)`,
         innerCastShadowColorLight: `rgba(0, 0, 0, 0.05)`,
         innerCastShadowColorDark: `rgba(0, 0, 0, 0.15)`,
-        sideThickness: 10,
+        sideThickness: 12,
     },
 }

@@ -55,7 +55,7 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
             <VSpacer />
             <ValueLabel>effects</ValueLabel>
             <VSpacer size="small" />
-            <MixerChannelEffects effects={channel.effects} />
+            <MixerChannelEffects channel={index} effects={channel.effects} />
         </Container>
     )
 }
