@@ -12,8 +12,8 @@ import {
 import { Effect } from './effects/definitions'
 // import { darkTheme } from './ui/theme/darkTheme'
 // import { lightTheme } from './ui/theme/lightTheme'
-// import { monoYellowTheme } from './ui/theme/monoYellowTheme'
-import { monoRedTheme } from './ui/theme/monoRedTheme'
+import { monoYellowTheme } from './ui/theme/monoYellowTheme'
+// import { monoRedTheme } from './ui/theme/monoRedTheme'
 
 interface AppStore {
     theme: DefaultTheme
@@ -100,7 +100,7 @@ const computeChannels = (
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: monoRedTheme,
+    theme: monoYellowTheme,
     setTheme: (theme: DefaultTheme) => set({ theme }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
@@ -159,7 +159,6 @@ export const useAppStore = create<AppStore>((set, get) => ({
                         console.log(
                             `[pattern] connected ${patternData.name}/${trackData.name} to channel ${trackData.channel}`
                         )
-                        console.log(trackPlayer)
 
                         return {
                             ...trackData,
