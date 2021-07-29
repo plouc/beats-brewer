@@ -7,11 +7,20 @@ import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { useAppStore } from '../useApp'
 import { PlaylistPatterns } from './PlaylistPatterns'
 import { PlaylistTracks } from './PlaylistTracks'
+import { useCallback, useState } from 'react'
 
 interface PlaylistProps {}
 
 export const Playlist = ({}: PlaylistProps) => {
     const project = useAppStore((state) => state.project)
+
+    const [patternId, setPatternId] = useState<string | null>(null)
+    const handlePatternSelection = useCallback(
+        (id: string) => {
+            setPatternId(id)
+        },
+        [setPatternId]
+    )
 
     if (!project) return null
 
@@ -25,7 +34,11 @@ export const Playlist = ({}: PlaylistProps) => {
                 </ComponentHeader>
                 <VSpacer />
                 <Container>
-                    <PlaylistPatterns patterns={project.patterns} />
+                    <PlaylistPatterns
+                        patterns={project.patterns}
+                        selectedId={patternId}
+                        onSelect={handlePatternSelection}
+                    />
                     <SecondaryContainer>
                         <PlaylistTracks />
                         <div></div>

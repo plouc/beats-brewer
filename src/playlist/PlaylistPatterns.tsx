@@ -1,15 +1,25 @@
 import styled from 'styled-components/macro'
 import { PatternData } from '../project/definitions'
+import { PlaylistPattern } from './PlaylistPattern'
 
 interface PlaylistPatternsProps {
     patterns: PatternData[]
+    selectedId: string | null
+    onSelect: (patternId: string) => void
 }
 
-export const PlaylistPatterns = ({ patterns }: PlaylistPatternsProps) => {
+export const PlaylistPatterns = ({ patterns, selectedId, onSelect }: PlaylistPatternsProps) => {
     return (
         <Container>
             {patterns.map((pattern) => {
-                return <Pattern key={pattern.id}>{pattern.name}</Pattern>
+                return (
+                    <PlaylistPattern
+                        key={pattern.id}
+                        pattern={pattern}
+                        isSelected={pattern.id === selectedId}
+                        onSelect={onSelect}
+                    />
+                )
             })}
         </Container>
     )
@@ -21,21 +31,4 @@ const Container = styled.div`
     background-color: ${(props) => props.theme.enclosure.backgroundDark};
     padding: 3px;
     border-radius: 3px;
-`
-
-const Pattern = styled.div`
-    background-color: ${(props) => props.theme.enclosure.background};
-    border-radius: 2px;
-    padding: 5px 9px;
-    font-family: ${(props) => props.theme.typography.headingFont};
-    font-size: 10px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    margin-top: 3px;
-
-    &:first-child {
-        margin-top: 0;
-    }
 `
