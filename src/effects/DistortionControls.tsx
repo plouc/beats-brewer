@@ -57,6 +57,7 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
                         <Slider
                             value={distortion}
                             step={0.01}
+                            precision={2}
                             tickStep={0.1}
                             majorTickStep={1}
                             onChange={handleDistortionValueChange}

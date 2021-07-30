@@ -8,6 +8,7 @@ interface SliderProps {
     min?: number
     max?: number
     step?: number
+    precision?: number
     tickStep?: number
     majorTickStep?: number
     value: number
@@ -18,6 +19,7 @@ export const Slider = ({
     min = 0,
     max = 1,
     step = 0.05,
+    precision,
     tickStep = 0.05,
     majorTickStep = 0.1,
     value,
@@ -44,7 +46,10 @@ export const Slider = ({
                     Math.max(position, scale.range()[0]),
                     scale.range()[1]
                 )
-                const newValue = Math.floor(scale.invert(clampedPosition) / step) * step
+                let newValue = Math.floor(scale.invert(clampedPosition) / step) * step
+                if (precision !== undefined) {
+                    newValue = Number(newValue.toFixed(precision))
+                }
                 onChange(newValue)
             }
         },
