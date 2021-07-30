@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { darken, lighten } from 'polished'
-import { useMeasure } from '../useMeasure'
+import { useMeasure } from '../hooks/useMeasure'
 import { useControlScale } from './useControlScale'
 
 interface SliderProps {
