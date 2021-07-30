@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import { HSpacer } from './Spacer'
 import { BpmControl } from './BpmControl'
-import { ThemeSelector } from './theme/ThemeSelector'
+import { SkinSelector } from './skins/SkinSelector'
 
 export const AppHeader = () => {
     return (
@@ -13,7 +13,7 @@ export const AppHeader = () => {
             <Controls>
                 <BpmControl />
                 <HSpacer />
-                <ThemeSelector />
+                <SkinSelector />
             </Controls>
         </Container>
     )

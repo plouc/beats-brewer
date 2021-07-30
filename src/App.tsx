@@ -19,7 +19,7 @@ const SHOW_PLAYLIST = false
 const SHOW_WELCOME_MODAL = true
 
 export const App = () => {
-    const theme = useAppStore((state) => state.theme)
+    const skin = useAppStore((state) => state.skin)
     const project = useAppStore((state) => state.project)
     const openedPattern = useAppStore((state) => {
         if (!state.project) return undefined
@@ -29,7 +29,7 @@ export const App = () => {
     })
 
     return (
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={skin.theme}>
             <GlobalStyle />
             {SHOW_WELCOME_MODAL && <WelcomeModal />}
             <Layout>

@@ -1,5 +1,4 @@
 import create from 'zustand'
-import { DefaultTheme } from 'styled-components'
 import * as Tone from 'tone'
 import { v4 as uuidV4 } from 'uuid'
 import {
@@ -10,14 +9,12 @@ import {
     SequencerPatternTrack,
 } from './project/definitions'
 import { Effect, EffectType } from './effects/definitions'
-// import { darkTheme } from './ui/theme/darkTheme'
-// import { lightTheme } from './ui/theme/lightTheme'
-// import { monoYellowTheme } from './ui/theme/monoYellowTheme'
-import { monoRedTheme } from './ui/theme/monoRedTheme'
+import { Skin } from './ui/skins/definitions'
+import { skins } from './ui/skins/skins'
 
 interface AppStore {
-    theme: DefaultTheme
-    setTheme: (theme: DefaultTheme) => void
+    skin: Skin
+    setSkin: (skin: Skin) => void
     bpm: number
     setBpm: (bpm: number) => void
     project?: Project
@@ -102,8 +99,8 @@ const computeChannels = (
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    theme: monoRedTheme,
-    setTheme: (theme: DefaultTheme) => set({ theme }),
+    skin: skins[0],
+    setSkin: (skin: Skin) => set({ skin }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
         Tone.Transport.bpm.value = bpm
