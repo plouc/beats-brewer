@@ -54,7 +54,11 @@ export const WelcomeModal = () => {
                     </OpenDemoProjectContainer>
                     <p>
                         This is an open source project, and you can find the source code here:{' '}
-                        <a href="https://github.com/plouc/beats-brewer" target="_blank">
+                        <a
+                            href="https://github.com/plouc/beats-brewer"
+                            target="_blank"
+                            rel="noreferrer"
+                        >
                             https://github.com/plouc/beats-brewer
                         </a>
                         .

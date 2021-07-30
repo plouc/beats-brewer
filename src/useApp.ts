@@ -36,6 +36,7 @@ interface AppStore {
     openEffect: (effectId: string) => void
     closeEffect: (effectId: string) => void
     addEffectToChannel: (effectType: EffectType, channelIndex: number) => void
+    tracks: any[]
 }
 
 const DEFAULT_BPM = 130
@@ -117,6 +118,20 @@ export const useAppStore = create<AppStore>((set, get) => ({
                 id: uuidV4(),
                 name: 'New Project',
                 bpm: DEFAULT_BPM,
+                tracks: [
+                    {
+                        patterns: [],
+                    },
+                    {
+                        patterns: [],
+                    },
+                    {
+                        patterns: [],
+                    },
+                    {
+                        patterns: [],
+                    },
+                ],
                 patterns: [],
                 channels: [],
             },
@@ -176,6 +191,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
             openedPatternId: null,
             channels,
             allEffects,
+            tracks: projectData.tracks,
         })
 
         // open the first pattern, maybe something we won't keep in the long term,
@@ -362,4 +378,5 @@ export const useAppStore = create<AppStore>((set, get) => ({
             }),
         })
     },
+    tracks: [],
 }))

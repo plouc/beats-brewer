@@ -56,19 +56,33 @@ export interface Channel {
     sources: ChannelSource[]
 }
 
+export interface TrackPatternData {
+    patternId: string
+    // Tone.Time supports several notations
+    start: number | string
+    end: number | string
+}
+
+export interface TrackData {
+    patterns: TrackPatternData[]
+}
+
 /**
- * Project data, suitable for storage
+ * Project data, serialized version of a project,
+ * suitable for storage.
  */
 export interface ProjectData {
     id: string
     name: string
     bpm: number
+    tracks: TrackData[]
     patterns: PatternData[]
     channels: ChannelData[]
 }
 
 /**
- * Loaded project, suitable for usage in the app
+ * Loaded project, suitable for usage in the app,
+ * cannot be stored as is.
  */
 export interface Project extends Omit<ProjectData, 'patterns'> {
     patterns: Pattern[]

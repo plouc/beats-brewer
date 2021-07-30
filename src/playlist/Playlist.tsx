@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
 import { VSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
@@ -7,11 +8,9 @@ import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { useAppStore } from '../useApp'
 import { PlaylistPatterns } from './PlaylistPatterns'
 import { PlaylistTracks } from './PlaylistTracks'
-import { useCallback, useState } from 'react'
+import { PlaylistGrid } from './PlaylistGrid'
 
-interface PlaylistProps {}
-
-export const Playlist = ({}: PlaylistProps) => {
+export const Playlist = () => {
     const project = useAppStore((state) => state.project)
 
     const [patternId, setPatternId] = useState<string | null>(null)
@@ -41,7 +40,7 @@ export const Playlist = ({}: PlaylistProps) => {
                     />
                     <SecondaryContainer>
                         <PlaylistTracks />
-                        <div></div>
+                        <PlaylistGrid />
                     </SecondaryContainer>
                 </Container>
             </Enclosure>

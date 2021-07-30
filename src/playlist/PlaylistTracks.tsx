@@ -1,22 +1,18 @@
 import styled from 'styled-components/macro'
+import { useAppStore } from '../useApp'
 
-interface PlaylistTracksProps {}
+export const PlaylistTracks = () => {
+    const tracks = useAppStore((state) => state.tracks)
 
-export const PlaylistTracks = ({}: PlaylistTracksProps) => {
     return (
         <Container>
-            <Track>
-                <TrackLabel>Track 1</TrackLabel>
-            </Track>
-            <Track>
-                <TrackLabel>Track 2</TrackLabel>
-            </Track>
-            <Track>
-                <TrackLabel>Track 3</TrackLabel>
-            </Track>
-            <Track>
-                <TrackLabel>Track 4</TrackLabel>
-            </Track>
+            {tracks.map((track, trackIndex) => {
+                return (
+                    <Track key={trackIndex}>
+                        <TrackLabel>Track {trackIndex + 1}</TrackLabel>
+                    </Track>
+                )
+            })}
         </Container>
     )
 }
