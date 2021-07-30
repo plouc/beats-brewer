@@ -23,7 +23,10 @@ export const useControlScale = ({
     const scale: ScaleLinear<number, number> | undefined = useMemo(() => {
         if (!isValid) return undefined
 
-        return scaleLinear().domain([domainMin, domainMax]).range([rangeMin, rangeMax])
+        const linearScale = scaleLinear().domain([domainMin, domainMax]).range([rangeMin, rangeMax])
+        linearScale.clamp(true)
+
+        return linearScale
     }, [isValid, domainMin, domainMax, rangeMin, rangeMax])
 
     const ticks: [number, number, boolean][] = useMemo(() => {

@@ -6,7 +6,7 @@ import { EffectHeader } from './EffectHeader'
 import { NumberInput } from '../ui/controls/NumberInput'
 import { Distortion } from './definitions'
 import { EffectWetControl } from './EffectWetControl'
-import { SliderControl } from '../ui/controls/SliderControl'
+import { Slider } from '../ui/controls/Slider'
 import { HSpacer, VSpacer } from '../ui/Spacer'
 import { EffectControlLabel } from './EffectControlLabel'
 import { EffectControlWithSlider } from './EffectControlWithSlider'
@@ -17,13 +17,18 @@ interface DistortionControlsProps {
 
 export const DistortionControls = ({ distortion: distortionEffect }: DistortionControlsProps) => {
     const [distortion, setDistortion] = useState<number>(distortionEffect.instance.distortion)
-    const handleDistortionChange = useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => {
-            const newDistortion = Number(event.target.value)
-            distortionEffect.instance.distortion = newDistortion
-            setDistortion(newDistortion)
+    const handleDistortionValueChange = useCallback(
+        (value: number) => {
+            distortionEffect.instance.distortion = value
+            setDistortion(value)
         },
         [setDistortion, distortionEffect.instance]
+    )
+    const handleDistortionChange = useCallback(
+        (event: ChangeEvent<HTMLInputElement>) => {
+            handleDistortionValueChange(Number(event.target.value))
+        },
+        [handleDistortionValueChange]
     )
 
     return (
@@ -48,7 +53,15 @@ export const DistortionControls = ({ distortion: distortionEffect }: DistortionC
                             step={0.01}
                         />
                     }
-                    slider={<SliderControl value={distortion} tickStep={0.1} majorTickStep={1} />}
+                    slider={
+                        <Slider
+                            value={distortion}
+                            step={0.01}
+                            tickStep={0.1}
+                            majorTickStep={1}
+                            onChange={handleDistortionValueChange}
+                        />
+                    }
                 />
                 <VSpacer />
                 <EffectWetControl effect={distortionEffect.instance} />

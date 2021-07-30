@@ -16,7 +16,7 @@ import { useAppStore } from './useApp'
 
 const SHOW_DEMO_COMPONENTS = false
 const SHOW_PLAYLIST = false
-const SHOW_WELCOME_MODAL = true
+const SHOW_WELCOME_MODAL = false
 
 export const App = () => {
     const theme = useAppStore((state) => state.theme)

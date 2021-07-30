@@ -7,7 +7,7 @@ import { ComponentHeader } from './ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from './ui/ComponentName'
 import { HardwareButton } from './ui/controls/HardwareButton'
 import { HSpacer, VSpacer } from './ui/Spacer'
-import { SliderControl } from './ui/controls/SliderControl'
+import { Slider } from './ui/controls/Slider'
 import { RoundIconButton } from './ui/controls/RoundIconButton'
 import { SquareIconButton } from './ui/controls/SquareIconButton'
 import { Knob } from './ui/controls/Knob'
@@ -92,7 +92,7 @@ export const SampleComponent = () => {
                         </SquareIconButton>
                     </SampleComponentRow>
                     <VSpacer />
-                    <SliderControl value={0.35} />
+                    <Slider value={0.35} onChange={(value) => console.log(value)} />
                     <VSpacer />
                     <SampleComponentRow>
                         <Knob size={60} value={0} />

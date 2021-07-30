@@ -1,25 +1,28 @@
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { darken, lighten } from 'polished'
 import { useMeasure } from '../useMeasure'
 import { useControlScale } from './useControlScale'
 
-interface SliderControlProps {
+interface SliderProps {
     min?: number
     max?: number
     step?: number
     tickStep?: number
     majorTickStep?: number
     value: number
+    onChange: (value: number) => void
 }
 
-export const SliderControl = ({
+export const Slider = ({
     min = 0,
     max = 1,
     step = 0.05,
     tickStep = 0.05,
     majorTickStep = 0.1,
     value,
-}: SliderControlProps) => {
+    onChange,
+}: SliderProps) => {
     const { measureRef, bounds } = useMeasure()
 
     const { scale, ticks } = useControlScale({
@@ -30,6 +33,50 @@ export const SliderControl = ({
         majorTickStep,
     })
 
+    const [isActive, setIsActive] = useState(false)
+    const activate = useCallback(() => setIsActive(true), [setIsActive])
+    const deactivate = useCallback(() => setIsActive(false), [setIsActive])
+
+    const setValueFromPosition = useCallback(
+        (position: number) => {
+            if (scale) {
+                const clampedPosition = Math.min(
+                    Math.max(position, scale.range()[0]),
+                    scale.range()[1]
+                )
+                const newValue = Math.floor(scale.invert(clampedPosition) / step) * step
+                onChange(newValue)
+            }
+        },
+        [scale, step, onChange]
+    )
+
+    const handleMouseMove = useCallback(
+        (event: MouseEvent) => {
+            if (measureRef.current) {
+                const xOrigin = window.pageXOffset + measureRef.current.getBoundingClientRect().left
+                setValueFromPosition(event.pageX - xOrigin)
+            }
+        },
+        [measureRef, setValueFromPosition]
+    )
+
+    useEffect(() => {
+        const documentMouseMoveListener = (event: MouseEvent) => handleMouseMove(event)
+        const documentMouseUpListener: EventListener = () => deactivate()
+
+        if (isActive) {
+            document.addEventListener('mousemove', documentMouseMoveListener)
+            document.addEventListener('mouseup', documentMouseUpListener)
+        }
+
+        return () => {
+            console.log('cleanup')
+            document.removeEventListener('mousemove', documentMouseMoveListener)
+            document.removeEventListener('mouseup', documentMouseUpListener)
+        }
+    }, [isActive, measureRef, handleMouseMove, deactivate])
+
     return (
         <Container>
             <TrackContainer ref={measureRef}>
@@ -37,7 +84,7 @@ export const SliderControl = ({
                 {scale && (
                     <>
                         <TrackFill width={scale(value)} />
-                        <Button x={scale(value)} />
+                        <Button x={scale(value)} onMouseDown={activate} />
                     </>
                 )}
             </TrackContainer>
@@ -61,6 +108,7 @@ export const SliderControl = ({
 const Container = styled.div`
     width: 100%;
     padding: 0 12px;
+    user-select: none;
 `
 
 const TrackContainer = styled.div`
@@ -107,7 +155,8 @@ const Button = styled.div<{
     background-color: ${(props) => lighten(0.03, props.theme.colors.alternateMaterial.background)};
     border-radius: 2px;
     cursor: pointer;
-    box-shadow: inset -1px 0 0 ${(props) => props.theme.colors.alternateMaterial.backgroundDark},
+    box-shadow: inset 0 -1px 0 ${(props) => props.theme.colors.alternateMaterial.background},
+        inset -1px 0 0 ${(props) => props.theme.colors.alternateMaterial.backgroundDark},
         inset 1px 0 0 ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
         inset 0 3px 0 ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
         inset 0 4px 0

@@ -1,9 +1,9 @@
-import * as Tone from 'tone'
+import { useMemo, Fragment } from 'react'
 import styled from 'styled-components/macro'
+import * as Tone from 'tone'
 import { useAppStore } from '../useApp'
-import { useMemo } from 'react'
 
-const MIN_LENGTH = `${16 * 6}n`
+const MIN_LENGTH = `${16 * 6}t`
 
 export const PlaylistGrid = () => {
     const rawTracks = useAppStore((state) => state.tracks)
@@ -41,10 +41,19 @@ export const PlaylistGrid = () => {
         notation: time.toNotation(),
     })
 
+    const tickCount = time.toTicks()
+    const ticks = Array.from({ length: tickCount }).map((_, index) => index)
+
     return (
-        <Container tracks={tracks.length}>
+        <Container tracks={tracks.length} ticks={ticks.length}>
             {tracks.map((track, trackIndex) => {
-                return <div key={trackIndex}>Track {trackIndex + 1}</div>
+                return (
+                    <Fragment key={trackIndex}>
+                        {ticks.map((tick) => {
+                            return <Tick key={tick}></Tick>
+                        })}
+                    </Fragment>
+                )
             })}
         </Container>
     )
@@ -52,8 +61,15 @@ export const PlaylistGrid = () => {
 
 const Container = styled.div<{
     tracks: number
+    ticks: number
 }>`
     display: grid;
+    grid-template-columns: repeat(${(props) => props.ticks}, 10px);
     grid-template-rows: repeat(${(props) => props.tracks}, 48px);
     background-color: ${(props) => props.theme.enclosure.backgroundDark};
+`
+
+const Tick = styled.div`
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
 `

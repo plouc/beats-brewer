@@ -2,7 +2,7 @@ import { ChangeEvent, useCallback, useState } from 'react'
 import * as Tone from 'tone'
 import { FiDroplet } from 'react-icons/fi'
 import { NumberInput } from '../ui/controls/NumberInput'
-import { SliderControl } from '../ui/controls/SliderControl'
+import { Slider } from '../ui/controls/Slider'
 import { HSpacer } from '../ui/Spacer'
 import { EffectControlLabel } from './EffectControlLabel'
 import { EffectControlWithSlider } from './EffectControlWithSlider'
@@ -14,13 +14,19 @@ interface EffectWetControlProps {
 export const EffectWetControl = ({ effect }: EffectWetControlProps) => {
     const [wet, setWet] = useState(effect.wet.value)
 
+    const handleValueChange = useCallback(
+        (value: number) => {
+            effect.wet.value = value
+            setWet(value)
+        },
+        [effect, setWet]
+    )
+
     const handleChange = useCallback(
         (event: ChangeEvent<HTMLInputElement>) => {
-            const newWet = Number(event.target.value)
-            effect.wet.value = newWet
-            setWet(newWet)
+            handleValueChange(Number(event.target.value))
         },
-        [setWet, effect]
+        [handleValueChange]
     )
 
     return (
@@ -43,7 +49,14 @@ export const EffectWetControl = ({ effect }: EffectWetControlProps) => {
                         step={0.05}
                     />
                 }
-                slider={<SliderControl value={wet} tickStep={0.1} majorTickStep={1} />}
+                slider={
+                    <Slider
+                        value={wet}
+                        onChange={handleValueChange}
+                        tickStep={0.1}
+                        majorTickStep={1}
+                    />
+                }
             />
         </>
     )
