@@ -71,7 +71,6 @@ export const Slider = ({
         }
 
         return () => {
-            console.log('cleanup')
             document.removeEventListener('mousemove', documentMouseMoveListener)
             document.removeEventListener('mouseup', documentMouseUpListener)
         }
