@@ -1,8 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { createElement, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { darken, lighten } from 'polished'
 import { useMeasure } from '../hooks/useMeasure'
 import { useControlScale } from './useControlScale'
+import { useAppStore } from '../../useApp'
 
 interface SliderProps {
     min?: number
@@ -25,6 +26,8 @@ export const Slider = ({
     value,
     onChange,
 }: SliderProps) => {
+    const skin = useAppStore((state) => state.skin)
+
     const { measureRef, bounds } = useMeasure()
 
     const { scale, ticks } = useControlScale({
@@ -88,7 +91,10 @@ export const Slider = ({
                 {scale && (
                     <>
                         <TrackFill width={scale(value)} />
-                        <Button x={scale(value)} onMouseDown={activate} />
+                        {createElement(skin.slider.thumb, {
+                            x: scale(value),
+                            onMouseDown: activate,
+                        })}
                     </>
                 )}
             </TrackContainer>
@@ -145,30 +151,6 @@ const TrackFill = styled.div<{
     background-color: ${(props) => lighten(0.02, props.theme.enclosure.backgroundLight)};
     border-radius: 2px 0 0 2px;
     box-shadow: inset 0 1px 1px ${(props) => props.theme.enclosure.background};
-`
-
-const Button = styled.div<{
-    x: number
-}>`
-    position: absolute;
-    top: calc(50% - 7px);
-    left: ${(props) => props.x}px;
-    margin-left: -12px;
-    width: 24px;
-    height: 14px;
-    background-color: ${(props) => lighten(0.03, props.theme.colors.alternateMaterial.background)};
-    border-radius: 2px;
-    cursor: pointer;
-    box-shadow: inset 0 -1px 0 ${(props) => props.theme.colors.alternateMaterial.background},
-        inset -1px 0 0 ${(props) => props.theme.colors.alternateMaterial.backgroundDark},
-        inset 1px 0 0 ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
-        inset 0 3px 0 ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
-        inset 0 4px 0
-            ${(props) => lighten(0.08, props.theme.colors.alternateMaterial.backgroundLight)},
-        inset 0 -3px 0 ${(props) => props.theme.colors.alternateMaterial.backgroundDark},
-        inset 0 -4px 0 ${(props) => darken(0.04, props.theme.colors.alternateMaterial.backgroundDark)},
-        0 0 0 1px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
-        0 4px 2px ${(props) => props.theme.enclosure.innerCastShadowColor};
 `
 
 const Ticks = styled.div`

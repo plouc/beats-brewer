@@ -46,4 +46,7 @@ export const blackTheme: DefaultTheme = {
         innerCastShadowColorDark: `rgba(0, 0, 0, .6)`,
         sideThickness: 10,
     },
+    knob: {
+        indicatorColor: '#000000',
+    },
 }

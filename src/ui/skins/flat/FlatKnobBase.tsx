@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { darken, lighten } from 'polished'
+import { darken, lighten, mix } from 'polished'
 
 export const FlatKnobBase = styled.div<{
     radius: number
@@ -14,8 +14,15 @@ export const FlatKnobBase = styled.div<{
     width: ${(props) => props.radius * 2}px;
     height: ${(props) => props.radius * 2}px;
     border-radius: 50%;
-    box-shadow: 0 0 2px 1px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
-        0 4px 3px -3px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
+    box-shadow: 0 1px 0 0
+            ${(props) =>
+                mix(
+                    0.5,
+                    props.theme.colors.alternateMaterial.backgroundDark,
+                    props.theme.enclosure.background
+                )},
+        0 0 2px 1px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
+        0 5px 3px -3px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
         0 ${(props) => props.radius * 0.3}px 1px
             ${(props) => props.theme.enclosure.innerCastShadowColorLight};
 

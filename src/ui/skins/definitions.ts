@@ -6,6 +6,9 @@ export interface Skin {
     name: string
     theme: DefaultTheme
     enclosure: (props: PropsWithChildren<{}>) => JSX.Element
+    slider: {
+        thumb: StyledComponent<'div', DefaultTheme, { x: number }>
+    }
     knob: {
         base: StyledComponent<'div', DefaultTheme, { radius: number }>
         indicator: (props: PropsWithChildren<{ radius: number }>) => JSX.Element

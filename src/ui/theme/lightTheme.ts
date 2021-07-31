@@ -1,7 +1,7 @@
 import { DefaultTheme } from 'styled-components'
 
 const colors: DefaultTheme['colors'] = {
-    background: '#a3aaa9',
+    background: '#aaa9ac',
     text: '#000000',
     textLight: '#333333',
     accent: '#2b808e',
@@ -12,9 +12,9 @@ const colors: DefaultTheme['colors'] = {
         textHighlight: '#36362f',
     },
     alternateMaterial: {
-        background: '#b19b7f',
-        backgroundLight: '#c4ad8f',
-        backgroundDark: '#928069',
+        background: '#b3c1c1',
+        backgroundLight: '#d5e3e0',
+        backgroundDark: '#a9a4b3',
     },
 }
 
@@ -28,7 +28,7 @@ export const lightTheme: DefaultTheme = {
     colors,
     sizes: {
         mainGap: 1,
-        enclosureBorderRadius: 0,
+        enclosureBorderRadius: 2,
     },
     shadows: {
         lcdTextHighlight: 'none',
@@ -45,5 +45,8 @@ export const lightTheme: DefaultTheme = {
         innerCastShadowColorLight: `rgba(0, 0, 0, 0.05)`,
         innerCastShadowColorDark: `rgba(0, 0, 0, 0.15)`,
         sideThickness: 10,
+    },
+    knob: {
+        indicatorColor: '#2a656f',
     },
 }

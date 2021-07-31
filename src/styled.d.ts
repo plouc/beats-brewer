@@ -20,6 +20,9 @@ declare module 'styled-components' {
             innerCastShadowColorDark: string
             sideThickness: number
         }
+        knob: {
+            indicatorColor: string
+        }
         colors: {
             background: string
             text: string

@@ -14,9 +14,9 @@ import { DemoComponents } from './DemoComponents'
 import { WelcomeModal } from './ui/WelcomeModal'
 import { useAppStore } from './useApp'
 
-const SHOW_DEMO_COMPONENTS = false
+const SHOW_DEMO_COMPONENTS = true
 const SHOW_PLAYLIST = false
-const SHOW_WELCOME_MODAL = true
+const SHOW_WELCOME_MODAL = false
 
 export const App = () => {
     const skin = useAppStore((state) => state.skin)

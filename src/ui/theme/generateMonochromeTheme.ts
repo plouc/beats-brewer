@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components'
-import { darken, lighten, rgba } from 'polished'
+import { darken, lighten, rgba, mix } from 'polished'
 
 const textColors = {
     light: {
@@ -18,6 +18,7 @@ export const generateMonochromeTheme = (
     text: keyof typeof textColors
 ): DefaultTheme => {
     const textColor = textColors[text]
+    const indicatorColor = darken(0.1, color)
 
     return {
         id: `mono:${colorName}`,
@@ -27,7 +28,7 @@ export const generateMonochromeTheme = (
             monospacedFont: `'IBM Plex Mono', monospace`,
         },
         colors: {
-            background: darken(0.3, color),
+            background: darken(0.25, color),
             text: textColor.main,
             textLight: textColor.light,
             accent: textColor.main,
@@ -40,7 +41,7 @@ export const generateMonochromeTheme = (
             alternateMaterial: {
                 background: '#888888',
                 backgroundLight: '#b6b6b6',
-                backgroundDark: '#6a6a6a',
+                backgroundDark: mix(0.5, '#6a6a6a', darken(0.1, color)),
             },
         },
         sizes: {
@@ -50,16 +51,19 @@ export const generateMonochromeTheme = (
         shadows: {
             lcdTextHighlight: 'none',
         },
+        knob: {
+            indicatorColor,
+        },
         enclosure: {
             background: color,
             backgroundLight: lighten(0.08, color),
             backgroundDark: darken(0.08, color),
             backgroundAlt: lighten(0.04, color),
             border: color,
-            castShadow: `0 3px 0 2px ${darken(0.35, color)}`,
-            innerCastShadowColor: rgba(darken(0.8, color), 0.16),
-            innerCastShadowColorLight: rgba(darken(0.8, color), 0.12),
-            innerCastShadowColorDark: rgba(darken(0.8, color), 0.2),
+            castShadow: `0 3px 0 2px ${rgba(darken(0.35, color), 0.35)}`,
+            innerCastShadowColor: rgba(darken(0.8, color), 0.2),
+            innerCastShadowColorLight: rgba(darken(0.8, color), 0.16),
+            innerCastShadowColorDark: rgba(darken(0.8, color), 0.24),
             sideThickness: 8,
         },
     }
