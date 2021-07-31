@@ -3,6 +3,7 @@ import { flatSkin } from './flat/flatSkin'
 import { racksSkin } from './racks/racksSkin'
 import { darkTheme } from '../theme/darkTheme'
 import { lightTheme } from '../theme/lightTheme'
+import { blackTheme } from '../theme/blackTheme'
 import { monoBlueTheme } from '../theme/monoBlueTheme'
 import { monoPinkTheme } from '../theme/monoPinkTheme'
 import { monoRedTheme } from '../theme/monoRedTheme'
@@ -20,6 +21,12 @@ export const skins: Skin[] = [
         id: 'racks:light',
         name: 'Racks Light',
         theme: lightTheme,
+    },
+    {
+        ...racksSkin,
+        id: 'racks:black',
+        name: 'Racks Black',
+        theme: blackTheme,
     },
     {
         ...racksSkin,
@@ -56,6 +63,12 @@ export const skins: Skin[] = [
         id: 'flat:light',
         name: 'Flat Light',
         theme: lightTheme,
+    },
+    {
+        ...flatSkin,
+        id: 'flat:black',
+        name: 'Flat Black',
+        theme: blackTheme,
     },
     {
         ...flatSkin,
