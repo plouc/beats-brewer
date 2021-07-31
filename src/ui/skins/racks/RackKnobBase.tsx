@@ -17,8 +17,8 @@ export const RackKnobBase = styled.div<{
         background-color: ${(props) => props.theme.enclosure.background};
         background: linear-gradient(
             180deg,
-            ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
-            ${(props) => darken(0.04, props.theme.colors.alternateMaterial.backgroundDark)}
+            ${(props) => lighten(0.06, props.theme.colors.alternateMaterial.backgroundLight)},
+            ${(props) => darken(0.08, props.theme.colors.alternateMaterial.backgroundDark)}
         );
         top: 3px;
         left: 3px;
@@ -27,7 +27,7 @@ export const RackKnobBase = styled.div<{
         border-radius: ${(props) => props.radius}px;
         box-shadow: inset 0 1px 0
                 ${(props) => lighten(0.1, props.theme.colors.alternateMaterial.backgroundLight)},
-            inset 0 -1px 0 ${(props) => darken(0.02, props.theme.colors.alternateMaterial.background)},
+            inset 0 -1px 0 ${(props) => lighten(0.02, props.theme.colors.alternateMaterial.backgroundDark)},
             0 2px 1px ${(props) => props.theme.enclosure.innerCastShadowColorDark},
             0 7px 5px ${(props) => props.theme.enclosure.innerCastShadowColorDark};
     }
@@ -42,6 +42,12 @@ export const RackKnobBase = styled.div<{
         left: ${(props) => (props.radius * 2 - 6) * 0.15 + 3}px;
         border-radius: 50%;
         background-color: ${(props) => props.theme.colors.alternateMaterial.background};
-        box-shadow: 0 -3px 3px ${(props) => lighten(0.1, props.theme.colors.alternateMaterial.backgroundLight)};
+        background: linear-gradient(
+            180deg,
+            ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
+            ${(props) => props.theme.colors.alternateMaterial.background}
+        );
+        box-shadow: inset 0 -1px 0 ${(props) => lighten(0.04, props.theme.colors.alternateMaterial.background)},
+            0 -2px 2px ${(props) => lighten(0.1, props.theme.colors.alternateMaterial.backgroundLight)};
     }
 `

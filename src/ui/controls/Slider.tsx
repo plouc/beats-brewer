@@ -53,7 +53,7 @@ export const Slider = ({
                 onChange(newValue)
             }
         },
-        [scale, step, onChange]
+        [scale, step, onChange, precision]
     )
 
     const handleMouseMove = useCallback(

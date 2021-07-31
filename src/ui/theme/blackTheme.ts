@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components'
-import { darken, rgba } from 'polished'
+import { rgba } from 'polished'
 
 const colors: DefaultTheme['colors'] = {
     background: '#000000',
@@ -14,7 +14,7 @@ const colors: DefaultTheme['colors'] = {
     },
     alternateMaterial: {
         background: '#232323',
-        backgroundLight: '#2a2a2a',
+        backgroundLight: '#363636',
         backgroundDark: '#181818',
     },
 }

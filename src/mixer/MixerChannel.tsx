@@ -36,7 +36,7 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
                 {!isMuted && <FiVolume />}
             </MuteIcon>
             <VSpacer size="small" />
-            <Knob size={40} value={0} />
+            <Knob size={46} value={0} />
             <VSpacer size="small" />
             <ValueLabel>volume</ValueLabel>
             <VSpacer size="xsmall" />

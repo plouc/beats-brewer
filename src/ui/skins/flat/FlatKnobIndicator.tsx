@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
-import { lighten } from 'polished'
+import { darken } from 'polished'
 
 export const FlatKnobIndicator = ({ radius }: { radius: number }) => {
-    return <Indicator radius={radius} y1={0} y2={radius} />
+    return <Indicator radius={radius} y1={0} y2={radius - 2} />
 }
 
 const Indicator = styled.line<{
@@ -10,6 +10,6 @@ const Indicator = styled.line<{
 }>`
     fill: none;
     stroke-width: ${(props) => (props.radius > 16 ? 2 : 1)}px;
-    stroke: ${(props) => lighten(0.06, props.theme.colors.alternateMaterial.backgroundLight)};
+    stroke: ${(props) => darken(0.08, props.theme.colors.alternateMaterial.backgroundDark)};
     stroke-linecap: round;
 `
