@@ -46,14 +46,14 @@ export const EffectWetControl = ({ effect }: EffectWetControlProps) => {
                         value={wet}
                         min={0}
                         max={1}
-                        step={0.05}
+                        step={0.01}
                     />
                 }
                 slider={
                     <Slider
                         value={wet}
                         onChange={handleValueChange}
-                        step={0.05}
+                        step={0.01}
                         precision={2}
                         tickStep={0.1}
                         majorTickStep={1}

@@ -44,6 +44,6 @@ export const lightTheme: DefaultTheme = {
         innerCastShadowColor: `rgba(0, 0, 0, 0.1)`,
         innerCastShadowColorLight: `rgba(0, 0, 0, 0.05)`,
         innerCastShadowColorDark: `rgba(0, 0, 0, 0.15)`,
-        sideThickness: 12,
+        sideThickness: 10,
     },
 }

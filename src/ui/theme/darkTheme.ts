@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components'
 import { darken, rgba } from 'polished'
 
 const colors: DefaultTheme['colors'] = {
-    background: '#242425',
+    background: '#1f1f1f',
     text: '#ffffff',
     textLight: '#888888',
     accent: '#7bb392',
@@ -28,7 +28,7 @@ export const darkTheme: DefaultTheme = {
     },
     colors,
     sizes: {
-        mainGap: 8,
+        mainGap: 4,
         enclosureBorderRadius: 2,
     },
     shadows: {

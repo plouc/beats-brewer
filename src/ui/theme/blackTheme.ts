@@ -13,9 +13,9 @@ const colors: DefaultTheme['colors'] = {
         textHighlight: '#eeeeee',
     },
     alternateMaterial: {
-        background: '#111111',
-        backgroundLight: '#222222',
-        backgroundDark: '#000000',
+        background: '#232323',
+        backgroundLight: '#2a2a2a',
+        backgroundDark: '#181818',
     },
 }
 
@@ -29,23 +29,21 @@ export const blackTheme: DefaultTheme = {
     colors,
     sizes: {
         mainGap: 2,
-        enclosureBorderRadius: 4,
+        enclosureBorderRadius: 1,
     },
     shadows: {
         lcdTextHighlight: `0 0 6px ${rgba(colors.lcd.textHighlight, 0.6)}`,
     },
     enclosure: {
-        background: '#111111',
+        background: '#1b1b1b',
         backgroundLight: '#222222',
-        backgroundDark: '#000000',
+        backgroundDark: '#101010',
         backgroundAlt: '#111111',
         border: '#242425',
-        castShadow: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
-            1px 2px 5px ${rgba(darken(0.2, colors.background), 0.15)},
-            3px 6px 12px ${rgba(darken(0.2, colors.background), 0.25)}`,
-        innerCastShadowColor: rgba(darken(0.2, '#2d2d2d'), 0.15),
-        innerCastShadowColorLight: rgba(darken(0.2, '#2d2d2d'), 0.1),
-        innerCastShadowColorDark: rgba(darken(0.2, '#2d2d2d'), 0.2),
-        sideThickness: 12,
+        castShadow: `0 1px 2px rgba(0, 0, 0, .8)`,
+        innerCastShadowColor: `rgba(0, 0, 0, .5)`,
+        innerCastShadowColorLight: `rgba(0, 0, 0, .4)`,
+        innerCastShadowColorDark: `rgba(0, 0, 0, .6)`,
+        sideThickness: 10,
     },
 }
