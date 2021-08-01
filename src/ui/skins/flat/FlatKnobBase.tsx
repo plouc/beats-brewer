@@ -8,8 +8,8 @@ export const FlatKnobBase = styled.div<{
     background-color: ${(props) => props.theme.colors.alternateMaterial.background};
     background: linear-gradient(
         180deg,
-        ${(props) => lighten(0.04, props.theme.colors.alternateMaterial.backgroundLight)},
-        ${(props) => props.theme.colors.alternateMaterial.background}
+        ${(props) => lighten(0.06, props.theme.colors.alternateMaterial.backgroundLight)},
+        ${(props) => darken(0.02, props.theme.colors.alternateMaterial.backgroundDark)}
     );
     width: ${(props) => props.radius * 2}px;
     height: ${(props) => props.radius * 2}px;
@@ -32,7 +32,7 @@ export const FlatKnobBase = styled.div<{
         background-color: ${(props) => props.theme.colors.alternateMaterial.background};
         background: linear-gradient(
             180deg,
-            ${(props) => props.theme.colors.alternateMaterial.backgroundLight},
+            ${(props) => lighten(0.04, props.theme.colors.alternateMaterial.background)},
             ${(props) => props.theme.colors.alternateMaterial.background}
         );
         top: 1px;
@@ -40,7 +40,5 @@ export const FlatKnobBase = styled.div<{
         width: ${(props) => props.radius * 2 - 2}px;
         height: ${(props) => props.radius * 2 - 2}px;
         border-radius: 50%;
-        border: 1px solid
-            ${(props) => darken(0.04, props.theme.colors.alternateMaterial.backgroundDark)};
     }
 `

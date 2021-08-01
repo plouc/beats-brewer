@@ -1,6 +1,7 @@
 import { Skin } from './definitions'
 import { flatSkin } from './flat/flatSkin'
 import { racksSkin } from './racks/racksSkin'
+import { rawSkin } from './raw/rawSkin'
 import { darkTheme } from '../theme/darkTheme'
 import { lightTheme } from '../theme/lightTheme'
 import { blackTheme } from '../theme/blackTheme'
@@ -8,6 +9,7 @@ import { monoBlueTheme } from '../theme/monoBlueTheme'
 import { monoPinkTheme } from '../theme/monoPinkTheme'
 import { monoRedTheme } from '../theme/monoRedTheme'
 import { monoYellowTheme } from '../theme/monoYellowTheme'
+import { convertToRawTheme } from '../theme/convertToRawTheme'
 
 export const skins: Skin[] = [
     {
@@ -23,6 +25,12 @@ export const skins: Skin[] = [
         theme: darkTheme,
     },
     {
+        ...rawSkin,
+        id: 'raw:dark',
+        name: 'Dark Raw',
+        theme: convertToRawTheme(darkTheme),
+    },
+    {
         ...racksSkin,
         id: 'racks:light',
         name: 'Light',
@@ -33,6 +41,12 @@ export const skins: Skin[] = [
         id: 'flat:light',
         name: 'Light Flat',
         theme: lightTheme,
+    },
+    {
+        ...rawSkin,
+        id: 'raw:light',
+        name: 'Light Raw',
+        theme: convertToRawTheme(lightTheme),
     },
     {
         ...racksSkin,
@@ -47,6 +61,12 @@ export const skins: Skin[] = [
         theme: blackTheme,
     },
     {
+        ...rawSkin,
+        id: 'raw:black',
+        name: 'Black Raw',
+        theme: convertToRawTheme(blackTheme),
+    },
+    {
         ...racksSkin,
         id: 'racks:blue',
         name: 'Blue',
@@ -57,6 +77,12 @@ export const skins: Skin[] = [
         id: 'flat:blue',
         name: 'Blue Flat',
         theme: monoBlueTheme,
+    },
+    {
+        ...rawSkin,
+        id: 'raw:blue',
+        name: 'Blue Raw',
+        theme: convertToRawTheme(monoBlueTheme),
     },
     {
         ...racksSkin,
@@ -71,6 +97,12 @@ export const skins: Skin[] = [
         theme: monoPinkTheme,
     },
     {
+        ...rawSkin,
+        id: 'raw:pink',
+        name: 'Pink Raw',
+        theme: convertToRawTheme(monoPinkTheme),
+    },
+    {
         ...racksSkin,
         id: 'racks:red',
         name: 'Red',
@@ -81,6 +113,12 @@ export const skins: Skin[] = [
         id: 'flat:red',
         name: 'Red Flat',
         theme: monoRedTheme,
+    },
+    {
+        ...rawSkin,
+        id: 'raw:red',
+        name: 'Red Raw',
+        theme: convertToRawTheme(monoRedTheme),
     },
     {
         ...racksSkin,
@@ -94,4 +132,10 @@ export const skins: Skin[] = [
         name: 'Yellow Flat',
         theme: monoYellowTheme,
     },
-]
+    {
+        ...rawSkin,
+        id: 'raw:yellow',
+        name: 'Yellow Raw',
+        theme: convertToRawTheme(monoYellowTheme),
+    },
+].filter((skin) => skin.id.startsWith('raw:') === false)

@@ -7,6 +7,8 @@ export interface Skin {
     theme: DefaultTheme
     enclosure: (props: PropsWithChildren<{}>) => JSX.Element
     slider: {
+        track: StyledComponent<'div', DefaultTheme>
+        trackFill: StyledComponent<'div', DefaultTheme, { width: number }>
         thumb: StyledComponent<'div', DefaultTheme, { x: number }>
     }
     knob: {
