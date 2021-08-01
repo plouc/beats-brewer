@@ -9,9 +9,10 @@ import { SequencerTrackModal } from './SequencerTrackModal'
 interface TrackHeadingProps {
     track: TrackWithPlayer
     toggleTrack: (sampleId: string) => void
+    updateTrackSample: (sampleId: string, trackId: string) => void
 }
 
-export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
+export const TrackHeading = ({ track, toggleTrack, updateTrackSample }: TrackHeadingProps) => {
     const highlightChannel = useAppStore((state) => state.highlightChannel)
     const handleMouseEnter = useCallback(
         () => highlightChannel(track.channel),
@@ -23,6 +24,13 @@ export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const openModal = useCallback(() => setIsModalOpen(true), [setIsModalOpen])
     const closeModal = useCallback(() => setIsModalOpen(false), [setIsModalOpen])
+
+    const handleUpdateSample = useCallback(
+        (sampleId: string) => {
+            updateTrackSample(track.id, sampleId)
+        },
+        [updateTrackSample, track.id]
+    )
 
     return (
         <TrackHeadingContainer
@@ -36,7 +44,13 @@ export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
                 {track.isMuted && <FiVolumeX />}
                 {!track.isMuted && <FiVolume />}
             </MuteIcon>
-            {isModalOpen && <SequencerTrackModal track={track} onClose={closeModal} />}
+            {isModalOpen && (
+                <SequencerTrackModal
+                    track={track}
+                    onUpdateSample={handleUpdateSample}
+                    onClose={closeModal}
+                />
+            )}
         </TrackHeadingContainer>
     )
 }

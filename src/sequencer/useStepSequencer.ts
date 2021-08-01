@@ -69,6 +69,16 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         )
     }, [pattern.tracks, setBars, setTracks])
 
+    const updateSequencerPatternTrackSample = useAppStore(
+        (state) => state.updateSequencerPatternTrackSample
+    )
+    const updateTrackSample = useCallback(
+        (trackId: string, sampleId: string) => {
+            updateSequencerPatternTrackSample(pattern.id, trackId, sampleId)
+        },
+        [updateSequencerPatternTrackSample, pattern.id]
+    )
+
     const toggleTrack = useCallback(
         (trackId: string) => {
             setTracks(
@@ -170,6 +180,7 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         tracks: pattern.tracks,
         setTracks,
         toggleTrack,
+        updateTrackSample,
         toggleStep,
         isPlaying,
         play,

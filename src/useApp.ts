@@ -8,6 +8,7 @@ import {
     ChannelData,
     SequencerPatternTrack,
 } from './project/definitions'
+import { samples } from './library/samples'
 import { Effect, EffectType } from './effects/definitions'
 import { Skin } from './ui/skins/definitions'
 import { skins } from './ui/skins/skins'
@@ -24,6 +25,11 @@ interface AppStore {
     openPattern: (patternId: string) => void
     closePattern: (patternId: string) => void
     setSequencerPatternTracks: (patternId: string, tracks: SequencerPatternTrack[]) => void
+    updateSequencerPatternTrackSample: (
+        patternId: string,
+        trackId: string,
+        sampleId: string
+    ) => void
     master: Tone.Channel
     channels: Channel[]
     highlightedChannel: number
@@ -230,6 +236,60 @@ export const useAppStore = create<AppStore>((set, get) => ({
                     if (pattern.type !== 'sequencer') return pattern
 
                     return { ...pattern, tracks }
+                }),
+            },
+        })
+    },
+    updateSequencerPatternTrackSample: (patternId: string, trackId: string, sampleId: string) => {
+        // no loaded project
+        const project = get().project
+        if (!project) return
+
+        // pattern not found
+        const pattern = project.patterns.find((p) => p.id === patternId)
+        if (!pattern) return
+
+        // track not found
+        const track = pattern.tracks.find((t) => t.id === trackId)
+        if (!track) return
+
+        // track channel not found
+        const channel = get().channels.find((_, index) => index === track.channel)
+        if (!channel) return
+
+        // sample not found
+        const sample = samples.find((s) => s.id === sampleId)
+        if (!sample) return
+
+        // cleanup old player
+        track.player.disconnect(channel.channel)
+        track.player.dispose()
+
+        // create new player
+        const player = new Tone.Player(sample.audioFile)
+        player.connect(channel.channel)
+
+        const updatedTrack: SequencerPatternTrack = {
+            ...track,
+            name: sample.name,
+            color: sample.color,
+            audioFile: sample.audioFile,
+            player,
+        }
+
+        set({
+            project: {
+                ...project,
+                patterns: project.patterns.map((p) => {
+                    if (p.id !== patternId) return p
+
+                    return {
+                        ...p,
+                        tracks: pattern.tracks.map((t) => {
+                            if (t.id !== trackId) return t
+                            return updatedTrack
+                        }),
+                    }
                 }),
             },
         })

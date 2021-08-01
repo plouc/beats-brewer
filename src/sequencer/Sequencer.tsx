@@ -22,6 +22,7 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
         stepIndex,
         tracks,
         toggleTrack,
+        updateTrackSample,
         toggleStep,
         isPlaying,
         play,
@@ -46,7 +47,12 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
                 <Container>
                     <TrackHeadings>
                         {tracks.map((track) => (
-                            <TrackHeading key={track.id} track={track} toggleTrack={toggleTrack} />
+                            <TrackHeading
+                                key={track.id}
+                                track={track}
+                                updateTrackSample={updateTrackSample}
+                                toggleTrack={toggleTrack}
+                            />
                         ))}
                     </TrackHeadings>
                     <div>
