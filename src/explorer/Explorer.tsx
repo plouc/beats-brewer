@@ -92,6 +92,7 @@ export const Explorer = () => {
             </ExplorerFolder>
             */}
             <ExplorerFolder
+                defaultIsOpen
                 title={
                     <ExplorerSectionTitle icon={FaDrum} count={drumKits.length}>
                         Drum Kits
@@ -105,6 +106,7 @@ export const Explorer = () => {
                 ))}
             </ExplorerFolder>
             <ExplorerFolder
+                defaultIsOpen
                 title={
                     <ExplorerSectionTitle icon={FaWaveSquare} count={samples.length}>
                         Samples

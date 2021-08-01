@@ -34,6 +34,8 @@ export const Modal = ({
             return
         }
 
+        console.log('handleOverlayClick', 'closing')
+
         onClose()
     }, [onClose, shouldCloseOnOutsideClick])
 

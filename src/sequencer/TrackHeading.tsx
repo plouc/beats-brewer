@@ -1,9 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
 import { FiVolume, FiVolumeX } from 'react-icons/fi'
 import { TrackWithPlayer } from './useStepSequencer'
 import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
 import { useAppStore } from '../useApp'
+import { SequencerTrackModal } from './SequencerTrackModal'
 
 interface TrackHeadingProps {
     track: TrackWithPlayer
@@ -12,18 +13,16 @@ interface TrackHeadingProps {
 
 export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
     const highlightChannel = useAppStore((state) => state.highlightChannel)
+    const handleMouseEnter = useCallback(
+        () => highlightChannel(track.channel),
+        [highlightChannel, track.channel]
+    )
+    const handleMouseLeave = useCallback(() => highlightChannel(-1), [highlightChannel])
+    const handleToggle = useCallback(() => toggleTrack(track.id), [track.id, toggleTrack])
 
-    const handleMouseEnter = useCallback(() => {
-        highlightChannel(track.channel)
-    }, [highlightChannel, track.channel])
-
-    const handleMouseLeave = useCallback(() => {
-        highlightChannel(-1)
-    }, [highlightChannel])
-
-    const handleToggle = useCallback(() => {
-        toggleTrack(track.id)
-    }, [track.id, toggleTrack])
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const openModal = useCallback(() => setIsModalOpen(true), [setIsModalOpen])
+    const closeModal = useCallback(() => setIsModalOpen(false), [setIsModalOpen])
 
     return (
         <TrackHeadingContainer
@@ -31,12 +30,13 @@ export const TrackHeading = ({ track, toggleTrack }: TrackHeadingProps) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <TrackName>{track.name}</TrackName>
+            <TrackName onClick={openModal}>{track.name}</TrackName>
             <MixerChannelSelector value={track.channel} />
             <MuteIcon isMuted={track.isMuted} onClick={handleToggle}>
                 {track.isMuted && <FiVolumeX />}
                 {!track.isMuted && <FiVolume />}
             </MuteIcon>
+            {isModalOpen && <SequencerTrackModal track={track} onClose={closeModal} />}
         </TrackHeadingContainer>
     )
 }
