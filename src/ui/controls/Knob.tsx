@@ -1,7 +1,7 @@
 import { createElement } from 'react'
 import styled from 'styled-components/macro'
 import { useControlScale } from './useControlScale'
-import { useAppStore } from '../../useApp'
+import { useAppStore } from '../../store/useApp'
 
 const TICK_SPACE = 8
 

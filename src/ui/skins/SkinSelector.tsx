@@ -1,5 +1,5 @@
 import { ChangeEvent, useCallback } from 'react'
-import { useAppStore } from '../../useApp'
+import { useAppStore } from '../../store/useApp'
 import { Select } from '../controls/Select'
 import { skins } from './skins'
 import styled from 'styled-components/macro'

@@ -5,7 +5,7 @@ import { HSpacer } from './Spacer'
 import { Select } from './controls/Select'
 import { RoundIconButton } from './controls/RoundIconButton'
 import { LCDScreen, LCDScreenHighlightedText } from './LCDScreen'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 const genresBpm: [string, number][] = [
     ['Reggae/R&B', 60],

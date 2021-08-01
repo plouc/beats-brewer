@@ -1,7 +1,7 @@
 import { useMemo, Fragment } from 'react'
 import styled from 'styled-components/macro'
 import * as Tone from 'tone'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 const MIN_LENGTH = `${16 * 6}t`
 

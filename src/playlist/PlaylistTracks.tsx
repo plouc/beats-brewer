@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export const PlaylistTracks = () => {
     const tracks = useAppStore((state) => state.tracks)

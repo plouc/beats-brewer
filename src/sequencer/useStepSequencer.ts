@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import * as Tone from 'tone'
 import { SequencerPattern, SequencerPatternTrack } from '../project/definitions'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export interface TrackWithPlayer extends SequencerPatternTrack {
     player: Tone.Player

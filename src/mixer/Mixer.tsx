@@ -5,7 +5,7 @@ import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { MixerChannel } from './MixerChannel'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export const Mixer = () => {
     const channels = useAppStore((state) => state.channels)

@@ -9,7 +9,7 @@ import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { VSpacer } from '../ui/Spacer'
 import { CloseButton } from '../ui/controls/CloseButton'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 import { EffectType } from './definitions'
 
 interface AddEffectProps {

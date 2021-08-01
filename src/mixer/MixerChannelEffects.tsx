@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import { darken } from 'polished'
 import { FiArrowDown } from 'react-icons/fi'
 import { Effect } from '../effects/definitions'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 import { AddEffect } from '../effects/AddEffect'
 
 interface MixerChannelEffectsProps {

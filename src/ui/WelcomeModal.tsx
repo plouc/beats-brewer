@@ -9,7 +9,7 @@ import { ComponentName, ComponentNameHighlight } from './ComponentName'
 import { CloseButton } from './controls/CloseButton'
 import { HSpacer, VSpacer } from './Spacer'
 import { demoProjects } from '../library/demoProjects'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export const WelcomeModal = () => {
     const [isOpen, setIsOpen] = useState(true)

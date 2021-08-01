@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import { FiChevronUp, FiChevronDown } from 'react-icons/fi'
-// import { useAppStore } from '../useApp'
+// import { useAppStore } from '../store/useApp'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { useCallback } from 'react'
 

@@ -7,11 +7,11 @@ import {
     Channel,
     ChannelData,
     SequencerPatternTrack,
-} from './project/definitions'
-import { samples } from './library/samples'
-import { Effect, EffectType } from './effects/definitions'
-import { Skin } from './ui/skins/definitions'
-import { skins } from './ui/skins/skins'
+} from '../project/definitions'
+import { samples } from '../library/samples'
+import { Effect, EffectType } from '../effects/definitions'
+import { Skin } from '../ui/skins/definitions'
+import { skins } from '../ui/skins/skins'
 
 interface AppStore {
     skin: Skin

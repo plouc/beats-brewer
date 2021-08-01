@@ -9,7 +9,7 @@ import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { TrackWithPlayer } from './useStepSequencer'
 import { HSpacer, VSpacer } from '../ui/Spacer'
 import { SquareIconButton } from '../ui/controls/SquareIconButton'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 import { samples } from '../library/samples'
 
 interface SampleModalProps {

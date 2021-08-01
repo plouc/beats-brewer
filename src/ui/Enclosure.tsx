@@ -1,5 +1,5 @@
 import { createElement, PropsWithChildren } from 'react'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export const Enclosure = ({ children }: PropsWithChildren<{}>) => {
     const skin = useAppStore((state) => state.skin)

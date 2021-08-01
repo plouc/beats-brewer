@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import { FiVolume, FiVolumeX } from 'react-icons/fi'
 import { TrackWithPlayer } from './useStepSequencer'
 import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 import { SequencerTrackModal } from './SequencerTrackModal'
 
 interface TrackHeadingProps {

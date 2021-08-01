@@ -1,7 +1,7 @@
 import { createElement, useCallback } from 'react'
 import styled from 'styled-components/macro'
 import { TrackWithPlayer } from './useStepSequencer'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 interface TrackStepsProps {
     track: TrackWithPlayer

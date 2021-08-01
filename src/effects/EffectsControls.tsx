@@ -1,6 +1,6 @@
 import { ReverbControls } from './ReverbControls'
 import { DistortionControls } from './DistortionControls'
-import { useAppStore } from '../useApp'
+import { useAppStore } from '../store/useApp'
 
 export const EffectsControls = () => {
     const effects = useAppStore((state) => state.openedEffects)

@@ -12,7 +12,7 @@ import { Mixer } from './mixer/Mixer'
 import { EffectsControls } from './effects/EffectsControls'
 import { DemoComponents } from './DemoComponents'
 import { WelcomeModal } from './ui/WelcomeModal'
-import { useAppStore } from './useApp'
+import { useAppStore } from './store/useApp'
 
 const SHOW_DEMO_COMPONENTS = false
 const SHOW_PLAYLIST = false

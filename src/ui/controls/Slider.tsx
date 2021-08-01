@@ -2,7 +2,7 @@ import React, { createElement, useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components/macro'
 import { useMeasure } from '../hooks/useMeasure'
 import { useControlScale } from './useControlScale'
-import { useAppStore } from '../../useApp'
+import { useAppStore } from '../../store/useApp'
 
 interface SliderProps {
     min?: number
