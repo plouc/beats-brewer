@@ -6,6 +6,7 @@ import { RawSliderThumb } from './RawSliderThumb'
 import { RawKnobBase } from './RawKnobBase'
 import { RawKnobIndicator } from './RawKnobIndicator'
 import { RawKnobTick } from './RawKnobTick'
+import { RawStepStep } from './RawStepStep'
 
 export const rawSkin: Omit<Skin, 'id' | 'name' | 'theme'> = {
     enclosure: RawEnclosure,
@@ -18,5 +19,8 @@ export const rawSkin: Omit<Skin, 'id' | 'name' | 'theme'> = {
         base: RawKnobBase,
         indicator: RawKnobIndicator,
         tick: RawKnobTick,
+    },
+    step: {
+        step: RawStepStep,
     },
 }

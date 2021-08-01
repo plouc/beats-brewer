@@ -138,4 +138,4 @@ export const skins: Skin[] = [
         name: 'Yellow Raw',
         theme: convertToRawTheme(monoYellowTheme),
     },
-].filter((skin) => skin.id.startsWith('raw:') === false)
+]

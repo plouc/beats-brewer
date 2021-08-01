@@ -16,4 +16,17 @@ export interface Skin {
         indicator: (props: PropsWithChildren<{ radius: number }>) => JSX.Element
         tick: (props: PropsWithChildren<{ radius: number; isMajor: boolean }>) => JSX.Element
     }
+    step: {
+        step: StyledComponent<
+            'div',
+            DefaultTheme,
+            {
+                color: string
+                isActive: boolean
+                isPlaying: boolean
+                isOdd: boolean
+                isMuted: boolean
+            }
+        >
+    }
 }

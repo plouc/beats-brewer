@@ -222,10 +222,10 @@ export const demoProject: ProjectData = {
     name: 'Demo Project 1',
     bpm: 120,
     patterns: [
-        drumsCongasOnly,
-        drumsCongasPlusKick,
-        drumsCongasPlusKickPlusClap,
         drumsCongasPlusKickPlusClapPlusRimShot,
+        drumsCongasPlusKickPlusClap,
+        drumsCongasPlusKick,
+        drumsCongasOnly,
     ],
     tracks: [
         {

@@ -8,5 +8,5 @@ export const RawSliderTrack = styled.div`
     height: 4px;
     background-color: ${(props) => props.theme.enclosure.background};
     border-radius: 2px;
-    box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.text};
+    box-shadow: inset 0 0 0 1px ${(props) => props.theme.colors.textLight};
 `
