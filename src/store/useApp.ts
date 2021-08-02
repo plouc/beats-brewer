@@ -10,6 +10,7 @@ import {
 } from '../project/definitions'
 import { samples } from '../library/samples'
 import { Effect, EffectType } from '../effects/definitions'
+import { computeEffect } from '../effects/computeEffects'
 import { Skin } from '../ui/skins/definitions'
 import { skins } from '../ui/skins/skins'
 
@@ -59,33 +60,14 @@ const computeChannels = (
         const projectChannel = projectChannels[channelIndex]
 
         if (projectChannel !== undefined) {
-            projectChannel.effects.forEach((effect) => {
-                if (effect.type === 'reverb') {
-                    console.log(
-                        `[effect] reverb on channel ${channelIndex} (decay: ${effect.decay}, preDelay: ${effect.preDelay},  wet: ${effect.wet})`
-                    )
+            projectChannel.effects.forEach((effectData) => {
+                console.log(`[effect] ${effectData.type} on channel ${channelIndex}`)
 
-                    const reverb = new Tone.Reverb(effect.decay)
-                    reverb.preDelay = effect.preDelay
-                    reverb.wet.value = effect.wet
+                const effect = computeEffect(effectData)
+                effect.instance.connect(destination)
+                destination = effect.instance
 
-                    reverb.connect(destination)
-                    destination = reverb
-
-                    effects.push({ ...effect, instance: reverb })
-                } else if (effect.type === 'distortion') {
-                    console.log(
-                        `[effect] distortion on channel ${channelIndex} (distortion: ${effect.distortion},  wet: ${effect.wet})`
-                    )
-
-                    const distortion = new Tone.Distortion(effect.distortion)
-                    distortion.wet.value = effect.wet
-
-                    distortion.connect(destination)
-                    destination = distortion
-
-                    effects.push({ ...effect, instance: distortion })
-                }
+                effects.push(effect)
             })
         }
 

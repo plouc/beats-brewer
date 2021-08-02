@@ -24,6 +24,7 @@ export interface SequencerPatternTrackData extends Sample {
 
 export interface SequencerPatternTrack extends SequencerPatternTrackData {
     player: Tone.Player
+    // meter: Tone.Meter
 }
 
 export interface SequencerPatternData {
