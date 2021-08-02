@@ -7,8 +7,8 @@ import { Explorer } from './explorer/Explorer'
 import { Playlist } from './playlist/Playlist'
 import { Sequencer } from './sequencer/Sequencer'
 import { Mixer } from './mixer/Mixer'
-// import { Keyboard } from './keyboard/Keyboard'
-// import { Drums } from './drums/Drums'
+import { Keyboard } from './keyboard/Keyboard'
+import { Drums } from './drums/Drums'
 import { EffectsControls } from './effects/EffectsControls'
 import { DemoComponents } from './DemoComponents'
 import { WelcomeModal } from './ui/WelcomeModal'
@@ -16,7 +16,9 @@ import { useAppStore } from './store/useApp'
 
 const SHOW_DEMO_COMPONENTS = false
 const SHOW_PLAYLIST = false
-const SHOW_WELCOME_MODAL = true
+const SHOW_KEYBOARD = true
+const SHOW_DRUMS = false
+const SHOW_WELCOME_MODAL = false
 
 export const App = () => {
     const skin = useAppStore((state) => state.skin)
@@ -38,6 +40,8 @@ export const App = () => {
                 <Content>
                     {SHOW_DEMO_COMPONENTS && <DemoComponents />}
                     {SHOW_PLAYLIST && <Playlist />}
+                    {SHOW_KEYBOARD && <Keyboard />}
+                    {SHOW_DRUMS && <Drums />}
                     {openedPattern && openedPattern.type === 'sequencer' && (
                         <Row>
                             <Sequencer pattern={openedPattern} />
@@ -49,10 +53,6 @@ export const App = () => {
                             <EffectsControls />
                         </Row>
                     )}
-                    {/*
-                    <Keyboard />
-                    <Drums />
-                    */}
                 </Content>
             </Layout>
         </ThemeProvider>

@@ -1,16 +1,20 @@
 import React, { ChangeEvent, useCallback } from 'react'
-import { ScaleDictionary } from '@tonaljs/tonal'
+import { Scale, get as getScale } from '@tonaljs/scale'
 import { Select } from '../ui/controls/Select'
 
 interface ScaleSelectorProps {
-    scale: any
-    onChange: (scale: any) => void
+    scale: Scale
+    onChange: (scale: Scale) => void
 }
+
+const SCALES: Scale[] = [getScale('C major'), getScale('C minor')]
+
+console.log(SCALES)
 
 export const ScaleSelector = ({ scale, onChange }: ScaleSelectorProps) => {
     const handleChange = useCallback(
         (event: ChangeEvent<HTMLSelectElement>) => {
-            onChange(event.target.value)
+            onChange(getScale(event.target.value))
         },
         [onChange]
     )
@@ -23,10 +27,10 @@ export const ScaleSelector = ({ scale, onChange }: ScaleSelectorProps) => {
                 textTransform: 'capitalize',
             }}
         >
-            {ScaleDictionary.names().map((scale) => {
+            {SCALES.map((scale) => {
                 return (
-                    <option key={scale} value={scale}>
-                        {scale}
+                    <option key={scale.name} value={scale.name}>
+                        {scale.name}
                     </option>
                 )
             })}

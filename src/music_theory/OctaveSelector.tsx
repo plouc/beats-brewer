@@ -5,11 +5,10 @@ import { HSpacer } from '../ui/Spacer'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { useKeyboardShortcut } from '../ui/hooks/useKeyboardShortcuts'
 import { RoundIconButton } from '../ui/controls/RoundIconButton'
-import { Octave } from './definitions'
 
 interface OctaveSelectorProps {
-    current: Octave
-    onChange: (octave: Octave) => void
+    current: number
+    onChange: (octave: number) => void
 }
 
 export const OctaveSelector = ({ current, onChange }: OctaveSelectorProps) => {
@@ -23,11 +22,11 @@ export const OctaveSelector = ({ current, onChange }: OctaveSelectorProps) => {
     useKeyboardShortcut(['o', '8'], () => onChange(8))
 
     const handlePrevious = useCallback(() => {
-        if (current > 1) onChange((current - 1) as Octave)
+        if (current > 1) onChange(current - 1)
     }, [current, onChange])
 
     const handleNext = useCallback(() => {
-        if (current < 8) onChange((current + 1) as Octave)
+        if (current < 7) onChange(current + 1)
     }, [current, onChange])
 
     return (
