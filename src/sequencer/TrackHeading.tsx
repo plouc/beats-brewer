@@ -1,10 +1,11 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
-import { FiVolume, FiVolumeX } from 'react-icons/fi'
+import { FiEdit2, FiVolume, FiVolumeX } from 'react-icons/fi'
 import { TrackWithPlayer } from './useStepSequencer'
 import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
 import { useAppStore } from '../store/useApp'
 import { SequencerTrackModal } from './SequencerTrackModal'
+import { HSpacer } from '../ui/Spacer'
 
 interface TrackHeadingProps {
     track: TrackWithPlayer
@@ -38,7 +39,11 @@ export const TrackHeading = ({ track, toggleTrack, updateTrackSample }: TrackHea
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <TrackName onClick={openModal}>{track.name}</TrackName>
+            <TrackButton onClick={openModal}>
+                <TrackName>{track.name}</TrackName>
+                <HSpacer size="xsmall" />
+                <FiEdit2 />
+            </TrackButton>
             <MixerChannelSelector value={track.channel} />
             <MuteIcon isMuted={track.isMuted} onClick={handleToggle}>
                 {track.isMuted && <FiVolumeX />}
@@ -70,7 +75,6 @@ const TrackHeadingContainer = styled.div<{
     border-radius: 2px;
     padding: 0 6px 0 16px;
     user-select: none;
-    cursor: pointer;
     color: ${(props) => props.theme.colors.textLight};
 
     &:before {
@@ -92,7 +96,20 @@ const TrackHeadingContainer = styled.div<{
     }
 `
 
-const TrackName = styled.div`
+const TrackButton = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 24px;
+    overflow: hidden;
+    cursor: pointer;
+
+    svg {
+        font-size: 14px;
+    }
+`
+
+const TrackName = styled.span`
     font-family: ${(props) => props.theme.typography.headingFont};
     text-transform: uppercase;
     font-size: 10px;
@@ -111,6 +128,7 @@ const MuteIcon = styled.div<{
     justify-content: center;
     align-items: center;
     color: ${(props) => props.theme.colors.textLight};
+    cursor: pointer;
 
     &:hover {
         color: ${(props) => props.theme.colors.text};
