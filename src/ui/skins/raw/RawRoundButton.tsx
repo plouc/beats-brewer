@@ -1,11 +1,9 @@
 import styled from 'styled-components/macro'
-import { HardwareButton } from './HardwareButton'
+import { RawButton } from './RawButton'
 
-export const RoundIconButton = styled(HardwareButton)<{
+export const RawRoundButton = styled(RawButton)<{
     isPressed?: boolean
     isInactive?: boolean
-    hasNext?: boolean
-    hasPrevious?: boolean
 }>`
     padding: 0;
     font-size: 12px;

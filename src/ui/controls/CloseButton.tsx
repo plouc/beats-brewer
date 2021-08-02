@@ -1,5 +1,5 @@
 import { FiX } from 'react-icons/fi'
-import { SquareIconButton } from './SquareIconButton'
+import { SquareButton } from './SquareButton'
 import styled from 'styled-components/macro'
 
 interface CloseButtonProps {
@@ -14,14 +14,8 @@ export const CloseButton = ({ onClose }: CloseButtonProps) => {
     )
 }
 
-const Button = styled(SquareIconButton)`
+const Button = styled(SquareButton)`
     width: 18px;
     height: 18px;
     font-size: 12px;
-    border-radius: 1px;
-    color: ${(props) => props.theme.colors.textLight};
-
-    &:hover {
-        color: ${(props) => props.theme.colors.text};
-    }
 `

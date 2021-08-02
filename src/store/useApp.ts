@@ -105,7 +105,7 @@ const computeChannels = (
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    skin: skins.find((skin) => skin.id === 'flat:red')!,
+    skin: skins.find((skin) => skin.id === 'flat:yellow')!,
     setSkin: (skin: Skin) => set({ skin }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {

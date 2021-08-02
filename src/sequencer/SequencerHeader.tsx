@@ -4,7 +4,7 @@ import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { SequencerBars } from './SequencerBars'
 import { PlayerControls } from '../ui/controls/PlayerControls'
-import { HardwareButton } from '../ui/controls/HardwareButton'
+import { Button } from '../ui/controls/Button'
 import { SequencerPattern } from '../project/definitions'
 
 interface SequencerHeaderProps {
@@ -36,11 +36,11 @@ export const SequencerHeader = ({
             <HSpacer />
             <SequencerBars bars={bars} setBars={setBars} />
             <HSpacer size="small" />
-            <HardwareButton onClick={doubleBars}>
+            <Button onClick={doubleBars}>
                 <FiCopy />
                 <HSpacer size="xsmall" />
                 double
-            </HardwareButton>
+            </Button>
         </ComponentHeader>
     )
 }

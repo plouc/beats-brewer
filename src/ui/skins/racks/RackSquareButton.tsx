@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
-import { HardwareButton } from './HardwareButton'
+import { RackButton } from './RackButton'
 
-export const SquareIconButton = styled(HardwareButton)<{
+export const RackSquareButton = styled(RackButton)<{
     isPressed?: boolean
     isInactive?: boolean
     hasNext?: boolean

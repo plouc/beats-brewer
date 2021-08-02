@@ -20,6 +20,13 @@ declare module 'styled-components' {
             innerCastShadowColorDark: string
             sideThickness: number
         }
+        lcd: {
+            background: string
+            border: string
+            text: string
+            textHighlight: string
+            textHighlightGlow: string
+        }
         knob: {
             indicatorColor: string
         }
@@ -28,12 +35,6 @@ declare module 'styled-components' {
             text: string
             textLight: string
             accent: string
-            lcd: {
-                background: string
-                border: string
-                text: string
-                textHighlight: string
-            }
             alternateMaterial: {
                 background: string
                 backgroundLight: string
@@ -43,9 +44,6 @@ declare module 'styled-components' {
         sizes: {
             mainGap: number
             enclosureBorderRadius: number
-        }
-        shadows: {
-            lcdTextHighlight: string
         }
     }
 }

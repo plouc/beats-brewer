@@ -4,7 +4,7 @@ import { FiPlus, FiMinus } from 'react-icons/fi'
 import { HSpacer } from '../ui/Spacer'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { useKeyboardShortcut } from '../ui/hooks/useKeyboardShortcuts'
-import { RoundIconButton } from '../ui/controls/RoundIconButton'
+import { RoundButton } from '../ui/controls/RoundButton'
 
 interface OctaveSelectorProps {
     current: number
@@ -31,18 +31,18 @@ export const OctaveSelector = ({ current, onChange }: OctaveSelectorProps) => {
 
     return (
         <Container>
-            <RoundIconButton onClick={handlePrevious}>
+            <RoundButton onClick={handlePrevious}>
                 <FiMinus />
-            </RoundIconButton>
+            </RoundButton>
             <HSpacer size="xsmall" />
             <Label>
                 <span>Octave</span>
                 <Current>{current}</Current>
             </Label>
             <HSpacer size="xsmall" />
-            <RoundIconButton onClick={handleNext}>
+            <RoundButton onClick={handleNext}>
                 <FiPlus />
-            </RoundIconButton>
+            </RoundButton>
         </Container>
     )
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { HSpacer } from './Spacer'
 import { Select } from './controls/Select'
-import { RoundIconButton } from './controls/RoundIconButton'
+import { RoundButton } from './controls/RoundButton'
 import { LCDScreen, LCDScreenHighlightedText } from './LCDScreen'
 import { useAppStore } from '../store/useApp'
 
@@ -46,17 +46,17 @@ export const BpmControl = () => {
 
     return (
         <Container>
-            <RoundIconButton onClick={handleMinus}>
+            <RoundButton onClick={handleMinus}>
                 <FiMinus />
-            </RoundIconButton>
+            </RoundButton>
             <HSpacer size="small" />
             <Screen>
                 BPM <Current>{bpm.toFixed(2).padStart(6, ' ')}</Current>
             </Screen>
             <HSpacer size="small" />
-            <RoundIconButton onClick={handlePlus}>
+            <RoundButton onClick={handlePlus}>
                 <FiPlus />
-            </RoundIconButton>
+            </RoundButton>
             <HSpacer size="small" />
             <Select onChange={handleSelect} value={currentGenre ? currentGenre[1] : ''}>
                 <option value="">-----</option>

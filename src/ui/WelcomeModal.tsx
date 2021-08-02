@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
 import { FiExternalLink } from 'react-icons/fi'
 import { Modal } from './Modal'
-import { HardwareButton } from './controls/HardwareButton'
+import { Button } from './controls/Button'
 import { Enclosure } from './Enclosure'
 import { ComponentHeader } from './ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from './ComponentName'
@@ -46,11 +46,11 @@ export const WelcomeModal = () => {
                         <strong>demo projects</strong> that you can find in the explorer.
                     </p>
                     <OpenDemoProjectContainer>
-                        <HardwareButton onClick={openDemoProject}>
+                        <Button onClick={openDemoProject}>
                             <strong>Open a demo project</strong>
                             <HSpacer size="small" />
                             <FiExternalLink />
-                        </HardwareButton>
+                        </Button>
                     </OpenDemoProjectContainer>
                     <p>
                         This is an open source project, and you can find the source code here:{' '}

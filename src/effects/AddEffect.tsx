@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
 import { FiPlus } from 'react-icons/fi'
-import { RoundIconButton } from '../ui/controls/RoundIconButton'
+import { RoundButton } from '../ui/controls/RoundButton'
 import { Modal } from '../ui/Modal'
 import { Enclosure } from '../ui/Enclosure'
-import { HardwareButton } from '../ui/controls/HardwareButton'
+import { Button } from '../ui/controls/Button'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { VSpacer } from '../ui/Spacer'
@@ -42,9 +42,9 @@ export const AddEffect = ({ channel }: AddEffectProps) => {
 
     return (
         <>
-            <RoundIconButton onClick={openModal}>
+            <RoundButton onClick={openModal}>
                 <FiPlus />
-            </RoundIconButton>
+            </RoundButton>
             {isOpen && (
                 <Modal onClose={closeModal}>
                     <Enclosure>
@@ -56,9 +56,9 @@ export const AddEffect = ({ channel }: AddEffectProps) => {
                         </Header>
                         <VSpacer />
                         <Content>
-                            <Button onClick={addDistortion}>Distortion</Button>
+                            <CustomButton onClick={addDistortion}>Distortion</CustomButton>
                             <VSpacer size="small" />
-                            <Button onClick={addReverb}>Reverb</Button>
+                            <CustomButton onClick={addReverb}>Reverb</CustomButton>
                         </Content>
                         <VSpacer size="small" />
                     </Enclosure>
@@ -78,7 +78,7 @@ const Content = styled.div`
     align-items: flex-start;
 `
 
-const Button = styled(HardwareButton)`
+const CustomButton = styled(Button)`
     width: 100%;
     font-weight: 600;
 `

@@ -6,6 +6,36 @@ export interface Skin {
     name: string
     theme: DefaultTheme
     enclosure: (props: PropsWithChildren<{}>) => JSX.Element
+    button: {
+        basic: StyledComponent<
+            'div',
+            DefaultTheme,
+            {
+                isPressed?: boolean
+                isInactive?: boolean
+                hasNext?: boolean
+                hasPrevious?: boolean
+            }
+        >
+        square: StyledComponent<
+            'div',
+            DefaultTheme,
+            {
+                isPressed?: boolean
+                isInactive?: boolean
+                hasNext?: boolean
+                hasPrevious?: boolean
+            }
+        >
+        round: StyledComponent<
+            'div',
+            DefaultTheme,
+            {
+                isPressed?: boolean
+                isInactive?: boolean
+            }
+        >
+    }
     slider: {
         track: StyledComponent<'div', DefaultTheme>
         trackFill: StyledComponent<'div', DefaultTheme, { width: number }>

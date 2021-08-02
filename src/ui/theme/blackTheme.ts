@@ -6,12 +6,6 @@ const colors: DefaultTheme['colors'] = {
     text: '#cccccc',
     textLight: '#888888',
     accent: '#eeeeee',
-    lcd: {
-        background: '#000000',
-        border: '#000000',
-        text: '#888888',
-        textHighlight: '#eeeeee',
-    },
     alternateMaterial: {
         background: '#232323',
         backgroundLight: '#363636',
@@ -31,9 +25,6 @@ export const blackTheme: DefaultTheme = {
         mainGap: 2,
         enclosureBorderRadius: 1,
     },
-    shadows: {
-        lcdTextHighlight: `0 0 6px ${rgba(colors.lcd.textHighlight, 0.6)}`,
-    },
     enclosure: {
         background: '#1b1b1b',
         backgroundLight: '#222222',
@@ -45,6 +36,13 @@ export const blackTheme: DefaultTheme = {
         innerCastShadowColorLight: `rgba(0, 0, 0, .4)`,
         innerCastShadowColorDark: `rgba(0, 0, 0, .6)`,
         sideThickness: 10,
+    },
+    lcd: {
+        background: '#000000',
+        border: '#000000',
+        text: '#888888',
+        textHighlight: '#eeeeee',
+        textHighlightGlow: `0 0 6px ${rgba('#eeeeee', 0.6)}`,
     },
     knob: {
         indicatorColor: '#000000',

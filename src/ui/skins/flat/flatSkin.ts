@@ -1,5 +1,8 @@
 import { Skin } from '../definitions'
 import { FlatEnclosure } from './FlatEnclosure'
+import { RackButton } from '../racks/RackButton'
+import { RackSquareButton } from '../racks/RackSquareButton'
+import { RackRoundButton } from '../racks/RackRoundButton'
 import { RackSliderTrack } from '../racks/RackSliderTrack'
 import { RackSliderTrackFill } from '../racks/RackSliderTrackFill'
 import { FlatSliderThumb } from './FlatSliderThumb'
@@ -10,6 +13,11 @@ import { RackStepStep } from '../racks/RackStepStep'
 
 export const flatSkin: Omit<Skin, 'id' | 'name' | 'theme'> = {
     enclosure: FlatEnclosure,
+    button: {
+        basic: RackButton,
+        square: RackSquareButton,
+        round: RackRoundButton,
+    },
     slider: {
         track: RackSliderTrack,
         trackFill: RackSliderTrackFill,

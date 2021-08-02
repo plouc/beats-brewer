@@ -5,11 +5,11 @@ import { Desk } from './ui/Desk'
 import { Enclosure } from './ui/Enclosure'
 import { ComponentHeader } from './ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from './ui/ComponentName'
-import { HardwareButton } from './ui/controls/HardwareButton'
+import { Button } from './ui/controls/Button'
 import { HSpacer, VSpacer } from './ui/Spacer'
 import { Slider } from './ui/controls/Slider'
-import { RoundIconButton } from './ui/controls/RoundIconButton'
-import { SquareIconButton } from './ui/controls/SquareIconButton'
+import { RoundButton } from './ui/controls/RoundButton'
+import { SquareButton } from './ui/controls/SquareButton'
 import { Knob } from './ui/controls/Knob'
 import { ReverbControls } from './effects/ReverbControls'
 import { DistortionControls } from './effects/DistortionControls'
@@ -64,32 +64,32 @@ export const SampleComponent = () => {
                 <VSpacer />
                 <div>
                     <SampleComponentRow>
-                        <HardwareButton>Button</HardwareButton>
+                        <Button>Button</Button>
                         <HSpacer size="small" />
-                        <HardwareButton hasNext isPressed={true}>
+                        <Button hasNext isPressed={true}>
                             ON
-                        </HardwareButton>
-                        <HardwareButton hasPrevious>OFF</HardwareButton>
+                        </Button>
+                        <Button hasPrevious>OFF</Button>
                         <HSpacer size="small" />
-                        <HardwareButton isPressed>Button</HardwareButton>
+                        <Button isPressed>Button</Button>
                         <HSpacer size="small" />
-                        <HardwareButton>
+                        <Button>
                             <FiMusic />
                             &nbsp;Button
-                        </HardwareButton>
+                        </Button>
                         <HSpacer size="small" />
-                        <HardwareButton isPressed>
+                        <Button isPressed>
                             <FiMusic />
                             &nbsp;Button
-                        </HardwareButton>
+                        </Button>
                         <HSpacer size="small" />
-                        <RoundIconButton>
+                        <RoundButton>
                             <FiMusic />
-                        </RoundIconButton>
+                        </RoundButton>
                         <HSpacer size="small" />
-                        <SquareIconButton>
+                        <SquareButton>
                             <FiMusic />
-                        </SquareIconButton>
+                        </SquareButton>
                     </SampleComponentRow>
                     <VSpacer />
                     <Slider value={0.35} onChange={(value) => console.log(value)} />

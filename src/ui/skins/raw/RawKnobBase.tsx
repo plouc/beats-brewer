@@ -13,7 +13,7 @@ export const RawKnobBase = styled.div<{
     &:after {
         content: '';
         position: absolute;
-        background-color: ${(props) => props.theme.colors.alternateMaterial.background};
+        background-color: ${(props) => props.theme.enclosure.backgroundLight};
         top: 6px;
         left: 6px;
         width: ${(props) => props.radius * 2 - 12}px;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { FiPlus, FiMinus } from 'react-icons/fi'
 import { HSpacer } from '../ui/Spacer'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
-import { RoundIconButton } from '../ui/controls/RoundIconButton'
+import { RoundButton } from '../ui/controls/RoundButton'
 import { useCallback } from 'react'
 
 interface SequencerBarsProps {
@@ -21,17 +21,17 @@ export const SequencerBars = ({ bars, setBars }: SequencerBarsProps) => {
 
     return (
         <Container>
-            <RoundIconButton onClick={handleMinus}>
+            <RoundButton onClick={handleMinus}>
                 <FiMinus />
-            </RoundIconButton>
+            </RoundButton>
             <HSpacer size="xsmall" />
             <Screen>
                 Bars <Current>{bars}</Current>
             </Screen>
             <HSpacer size="xsmall" />
-            <RoundIconButton onClick={handlePlus}>
+            <RoundButton onClick={handlePlus}>
                 <FiPlus />
-            </RoundIconButton>
+            </RoundButton>
         </Container>
     )
 }

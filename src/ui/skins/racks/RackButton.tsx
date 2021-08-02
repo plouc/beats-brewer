@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/macro'
 import { lighten, darken, rgba, mix } from 'polished'
 
-export const HardwareButton = styled.span<{
+export const RackButton = styled.div<{
     isPressed?: boolean
     isInactive?: boolean
     hasNext?: boolean

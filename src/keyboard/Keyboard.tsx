@@ -9,7 +9,7 @@ import { SynthSelector } from '../synths/SynthSelector'
 import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { KeyboardKey } from './KeyboardKey'
-import { HardwareButton } from '../ui/controls/HardwareButton'
+import { Button } from '../ui/controls/Button'
 import { useKeyboard } from './useKeyboard'
 
 export const Keyboard = () => {
@@ -35,9 +35,9 @@ export const Keyboard = () => {
                         <ComponentNameHighlight>{synthType}</ComponentNameHighlight>
                     </ComponentName>
                     <HSpacer />
-                    <HardwareButton onClick={toggleChordMode} isPressed={chordModeEnabled}>
+                    <Button onClick={toggleChordMode} isPressed={chordModeEnabled}>
                         Chord mode
-                    </HardwareButton>
+                    </Button>
                     <HSpacer />
                     <SynthSelector synth={synthType} onChange={setSynthType} />
                     <HSpacer />

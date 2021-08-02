@@ -7,9 +7,8 @@ export const RawSliderThumb = styled.div<{ x: number }>`
     margin-left: -12px;
     width: 24px;
     height: 14px;
-    background-color: ${(props) => props.theme.enclosure.background};
+    background-color: ${(props) => props.theme.enclosure.backgroundLight};
     border: 1px solid ${(props) => props.theme.colors.text};
     border-radius: 2px;
     cursor: pointer;
-    box-shadow: 0 0 0 2px ${(props) => props.theme.enclosure.background};
 `

@@ -7,7 +7,7 @@ import { HSpacer } from '../ui/Spacer'
 import { Desk } from '../ui/Desk'
 import { Enclosure } from '../ui/Enclosure'
 import { ComponentHeader } from '../ui/ComponentHeader'
-import { HardwareButton } from '../ui/controls/HardwareButton'
+import { Button } from '../ui/controls/Button'
 import { LCDScreen } from '../ui/LCDScreen'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { Pads } from '../pads/Pads'
@@ -71,7 +71,7 @@ export const Drums = () => {
                         <ComponentNameHighlight>Drums</ComponentNameHighlight>
                     </ComponentName>
                     <HSpacer />
-                    <HardwareButton
+                    <Button
                         isPressed={mode === 'play'}
                         isInactive={mode !== 'play'}
                         hasNext
@@ -80,8 +80,8 @@ export const Drums = () => {
                         <FiGrid />
                         <HSpacer size="xsmall" />
                         live
-                    </HardwareButton>
-                    <HardwareButton
+                    </Button>
+                    <Button
                         isPressed={mode === 'edit'}
                         isInactive={mode !== 'edit'}
                         hasPrevious
@@ -90,7 +90,7 @@ export const Drums = () => {
                         <FiMaximize />
                         <HSpacer size="xsmall" />
                         edit
-                    </HardwareButton>
+                    </Button>
                 </ComponentHeader>
                 <Body>
                     <Pads
@@ -196,7 +196,7 @@ const ChartLine = styled.div`
     position: absolute;
     top: calc(50% - 1px);
     z-index: 5;
-    background-color: ${(props) => props.theme.colors.lcd.text};
+    background-color: ${(props) => props.theme.lcd.text};
     height: 2px;
 `
 
@@ -204,7 +204,7 @@ const ChartLineSection = styled.div`
     position: absolute;
     top: calc(50% - 1px);
     z-index: 10;
-    background-color: ${(props) => props.theme.colors.lcd.textHighlight};
+    background-color: ${(props) => props.theme.lcd.textHighlight};
     height: 2px;
 `
 
@@ -213,7 +213,7 @@ const ChartDot = styled.div`
     top: calc(50% - 3px);
     z-index: 15;
     margin-left: -3px;
-    background-color: ${(props) => props.theme.colors.lcd.textHighlight};
+    background-color: ${(props) => props.theme.lcd.textHighlight};
     width: 6px;
     height: 6px;
     border-radius: 3px;

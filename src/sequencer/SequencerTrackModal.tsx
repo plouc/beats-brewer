@@ -8,7 +8,7 @@ import { ComponentHeader } from '../ui/ComponentHeader'
 import { ComponentName, ComponentNameHighlight } from '../ui/ComponentName'
 import { TrackWithPlayer } from './useStepSequencer'
 import { HSpacer, VSpacer } from '../ui/Spacer'
-import { SquareIconButton } from '../ui/controls/SquareIconButton'
+import { SquareButton } from '../ui/controls/SquareButton'
 import { useAppStore } from '../store/useApp'
 import { samples } from '../library/samples'
 
@@ -47,9 +47,9 @@ export const SequencerTrackModal = ({ track, onUpdateSample, onClose }: SampleMo
                 <VSpacer />
                 <Content>
                     <Player>
-                        <SquareIconButton onClick={handlePlay}>
+                        <SquareButton onClick={handlePlay}>
                             <FiPlay />
-                        </SquareIconButton>
+                        </SquareButton>
                         <HSpacer size="small" />
                         Play track sample
                     </Player>
