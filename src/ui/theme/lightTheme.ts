@@ -43,7 +43,7 @@ export const lightTheme: DefaultTheme = {
         text: '#5f5f55',
         textHighlight: '#36362f',
         textHighlightGlow: 'none',
-        borderRadius: 3,
+        borderRadius: 2,
     },
     knob: {
         indicatorColor: '#2a656f',
