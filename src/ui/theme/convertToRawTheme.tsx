@@ -2,6 +2,9 @@ import { DefaultTheme } from 'styled-components'
 import { darken, lighten } from 'polished'
 
 export const convertToRawTheme = (baseTheme: DefaultTheme): DefaultTheme => {
+    const backgroundLight = lighten(0.03, baseTheme.enclosure.background)
+    const backgroundDark = darken(0.03, baseTheme.enclosure.background)
+
     return {
         ...baseTheme,
         colors: {
@@ -13,12 +16,15 @@ export const convertToRawTheme = (baseTheme: DefaultTheme): DefaultTheme => {
         },
         enclosure: {
             ...baseTheme.enclosure,
-            backgroundLight: lighten(0.03, baseTheme.enclosure.background),
-            backgroundDark: darken(0.03, baseTheme.enclosure.background),
+            backgroundLight,
+            backgroundDark,
         },
         lcd: {
             ...baseTheme.lcd,
+            border: baseTheme.colors.text,
+            background: backgroundDark,
             textHighlightGlow: 'none',
+            borderRadius: 2,
         },
         knob: {
             ...baseTheme.knob,

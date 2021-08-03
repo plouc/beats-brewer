@@ -26,6 +26,7 @@ declare module 'styled-components' {
             text: string
             textHighlight: string
             textHighlightGlow: string
+            borderRadius: number
         }
         knob: {
             indicatorColor: string

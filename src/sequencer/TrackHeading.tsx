@@ -6,14 +6,24 @@ import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
 import { useAppStore } from '../store/useApp'
 import { SequencerTrackModal } from './SequencerTrackModal'
 import { HSpacer } from '../ui/Spacer'
+import { scaleLinear } from 'd3-scale'
+import { lighten } from 'polished'
+
+const meterScale = scaleLinear().domain([-60, 5]).range([0, 1])
 
 interface TrackHeadingProps {
     track: TrackWithPlayer
     toggleTrack: (sampleId: string) => void
     updateTrackSample: (sampleId: string, trackId: string) => void
+    meterValue: number | null
 }
 
-export const TrackHeading = ({ track, toggleTrack, updateTrackSample }: TrackHeadingProps) => {
+export const TrackHeading = ({
+    track,
+    toggleTrack,
+    updateTrackSample,
+    meterValue,
+}: TrackHeadingProps) => {
     const highlightChannel = useAppStore((state) => state.highlightChannel)
     const handleMouseEnter = useCallback(
         () => highlightChannel(track.channel),
@@ -49,6 +59,10 @@ export const TrackHeading = ({ track, toggleTrack, updateTrackSample }: TrackHea
                 {track.isMuted && <FiVolumeX />}
                 {!track.isMuted && <FiVolume />}
             </MuteIcon>
+            <MeterBar
+                color={track.color}
+                value={meterValue === null ? 0 : meterScale(meterValue)}
+            />
             {isModalOpen && (
                 <SequencerTrackModal
                     track={track}
@@ -64,7 +78,7 @@ const TrackHeadingContainer = styled.div<{
     color: string
 }>`
     display: grid;
-    grid-template-columns: auto 36px 24px;
+    grid-template-columns: auto 36px 24px 5px;
     grid-column-gap: 5px;
     position: relative;
     align-items: center;
@@ -133,4 +147,15 @@ const MuteIcon = styled.div<{
     &:hover {
         color: ${(props) => props.theme.colors.text};
     }
+`
+
+const MeterBar = styled.div<{
+    color: string
+    value: number
+}>`
+    height: 24px;
+    width: 100%;
+    border-radius: 1px;
+    background-color: ${(props) => lighten(0.15, props.color)};
+    opacity: ${(props) => props.value};
 `

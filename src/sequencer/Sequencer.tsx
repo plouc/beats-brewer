@@ -27,6 +27,7 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
         isPlaying,
         play,
         stop,
+        trackMeterValues,
     } = useStepSequencer({
         pattern,
     })
@@ -46,12 +47,17 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
                 <VSpacer />
                 <Container>
                     <TrackHeadings>
-                        {tracks.map((track) => (
+                        {tracks.map((track, trackIndex) => (
                             <TrackHeading
                                 key={track.id}
                                 track={track}
                                 updateTrackSample={updateTrackSample}
                                 toggleTrack={toggleTrack}
+                                meterValue={
+                                    trackMeterValues[trackIndex] !== undefined
+                                        ? trackMeterValues[trackIndex]
+                                        : null
+                                }
                             />
                         ))}
                     </TrackHeadings>
@@ -71,7 +77,7 @@ export const Sequencer = ({ pattern }: SequencerProps) => {
 
 const Container = styled.div`
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 240px auto;
     grid-column-gap: 16px;
 `
 

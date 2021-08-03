@@ -49,11 +49,11 @@ export const BpmControl = () => {
             <RoundButton onClick={handleMinus}>
                 <FiMinus />
             </RoundButton>
-            <HSpacer size="small" />
+            <HSpacer size="xsmall" />
             <Screen>
                 BPM <Current>{bpm.toFixed(2).padStart(6, ' ')}</Current>
             </Screen>
-            <HSpacer size="small" />
+            <HSpacer size="xsmall" />
             <RoundButton onClick={handlePlus}>
                 <FiPlus />
             </RoundButton>

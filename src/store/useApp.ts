@@ -87,7 +87,7 @@ const computeChannels = (
 }
 
 export const useAppStore = create<AppStore>((set, get) => ({
-    skin: skins.find((skin) => skin.id === 'racks:yellow')!,
+    skin: skins.find((skin) => skin.id === 'racks:black')!,
     setSkin: (skin: Skin) => set({ skin }),
     bpm: DEFAULT_BPM,
     setBpm: (bpm: number) => {
@@ -156,7 +156,9 @@ export const useAppStore = create<AppStore>((set, get) => ({
                             console.log(`[loaded] ${patternData.name}/${trackData.name}`)
                         })
 
-                        trackPlayer.connect(channel.channel)
+                        const trackMeter = new Tone.Meter({ normalRange: false, smoothing: 0.6 })
+
+                        trackPlayer.fan(channel.channel, trackMeter)
                         console.log(
                             `[pattern] connected ${patternData.name}/${trackData.name} to channel ${trackData.channel}`
                         )
@@ -164,6 +166,7 @@ export const useAppStore = create<AppStore>((set, get) => ({
                         return {
                             ...trackData,
                             player: trackPlayer,
+                            meter: trackMeter,
                         }
                     }),
                 }

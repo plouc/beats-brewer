@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
-import { FiArrowRight, FiArrowRightCircle, FiVolume, FiVolumeX } from 'react-icons/fi'
+import { FiArrowRight, FiArrowRightCircle } from 'react-icons/fi'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { Channel } from '../project/definitions'
 import { MixerChannelEffects } from './MixerChannelEffects'
@@ -30,12 +30,12 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
                 </ChannelNameIcon>
                 <span>{index + 1}</span>
             </ChannelName>
-            <VSpacer size="small" />
-            <MuteIcon isMuted={isMuted} onClick={toggleMute}>
-                {isMuted && <FiVolumeX />}
-                {!isMuted && <FiVolume />}
-            </MuteIcon>
-            <VSpacer size="small" />
+            <VSpacer />
+            <MuteButton isMuted={isMuted} onClick={toggleMute}>
+                {isMuted && 'unmute'}
+                {!isMuted && 'mute'}
+            </MuteButton>
+            <VSpacer />
             <Knob size={46} value={0} />
             <VSpacer size="small" />
             <ValueLabel>volume</ValueLabel>
@@ -110,18 +110,21 @@ const ValueScreen = styled(LCDScreen)`
     text-align: center;
 `
 
-const MuteIcon = styled.div<{
+const MuteButton = styled.div<{
     isMuted: boolean
 }>`
-    font-size: 16px;
-    width: 100%;
+    font-size: 9px;
+    padding: 2px 4px 3px;
+    border-radius: 2px;
+    border: 1px solid ${(props) => props.theme.colors.textLight};
+    line-height: 1em;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: ${(props) => props.theme.colors.textLight};
+    color: ${(props) => props.theme.colors.text};
 
     &:hover {
-        color: ${(props) => props.theme.colors.text};
+        border-color: ${(props) => props.theme.colors.text};
     }
 `

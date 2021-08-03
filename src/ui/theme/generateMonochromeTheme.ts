@@ -63,6 +63,7 @@ export const generateMonochromeTheme = (
             text: textColor.light,
             textHighlight: textColor.main,
             textHighlightGlow: 'none',
+            borderRadius: 3,
         },
     }
 }

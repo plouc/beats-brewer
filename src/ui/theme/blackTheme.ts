@@ -43,6 +43,7 @@ export const blackTheme: DefaultTheme = {
         text: '#888888',
         textHighlight: '#eeeeee',
         textHighlightGlow: `0 0 6px ${rgba('#eeeeee', 0.6)}`,
+        borderRadius: 3,
     },
     knob: {
         indicatorColor: '#000000',

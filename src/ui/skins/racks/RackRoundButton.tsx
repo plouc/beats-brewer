@@ -7,7 +7,7 @@ export const RackRoundButton = styled(RackButton)<{
 }>`
     padding: 0;
     font-size: 12px;
-    width: 24px;
-    height: 24px;
-    border-radius: 12px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
 `

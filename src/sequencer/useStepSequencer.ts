@@ -134,6 +134,8 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         tracksRef.current = pattern.tracks
     }, [pattern.tracks])
 
+    const [trackMeterValues, setTrackMeterValues] = useState<(number | null)[]>([])
+
     // main loop tick function, called by Tone scheduler
     const tick = useCallback(
         (time: number, index: number) => {
@@ -154,6 +156,23 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         },
         [setStepIndex, tracksRef]
     )
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (!tracksRef.current || !isPlaying) return
+
+            // setTrackMeterValues(
+            //     tracksRef.current.map((track) => {
+            //         if (track.isMuted) return null
+            //         return track.meter.getValue() as number
+            //     })
+            // )
+        }, 100)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [isPlaying, tracksRef, setTrackMeterValues])
 
     // create a new sequence each time the tick function is updated
     // or the number of steps changes
@@ -185,5 +204,6 @@ export const useStepSequencer = ({ pattern }: { pattern: SequencerPattern }) => 
         isPlaying,
         play,
         stop,
+        trackMeterValues,
     }
 }
