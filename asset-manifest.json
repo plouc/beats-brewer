@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/beats-brewer/static/css/main.d480beeb.chunk.css",
-    "main.js": "/beats-brewer/static/js/main.a4a757b0.chunk.js",
-    "main.js.map": "/beats-brewer/static/js/main.a4a757b0.chunk.js.map",
+    "main.js": "/beats-brewer/static/js/main.8ac5840d.chunk.js",
+    "main.js.map": "/beats-brewer/static/js/main.8ac5840d.chunk.js.map",
     "runtime-main.js": "/beats-brewer/static/js/runtime-main.7bb52159.js",
     "runtime-main.js.map": "/beats-brewer/static/js/runtime-main.7bb52159.js.map",
-    "static/js/2.455fc1e8.chunk.js": "/beats-brewer/static/js/2.455fc1e8.chunk.js",
-    "static/js/2.455fc1e8.chunk.js.map": "/beats-brewer/static/js/2.455fc1e8.chunk.js.map",
+    "static/js/2.447d26e5.chunk.js": "/beats-brewer/static/js/2.447d26e5.chunk.js",
+    "static/js/2.447d26e5.chunk.js.map": "/beats-brewer/static/js/2.447d26e5.chunk.js.map",
     "static/js/3.3d80ad3e.chunk.js": "/beats-brewer/static/js/3.3d80ad3e.chunk.js",
     "static/js/3.3d80ad3e.chunk.js.map": "/beats-brewer/static/js/3.3d80ad3e.chunk.js.map",
     "index.html": "/beats-brewer/index.html",
     "static/css/main.d480beeb.chunk.css.map": "/beats-brewer/static/css/main.d480beeb.chunk.css.map",
-    "static/js/2.455fc1e8.chunk.js.LICENSE.txt": "/beats-brewer/static/js/2.455fc1e8.chunk.js.LICENSE.txt",
+    "static/js/2.447d26e5.chunk.js.LICENSE.txt": "/beats-brewer/static/js/2.447d26e5.chunk.js.LICENSE.txt",
     "static/media/demo.wav": "/beats-brewer/static/media/demo.95918ccc.wav",
     "static/media/tr808_bass_drum_001.wav": "/beats-brewer/static/media/tr808_bass_drum_001.6bff9155.wav",
     "static/media/tr808_bass_drum_002.wav": "/beats-brewer/static/media/tr808_bass_drum_002.aa0b9aac.wav",
@@ -32,8 +32,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.7bb52159.js",
-    "static/js/2.455fc1e8.chunk.js",
+    "static/js/2.447d26e5.chunk.js",
     "static/css/main.d480beeb.chunk.css",
-    "static/js/main.a4a757b0.chunk.js"
+    "static/js/main.8ac5840d.chunk.js"
   ]
 }
