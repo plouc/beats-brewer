@@ -22,11 +22,9 @@ declare module 'styled-components' {
         }
         lcd: {
             background: string
-            border: string
             text: string
             textHighlight: string
             textHighlightGlow: string
-            borderRadius: number
         }
         knob: {
             indicatorColor: string

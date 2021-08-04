@@ -1,9 +1,9 @@
+import { useCallback } from 'react'
 import styled from 'styled-components'
 import { FiPlus, FiMinus } from 'react-icons/fi'
-import { HSpacer } from '../ui/Spacer'
 import { LCDScreen, LCDScreenHighlightedText } from '../ui/LCDScreen'
 import { RoundButton } from '../ui/controls/RoundButton'
-import { useCallback } from 'react'
+import { ControlGroup } from '../ui/controls/ControlGroup'
 
 interface SequencerBarsProps {
     bars: number
@@ -20,32 +20,26 @@ export const SequencerBars = ({ bars, setBars }: SequencerBarsProps) => {
     }, [setBars, bars])
 
     return (
-        <Container>
+        <ControlGroup>
             <RoundButton onClick={handleMinus}>
                 <FiMinus />
             </RoundButton>
-            <HSpacer size="xsmall" />
             <Screen>
                 Bars <Current>{bars}</Current>
             </Screen>
-            <HSpacer size="xsmall" />
             <RoundButton onClick={handlePlus}>
                 <FiPlus />
             </RoundButton>
-        </Container>
+        </ControlGroup>
     )
 }
-
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-`
 
 const Screen = styled(LCDScreen)`
     padding: 0 12px;
     display: flex;
     align-items: center;
     height: 28px;
+    margin-left: 1px;
 `
 
 const Current = styled(LCDScreenHighlightedText)`

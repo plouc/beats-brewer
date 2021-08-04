@@ -74,7 +74,6 @@ export const Drums = () => {
                     <Button
                         isPressed={mode === 'play'}
                         isInactive={mode !== 'play'}
-                        hasNext
                         onClick={() => setMode('play')}
                     >
                         <FiGrid />
@@ -84,7 +83,6 @@ export const Drums = () => {
                     <Button
                         isPressed={mode === 'edit'}
                         isInactive={mode !== 'edit'}
-                        hasPrevious
                         onClick={() => setMode('edit')}
                     >
                         <FiMaximize />

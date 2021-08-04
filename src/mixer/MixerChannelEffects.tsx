@@ -15,27 +15,43 @@ export const MixerChannelEffects = ({ channel, effects }: MixerChannelEffectsPro
     const openEffect = useAppStore((state) => state.openEffect)
 
     return (
-        <>
-            {effects.map((effect, effectIndex) => {
-                return (
-                    <Fragment key={effect.id}>
-                        <EffectLabel
-                            onClick={() => {
-                                openEffect(effect.id)
-                            }}
-                        >
-                            {effect.acronym}
-                        </EffectLabel>
-                        <EffectOutput>
-                            <FiArrowDown />
-                        </EffectOutput>
-                    </Fragment>
-                )
-            })}
+        <Container>
+            <Effects>
+                {effects.map((effect, effectIndex) => {
+                    return (
+                        <Fragment key={effect.id}>
+                            <EffectLabel
+                                onClick={() => {
+                                    openEffect(effect.id)
+                                }}
+                            >
+                                {effect.acronym}
+                            </EffectLabel>
+                            <EffectOutput>
+                                <FiArrowDown />
+                            </EffectOutput>
+                        </Fragment>
+                    )
+                })}
+            </Effects>
             <AddEffect channel={channel} />
-        </>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const Effects = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const EffectLabel = styled.div`
     background-color: ${(props) => darken(0.02, props.theme.enclosure.background)};

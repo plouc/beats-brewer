@@ -12,7 +12,7 @@ export const AppHeader = () => {
             </AppName>
             <Controls>
                 <BpmControl />
-                <HSpacer />
+                <HSpacer size="small" />
                 <SkinSelector />
             </Controls>
         </Container>

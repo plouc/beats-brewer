@@ -7,8 +7,6 @@ export const Button = ({
 }: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
     isPressed?: boolean
     isInactive?: boolean
-    hasNext?: boolean
-    hasPrevious?: boolean
 }) => {
     const skin = useAppStore((state) => state.skin)
 

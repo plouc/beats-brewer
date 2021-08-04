@@ -1,22 +1,22 @@
 import { Skin } from '../definitions'
 import { FlatEnclosure } from './FlatEnclosure'
-import { RackButton } from '../racks/RackButton'
-import { RackSquareButton } from '../racks/RackSquareButton'
-import { RackRoundButton } from '../racks/RackRoundButton'
+import { FlatButton } from './FlatButton'
+import { FlatSquareButton } from './FlatSquareButton'
+import { FlatRoundButton } from './FlatRoundButton'
 import { RackSliderTrack } from '../racks/RackSliderTrack'
 import { RackSliderTrackFill } from '../racks/RackSliderTrackFill'
 import { FlatSliderThumb } from './FlatSliderThumb'
 import { FlatKnobBase } from './FlatKnobBase'
 import { FlatKnobIndicator } from './FlatKnobIndicator'
 import { FlatKnobTick } from './FlatKnobTick'
-import { RackStepStep } from '../racks/RackStepStep'
+import { FlatStepStep } from './FlatStepStep'
 
 export const flatSkin: Omit<Skin, 'id' | 'name' | 'theme'> = {
     enclosure: FlatEnclosure,
     button: {
-        basic: RackButton,
-        square: RackSquareButton,
-        round: RackRoundButton,
+        basic: FlatButton,
+        square: FlatSquareButton,
+        round: FlatRoundButton,
     },
     slider: {
         track: RackSliderTrack,
@@ -29,6 +29,6 @@ export const flatSkin: Omit<Skin, 'id' | 'name' | 'theme'> = {
         tick: FlatKnobTick,
     },
     step: {
-        step: RackStepStep,
+        step: FlatStepStep,
     },
 }

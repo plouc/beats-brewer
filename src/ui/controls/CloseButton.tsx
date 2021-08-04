@@ -1,6 +1,7 @@
 import { FiX } from 'react-icons/fi'
 import { SquareButton } from './SquareButton'
 import styled from 'styled-components/macro'
+import { ControlGroup } from './ControlGroup'
 
 interface CloseButtonProps {
     onClose: () => void
@@ -8,9 +9,11 @@ interface CloseButtonProps {
 
 export const CloseButton = ({ onClose }: CloseButtonProps) => {
     return (
-        <Button onClick={onClose}>
-            <FiX />
-        </Button>
+        <ControlGroup>
+            <Button onClick={onClose}>
+                <FiX />
+            </Button>
+        </ControlGroup>
     )
 }
 

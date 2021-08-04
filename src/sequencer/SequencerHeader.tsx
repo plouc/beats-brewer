@@ -6,6 +6,8 @@ import { SequencerBars } from './SequencerBars'
 import { PlayerControls } from '../ui/controls/PlayerControls'
 import { Button } from '../ui/controls/Button'
 import { SequencerPattern } from '../project/definitions'
+import { ControlGroup } from '../ui/controls/ControlGroup'
+import styled from 'styled-components/macro'
 
 interface SequencerHeaderProps {
     pattern: SequencerPattern
@@ -27,20 +29,42 @@ export const SequencerHeader = ({
     stop,
 }: SequencerHeaderProps) => {
     return (
-        <ComponentHeader>
-            <ComponentName>
+        <Header>
+            <Name>
                 <ComponentNameHighlight>{pattern.name}</ComponentNameHighlight>
-            </ComponentName>
-            <HSpacer />
-            <PlayerControls isPlaying={isPlaying} play={play} stop={stop} />
-            <HSpacer />
-            <SequencerBars bars={bars} setBars={setBars} />
-            <HSpacer size="small" />
-            <Button onClick={doubleBars}>
-                <FiCopy />
+            </Name>
+            <Controls>
+                <PlayerControls isPlaying={isPlaying} play={play} stop={stop} />
                 <HSpacer size="xsmall" />
-                double
-            </Button>
-        </ComponentHeader>
+                <SequencerBars bars={bars} setBars={setBars} />
+                <HSpacer size="xsmall" />
+                <ControlGroup>
+                    <Button onClick={doubleBars}>
+                        <FiCopy />
+                        <HSpacer size="xsmall" />
+                        double
+                    </Button>
+                </ControlGroup>
+            </Controls>
+        </Header>
     )
 }
+
+const Header = styled(ComponentHeader)`
+    display: grid;
+    grid-template-columns: 240px auto;
+    grid-column-gap: 16px;
+`
+
+const Name = styled(ComponentName)`
+    white-space: nowrap;
+
+    & > * {
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+`
+
+const Controls = styled.div`
+    display: flex;
+`

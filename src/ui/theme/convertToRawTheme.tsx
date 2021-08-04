@@ -21,10 +21,8 @@ export const convertToRawTheme = (baseTheme: DefaultTheme): DefaultTheme => {
         },
         lcd: {
             ...baseTheme.lcd,
-            border: baseTheme.colors.text,
             background: backgroundDark,
             textHighlightGlow: 'none',
-            borderRadius: 2,
         },
         knob: {
             ...baseTheme.knob,

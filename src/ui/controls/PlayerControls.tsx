@@ -1,5 +1,6 @@
 import { FiPlay, FiSquare } from 'react-icons/fi'
 import { SquareButton } from './SquareButton'
+import { ControlGroup } from './ControlGroup'
 
 interface PlayerControlsProps {
     isPlaying: boolean
@@ -9,13 +10,13 @@ interface PlayerControlsProps {
 
 export const PlayerControls = ({ isPlaying, play, stop }: PlayerControlsProps) => {
     return (
-        <div>
-            <SquareButton hasNext isPressed={isPlaying} onClick={play}>
+        <ControlGroup>
+            <SquareButton isPressed={isPlaying} onClick={play}>
                 <FiPlay />
             </SquareButton>
-            <SquareButton hasPrevious isPressed={!isPlaying} onClick={stop}>
+            <SquareButton isPressed={!isPlaying} onClick={stop}>
                 <FiSquare />
             </SquareButton>
-        </div>
+        </ControlGroup>
     )
 }

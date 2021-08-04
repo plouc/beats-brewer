@@ -1,17 +1,5 @@
 import { DefaultTheme } from 'styled-components'
 
-const colors: DefaultTheme['colors'] = {
-    background: '#aaa9ac',
-    text: '#000000',
-    textLight: '#333333',
-    accent: '#2b808e',
-    alternateMaterial: {
-        background: '#b3c1c1',
-        backgroundLight: '#d5e3e0',
-        backgroundDark: '#a9a4b3',
-    },
-}
-
 export const lightTheme: DefaultTheme = {
     id: 'light',
     name: 'Light Theme',
@@ -19,7 +7,17 @@ export const lightTheme: DefaultTheme = {
         headingFont: `'Montserrat', sans-serif`,
         monospacedFont: `'IBM Plex Mono', monospace`,
     },
-    colors,
+    colors: {
+        background: '#aaa9ac',
+        text: '#000000',
+        textLight: '#333333',
+        accent: '#2b808e',
+        alternateMaterial: {
+            background: '#b3c1c1',
+            backgroundLight: '#d5e3e0',
+            backgroundDark: '#a9a4b3',
+        },
+    },
     sizes: {
         mainGap: 1,
         enclosureBorderRadius: 2,
@@ -39,11 +37,9 @@ export const lightTheme: DefaultTheme = {
     },
     lcd: {
         background: '#adab9d',
-        border: '#89887b',
         text: '#5f5f55',
         textHighlight: '#36362f',
         textHighlightGlow: 'none',
-        borderRadius: 2,
     },
     knob: {
         indicatorColor: '#2a656f',

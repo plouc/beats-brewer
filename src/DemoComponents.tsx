@@ -13,6 +13,7 @@ import { SquareButton } from './ui/controls/SquareButton'
 import { Knob } from './ui/controls/Knob'
 import { ReverbControls } from './effects/ReverbControls'
 import { DistortionControls } from './effects/DistortionControls'
+import { ControlGroup } from './ui/controls/ControlGroup'
 
 export const DemoComponents = () => {
     return (
@@ -64,32 +65,33 @@ export const SampleComponent = () => {
                 <VSpacer />
                 <div>
                     <SampleComponentRow>
-                        <Button>Button</Button>
+                        <ControlGroup>
+                            <Button>Button</Button>
+                            <Button isPressed>Button</Button>
+                        </ControlGroup>
                         <HSpacer size="small" />
-                        <Button hasNext isPressed={true}>
-                            ON
-                        </Button>
-                        <Button hasPrevious>OFF</Button>
+                        <ControlGroup>
+                            <Button isPressed={true}>ON</Button>
+                            <Button>OFF</Button>
+                        </ControlGroup>
                         <HSpacer size="small" />
-                        <Button isPressed>Button</Button>
+                        <ControlGroup>
+                            <SquareButton>
+                                <FiMusic />
+                            </SquareButton>
+                            <SquareButton isPressed>
+                                <FiMusic />
+                            </SquareButton>
+                        </ControlGroup>
                         <HSpacer size="small" />
-                        <Button>
-                            <FiMusic />
-                            &nbsp;Button
-                        </Button>
-                        <HSpacer size="small" />
-                        <Button isPressed>
-                            <FiMusic />
-                            &nbsp;Button
-                        </Button>
-                        <HSpacer size="small" />
-                        <RoundButton>
-                            <FiMusic />
-                        </RoundButton>
-                        <HSpacer size="small" />
-                        <SquareButton>
-                            <FiMusic />
-                        </SquareButton>
+                        <ControlGroup>
+                            <RoundButton>
+                                <FiMusic />
+                            </RoundButton>
+                            <RoundButton isPressed>
+                                <FiMusic />
+                            </RoundButton>
+                        </ControlGroup>
                     </SampleComponentRow>
                     <VSpacer />
                     <Slider value={0.35} onChange={(value) => console.log(value)} />

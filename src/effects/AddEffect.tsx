@@ -11,6 +11,7 @@ import { VSpacer } from '../ui/Spacer'
 import { CloseButton } from '../ui/controls/CloseButton'
 import { useAppStore } from '../store/useApp'
 import { EffectType } from './definitions'
+import { ControlGroup } from '../ui/controls/ControlGroup'
 
 interface AddEffectProps {
     channel: number
@@ -42,9 +43,11 @@ export const AddEffect = ({ channel }: AddEffectProps) => {
 
     return (
         <>
-            <RoundButton onClick={openModal}>
-                <FiPlus />
-            </RoundButton>
+            <ControlGroup>
+                <RoundButton onClick={openModal}>
+                    <FiPlus />
+                </RoundButton>
+            </ControlGroup>
             {isOpen && (
                 <Modal onClose={closeModal}>
                     <Enclosure>

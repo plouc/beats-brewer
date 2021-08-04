@@ -59,11 +59,9 @@ export const generateMonochromeTheme = (
         },
         lcd: {
             background: darken(0.06, color),
-            border: lighten(0.03, color),
             text: textColor.light,
             textHighlight: textColor.main,
             textHighlightGlow: 'none',
-            borderRadius: 3,
         },
     }
 }

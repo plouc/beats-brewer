@@ -1,11 +1,11 @@
 import { ChangeEvent, useCallback } from 'react'
 import styled from 'styled-components/macro'
 import { FiPlus, FiMinus } from 'react-icons/fi'
-import { HSpacer } from './Spacer'
 import { Select } from './controls/Select'
 import { RoundButton } from './controls/RoundButton'
 import { LCDScreen, LCDScreenHighlightedText } from './LCDScreen'
 import { useAppStore } from '../store/useApp'
+import { ControlGroup } from './controls/ControlGroup'
 
 const genresBpm: [string, number][] = [
     ['Reggae/R&B', 60],
@@ -45,19 +45,16 @@ export const BpmControl = () => {
     const currentGenre = genresBpm.find(([_, genreBpm]) => genreBpm === bpm)
 
     return (
-        <Container>
+        <ControlGroup>
             <RoundButton onClick={handleMinus}>
                 <FiMinus />
             </RoundButton>
-            <HSpacer size="xsmall" />
             <Screen>
                 BPM <Current>{bpm.toFixed(2).padStart(6, ' ')}</Current>
             </Screen>
-            <HSpacer size="xsmall" />
             <RoundButton onClick={handlePlus}>
                 <FiPlus />
             </RoundButton>
-            <HSpacer size="small" />
             <Select onChange={handleSelect} value={currentGenre ? currentGenre[1] : ''}>
                 <option value="">-----</option>
                 {genresBpm.map(([genre, genreBpm]) => (
@@ -66,20 +63,16 @@ export const BpmControl = () => {
                     </option>
                 ))}
             </Select>
-        </Container>
+        </ControlGroup>
     )
 }
-
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-`
 
 const Screen = styled(LCDScreen)`
     display: flex;
     align-items: center;
     height: 28px;
     padding: 0 12px;
+    margin-left: 1px;
 `
 
 const Current = styled(LCDScreenHighlightedText)`

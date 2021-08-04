@@ -41,11 +41,9 @@ export const darkTheme: DefaultTheme = {
     },
     lcd: {
         background: '#4c151a',
-        border: '#311716',
         text: '#a14638',
         textHighlight: '#dd6755',
         textHighlightGlow: `0 0 6px ${rgba('#dd6755', 0.6)}`,
-        borderRadius: 3,
     },
     knob: {
         indicatorColor: '#24170b',

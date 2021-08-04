@@ -13,8 +13,6 @@ export interface Skin {
             {
                 isPressed?: boolean
                 isInactive?: boolean
-                hasNext?: boolean
-                hasPrevious?: boolean
             }
         >
         square: StyledComponent<
@@ -23,8 +21,6 @@ export interface Skin {
             {
                 isPressed?: boolean
                 isInactive?: boolean
-                hasNext?: boolean
-                hasPrevious?: boolean
             }
         >
         round: StyledComponent<
