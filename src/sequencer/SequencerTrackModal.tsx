@@ -11,6 +11,7 @@ import { HSpacer, VSpacer } from '../ui/Spacer'
 import { SquareButton } from '../ui/controls/SquareButton'
 import { useAppStore } from '../store/useApp'
 import { samples } from '../library/samples'
+import { ControlGroup } from '../ui/controls/ControlGroup'
 
 interface SampleModalProps {
     track: TrackWithPlayer
@@ -47,9 +48,11 @@ export const SequencerTrackModal = ({ track, onUpdateSample, onClose }: SampleMo
                 <VSpacer />
                 <Content>
                     <Player>
-                        <SquareButton onClick={handlePlay}>
-                            <FiPlay />
-                        </SquareButton>
+                        <ControlGroup>
+                            <SquareButton onClick={handlePlay}>
+                                <FiPlay />
+                            </SquareButton>
+                        </ControlGroup>
                         <HSpacer size="small" />
                         Play track sample
                     </Player>

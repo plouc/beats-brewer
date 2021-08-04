@@ -2,7 +2,7 @@ import { DefaultTheme } from 'styled-components'
 import { darken, rgba } from 'polished'
 
 const colors: DefaultTheme['colors'] = {
-    background: '#1f1f1f',
+    background: '#171717',
     text: '#ffffff',
     textLight: '#888888',
     accent: '#7bb392',
@@ -22,7 +22,7 @@ export const darkTheme: DefaultTheme = {
     },
     colors,
     sizes: {
-        mainGap: 4,
+        mainGap: 1,
         enclosureBorderRadius: 2,
     },
     enclosure: {
@@ -34,9 +34,9 @@ export const darkTheme: DefaultTheme = {
         castShadow: `0 1px 2px ${rgba(darken(0.2, colors.background), 0.15)},
             1px 2px 5px ${rgba(darken(0.2, colors.background), 0.15)},
             3px 6px 12px ${rgba(darken(0.2, colors.background), 0.25)}`,
-        innerCastShadowColor: rgba(darken(0.2, '#2d2d2d'), 0.15),
-        innerCastShadowColorLight: rgba(darken(0.2, '#2d2d2d'), 0.1),
-        innerCastShadowColorDark: rgba(darken(0.2, '#2d2d2d'), 0.2),
+        innerCastShadowColor: rgba(darken(0.2, '#2d2d2d'), 0.3),
+        innerCastShadowColorLight: rgba(darken(0.2, '#2d2d2d'), 0.2),
+        innerCastShadowColorDark: rgba(darken(0.2, '#2d2d2d'), 0.4),
         sideThickness: 12,
     },
     lcd: {

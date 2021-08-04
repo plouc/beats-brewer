@@ -10,6 +10,7 @@ import { CloseButton } from './controls/CloseButton'
 import { HSpacer, VSpacer } from './Spacer'
 import { demoProjects } from '../library/demoProjects'
 import { useAppStore } from '../store/useApp'
+import { ControlGroup } from './controls/ControlGroup'
 
 export const WelcomeModal = () => {
     const [isOpen, setIsOpen] = useState(true)
@@ -46,11 +47,13 @@ export const WelcomeModal = () => {
                         <strong>demo projects</strong> that you can find in the explorer.
                     </p>
                     <OpenDemoProjectContainer>
-                        <Button onClick={openDemoProject}>
-                            <strong>Open a demo project</strong>
-                            <HSpacer size="small" />
-                            <FiExternalLink />
-                        </Button>
+                        <ControlGroup>
+                            <Button onClick={openDemoProject}>
+                                <strong>Open a demo project</strong>
+                                <HSpacer size="small" />
+                                <FiExternalLink />
+                            </Button>
+                        </ControlGroup>
                     </OpenDemoProjectContainer>
                     <p>
                         This is an open source project, and you can find the source code here:{' '}

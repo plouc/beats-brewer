@@ -1,15 +1,18 @@
 import { useCallback, useState } from 'react'
 import styled from 'styled-components/macro'
+import { darken, lighten } from 'polished'
 import { FiEdit2, FiVolume, FiVolumeX } from 'react-icons/fi'
 import { TrackWithPlayer } from './useStepSequencer'
 import { MixerChannelSelector } from '../mixer/MixerChannelSelector'
 import { useAppStore } from '../store/useApp'
 import { SequencerTrackModal } from './SequencerTrackModal'
-import { HSpacer } from '../ui/Spacer'
-import { scaleLinear } from 'd3-scale'
-import { lighten } from 'polished'
+// import { scaleLinear } from 'd3-scale'
+import { ControlGroup } from '../ui/controls/ControlGroup'
+import { SquareButton } from '../ui/controls/SquareButton'
+import { ControlLabel } from '../ui/controls/ControlLabel'
+import { RoundButton } from '../ui/controls/RoundButton'
 
-const meterScale = scaleLinear().domain([-60, 5]).range([0, 1])
+// const meterScale = scaleLinear().domain([-60, 5]).range([0, 1])
 
 interface TrackHeadingProps {
     track: TrackWithPlayer
@@ -44,25 +47,21 @@ export const TrackHeading = ({
     )
 
     return (
-        <TrackHeadingContainer
-            color={track.color}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            <TrackButton onClick={openModal}>
-                <TrackName>{track.name}</TrackName>
-                <HSpacer size="xsmall" />
+        <TrackHeadingContainer onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <Color color={track.color} />
+            <TrackName>{track.name}</TrackName>
+            <RoundButton onClick={openModal}>
                 <FiEdit2 />
-            </TrackButton>
+            </RoundButton>
             <MixerChannelSelector value={track.channel} />
-            <MuteIcon isMuted={track.isMuted} onClick={handleToggle}>
+            <SquareButton onClick={handleToggle} isPressed={track.isMuted}>
                 {track.isMuted && <FiVolumeX />}
                 {!track.isMuted && <FiVolume />}
-            </MuteIcon>
-            <MeterBar
-                color={track.color}
-                value={meterValue === null ? 0 : meterScale(meterValue)}
-            />
+            </SquareButton>
+            {/*<MeterBar
+                    color={track.color}
+                    value={meterValue === null ? 0 : meterScale(meterValue)}
+                />*/}
             {isModalOpen && (
                 <SequencerTrackModal
                     track={track}
@@ -74,81 +73,49 @@ export const TrackHeading = ({
     )
 }
 
-const TrackHeadingContainer = styled.div<{
-    color: string
-}>`
+const TrackHeadingContainer = styled(ControlGroup)`
     display: grid;
-    grid-template-columns: auto 36px 24px 5px;
-    grid-column-gap: 5px;
-    position: relative;
+    padding-left: 1px;
+    grid-template-columns: 6px auto 28px 28px 14px 28px;
+    grid-column-gap: 1px;
     align-items: center;
+    position: relative;
     font-family: ${(props) => props.theme.typography.monospacedFont};
     font-size: 12px;
-    background-color: ${(props) => props.theme.enclosure.backgroundAlt};
-    height: 32px;
-    border-radius: 2px;
-    padding: 0 6px 0 16px;
     user-select: none;
-    color: ${(props) => props.theme.colors.textLight};
-
-    &:before {
-        content: '';
-        position: absolute;
-        background-color: ${(props) => props.color};
-        top: 0;
-        left: 0;
-        width: 5px;
-        height: 100%;
-        border-radius: 2px 0 0 2px;
-        opacity: 0.6;
-    }
-
-    &:hover {
-        &:before {
-            opacity: 1;
-        }
-    }
-`
-
-const TrackButton = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 24px;
     overflow: hidden;
-    cursor: pointer;
+    height: 30px;
 
-    svg {
-        font-size: 14px;
+    & > * {
+        margin-left: 0;
     }
 `
 
-const TrackName = styled.span`
+const Color = styled(ControlLabel)<{
+    color: string
+}>`
+    width: 6px;
+    padding: 0;
+    background-color: ${(props) => props.color};
+    border-radius: 2px 0 0 2px;
+    box-shadow: inset 0 1px 0 ${(props) => lighten(0.12, props.color)},
+        inset 0 -1px 0 ${(props) => darken(0.12, props.color)};
+`
+
+const TrackName = styled(ControlLabel)`
+    display: block;
+    line-height: 28px;
     font-family: ${(props) => props.theme.typography.headingFont};
     text-transform: uppercase;
     font-size: 10px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: ${(props) => props.theme.colors.text};
+    border-radius: 0 2px 2px 0;
 `
 
-const MuteIcon = styled.div<{
-    isMuted: boolean
-}>`
-    font-size: 16px;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: ${(props) => props.theme.colors.textLight};
-    cursor: pointer;
-
-    &:hover {
-        color: ${(props) => props.theme.colors.text};
-    }
-`
-
+/*
 const MeterBar = styled.div<{
     color: string
     value: number
@@ -159,3 +126,4 @@ const MeterBar = styled.div<{
     background-color: ${(props) => lighten(0.15, props.color)};
     opacity: ${(props) => props.value};
 `
+*/

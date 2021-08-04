@@ -5,6 +5,7 @@ export const ControlLabel = styled.label`
     display: flex;
     align-items: center;
     padding: 0 12px;
+    height: 28px;
     border-radius: 2px;
     margin-left: 1px;
     background-color: ${(props) => props.theme.enclosure.background};

@@ -6,6 +6,7 @@ import { Channel } from '../project/definitions'
 import { MixerChannelEffects } from './MixerChannelEffects'
 import { VSpacer } from '../ui/Spacer'
 import { Knob } from '../ui/controls/Knob'
+import { ControlGroup } from '../ui/controls/ControlGroup'
 
 interface MixerChannelProps {
     index: number
@@ -40,18 +41,22 @@ export const MixerChannel = ({ index, channel, isHighlighted }: MixerChannelProp
             <VSpacer size="small" />
             <ValueLabel>volume</ValueLabel>
             <VSpacer size="xsmall" />
-            <ValueScreen>
-                <LCDScreenHighlightedText>
-                    {isMuted && '---'}
-                    {!isMuted && channel.channel.volume.value}
-                </LCDScreenHighlightedText>
-            </ValueScreen>
+            <ControlGroup>
+                <ValueScreen>
+                    <LCDScreenHighlightedText>
+                        {isMuted && '---'}
+                        {!isMuted && channel.channel.volume.value}
+                    </LCDScreenHighlightedText>
+                </ValueScreen>
+            </ControlGroup>
             <VSpacer size="small" />
             <ValueLabel>pan</ValueLabel>
             <VSpacer size="xsmall" />
-            <ValueScreen>
-                <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
-            </ValueScreen>
+            <ControlGroup>
+                <ValueScreen>
+                    <LCDScreenHighlightedText>{channel.channel.pan.value}</LCDScreenHighlightedText>
+                </ValueScreen>
+            </ControlGroup>
             <VSpacer />
             <ValueLabel>effects</ValueLabel>
             <VSpacer size="small" />
@@ -108,6 +113,8 @@ const ValueScreen = styled(LCDScreen)`
     padding: 3px 0;
     width: 50px;
     text-align: center;
+    border-radius: 2px;
+    margin-left: 1px;
 `
 
 const MuteButton = styled.div<{

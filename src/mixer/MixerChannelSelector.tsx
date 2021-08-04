@@ -20,7 +20,7 @@ export const MixerChannelSelector = ({ value }: MixerChannelSelectorProps) => {
     }, [value])
 
     return (
-        <Container>
+        <>
             <Screen>
                 <LCDScreenHighlightedText>{value + 1}</LCDScreenHighlightedText>
             </Screen>
@@ -32,37 +32,39 @@ export const MixerChannelSelector = ({ value }: MixerChannelSelectorProps) => {
                     <FiChevronDown />
                 </Button>
             </Controls>
-        </Container>
+        </>
     )
 }
 
-const Container = styled.div`
-    display: flex;
-    align-items: center;
-`
-
 const Screen = styled(LCDScreen)`
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 2px;
+    border-radius: 1px;
 `
 
 const Controls = styled.div`
     display: flex;
     flex-direction: column;
-    width: 12px;
-    height: 24px;
+    width: 14px;
+    height: 28px;
+    margin-left: 1px;
 `
 
 const Button = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12px;
-    color: ${(props) => props.theme.colors.textLight};
+    width: 14px;
+    height: 14px;
+    background-color: ${(props) => props.theme.enclosure.background};
+    color: ${(props) => props.theme.colors.text};
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 ${(props) => props.theme.enclosure.backgroundLight},
+        inset 0 -1px 0 ${(props) => props.theme.enclosure.backgroundDark};
 
     &:hover {
         color: ${(props) => props.theme.colors.text};
